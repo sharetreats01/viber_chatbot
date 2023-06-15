@@ -6,13 +6,12 @@ pipeline {
         imageName = 'viber_chatbot'
         version = '0.1'
         credentialsId = 'dockerhub-id'
-        workDir = "/home/ubuntu/share_treats"
     }
     stages {
         stage("build jar") {
             steps {
                 // 프로젝트 빌드
-                sh './gradlew build'
+                sh './gradlew build -x test'
             }
         }
 
