@@ -3,16 +3,16 @@ pipeline {
 
     environment {
         registryUrl = 'dlwlgh9412'
-        imageName = 'retromall'
+        imageName = 'viber_chatbot'
         version = '0.1'
         credentialsId = 'dockerhub-id'
-        workDir = "/home/ubuntu/retromall"
+        workDir = "/home/ubuntu/share_treats"
     }
     stages {
         stage("build jar") {
             steps {
                 // 프로젝트 빌드
-                sh './gradlew build -x test'
+                sh './gradlew build'
             }
         }
 
@@ -58,21 +58,11 @@ pipeline {
             }
         }
 
-        // stage('mov workDir') {
-        //     steps {
-        //         sshPublisher(publishers: [
-        //             sshPublisherDesc(configName: 'ubuntu-server', transfers: [
-        //                 sshTransfer(cleanRemote: false, excludes: '', execCommand: "cd /home/ubuntu/retromall", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '')
-        //             ])
-        //         ])
-        //     }
-        // }
-
         stage('deploy') {
             steps {
                 sshPublisher(publishers: [
                     sshPublisherDesc(configName: 'ubuntu-server', transfers: [
-                        sshTransfer(cleanRemote: false, excludes: '', execCommand: "cd /home/ubuntu/retromall && sh /home/ubuntu/retromall/dev.sh ${imageName} ${version}", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '')
+                        sshTransfer(cleanRemote: false, excludes: '', execCommand: "cd /home/ubuntu/share_treats && sh dev.sh ${imageName} ${version}", execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '')
                     ])
                 ])
             }
