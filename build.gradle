@@ -29,8 +29,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // Logging
-    runtimeOnly 'ch.qos.logback:logback-classic:1.4.7'
-    runtimeOnly 'org.slf4j:log4j-over-slf4j:1.7.36'
+//    runtimeOnly 'ch.qos.logback:logback-classic:1.4.7'
+//    runtimeOnly 'org.slf4j:log4j-over-slf4j:1.7.36'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
