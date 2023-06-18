@@ -1,3 +1,20 @@
 spring:
+  application:
+    name: sharetreats_chatbot
   jpa:
     open-in-view: false
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus, loggers
+  metrics:
+    tags:
+      application: ${spring.application.name}
