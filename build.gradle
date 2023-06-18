@@ -28,6 +28,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    // Monitoring and Management
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
     // Logging
 //    runtimeOnly 'ch.qos.logback:logback-classic:1.4.7'
 //    runtimeOnly 'org.slf4j:log4j-over-slf4j:1.7.36'
