@@ -3,7 +3,9 @@ spring:
     name: sharetreats_chatbot
   jpa:
     open-in-view: false
-
+  jackson:
+    default-property-inclusion: non_null
+    property-naming-strategy: SNAKE_CASE
 management:
   endpoint:
     metrics:
