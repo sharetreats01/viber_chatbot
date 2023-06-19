@@ -28,7 +28,7 @@ class CallbackControllerTest {
         ConversationStarted conversationStarted = new ConversationStarted("conversation_started", 219421853L, 1232151, "text", "context", new User("#214392542542", "User", "http://www.image/avatar.img", "KR", "ko", 1), true);
         String callback = objectMapper.writeValueAsString(conversationStarted);
 
-        ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/sharetreats_welcome")
+        ResultActions result = mockMvc.perform(MockMvcRequestBuilders.post("/sharetreats01_chatbot")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(callback))
                 .andExpect(MockMvcResultMatchers.status().isOk())

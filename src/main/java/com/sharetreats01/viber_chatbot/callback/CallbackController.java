@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class CallbackController {
-    @PostMapping("/sharetreats_welcome")
+    @PostMapping("/sharetreats01_chatbot")
     public ResponseEntity<WelcomeMessage> conversationStarted(@RequestBody ConversationStarted callback) {
         return ResponseEntity.ok(WelcomeMessage.builder()
                 .sender(new Sender("John McClane", "http://avatart.example.com"))
