@@ -1,8 +1,8 @@
-package com.sharetreats01.viber_chatbot.user.controller;
+package com.sharetreats01.viber_chatbot.callback;
 
-import com.sharetreats01.viber_chatbot.user.dto.ConversationStarted;
-import com.sharetreats01.viber_chatbot.user.dto.Sender;
-import com.sharetreats01.viber_chatbot.user.dto.WelcomeMessage;
+import com.sharetreats01.viber_chatbot.callback.dto.ConversationStarted;
+import com.sharetreats01.viber_chatbot.callback.dto.Sender;
+import com.sharetreats01.viber_chatbot.callback.dto.WelcomeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
