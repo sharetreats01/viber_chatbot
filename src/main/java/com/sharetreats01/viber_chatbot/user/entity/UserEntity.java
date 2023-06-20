@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.entity;
+package com.sharetreats01.viber_chatbot.user.entity;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

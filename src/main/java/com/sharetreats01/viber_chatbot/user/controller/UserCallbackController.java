@@ -1,8 +1,8 @@
-package com.sharetreats01.viber_chatbot.callback;
+package com.sharetreats01.viber_chatbot.user.controller;
 
-import com.sharetreats01.viber_chatbot.dto.ConversationStarted;
-import com.sharetreats01.viber_chatbot.dto.Sender;
-import com.sharetreats01.viber_chatbot.dto.WelcomeMessage;
+import com.sharetreats01.viber_chatbot.user.dto.ConversationStarted;
+import com.sharetreats01.viber_chatbot.user.dto.Sender;
+import com.sharetreats01.viber_chatbot.user.dto.WelcomeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class CallbackController {
+public class UserCallbackController {
     @PostMapping("/sharetreats01_chatbot")
     public ResponseEntity<WelcomeMessage> conversationStarted(@RequestBody ConversationStarted callback) {
         return ResponseEntity.ok(WelcomeMessage.builder()
