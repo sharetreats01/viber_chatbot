@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @WebMvcTest(UserCallbackController.class)
-class UserCallbackControllerTest {
+class CallbackControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
