@@ -1,10 +1,9 @@
 package com.sharetreats01.viber_chatbot.callback;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sharetreats01.viber_chatbot.user.dto.ConversationStarted;
-import com.sharetreats01.viber_chatbot.user.dto.User;
-import com.sharetreats01.viber_chatbot.user.dto.WelcomeMessage;
-import com.sharetreats01.viber_chatbot.user.controller.UserCallbackController;
+import com.sharetreats01.viber_chatbot.callback.dto.ConversationStarted;
+import com.sharetreats01.viber_chatbot.callback.dto.User;
+import com.sharetreats01.viber_chatbot.callback.dto.WelcomeMessage;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,7 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @WebMvcTest(UserCallbackController.class)
-class UserCallbackControllerTest {
+class CallbackControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
