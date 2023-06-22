@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/sharetreats
+    username: dlwlgh9412
+    password: dlwlgh9412
+
+
+#logging:
+#  level:
+#    web: error
+#    root: error
