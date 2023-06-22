@@ -3,23 +3,24 @@ package com.sharetreats01.viber_chatbot.interaction.dto.callback;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.Sender;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.User;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Callback {
-    private final Event event;
-    private final Long timestamp;
-    private final Long messageToken;
-    private final String type;
-    private final String context;
-    private final User user;
-    private final Boolean subscribed;
-    private final String user_id;
-    private final String desc;
-    private final Sender sender;
-    private final com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.Message message;
+    private Event event;
+    private Long timestamp;
+    private Long messageToken;
+    private String type;
+    private String context;
+    private User user;
+    private Boolean subscribed;
+    private String user_id;
+    private String desc;
+    private Sender sender;
+    private com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.Message message;
 
     public Subscribed buildSubscribed() {
         return new Subscribed(event, timestamp, user, messageToken);

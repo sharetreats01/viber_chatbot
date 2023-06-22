@@ -35,7 +35,7 @@ public class MessageTemplateUtils {
 
     public static Map<String, String> createTemplateValues(String[] placeHolders, String[] values) {
         if (placeHolders.length != values.length) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException(""); // 추후 수정
         }
 
         Map<String, String> result = new HashMap<>();
