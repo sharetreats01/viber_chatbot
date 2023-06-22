@@ -39,14 +39,6 @@ public class ConversationStartedEventHandler implements CallbackEventHandler {
                 .trackingData("conversation_started")
                 .type("text")
                 .text(messageService.testCreateMessage(placeholders, values))
-                .keyboard(Keyboard.builder()
-                        .buttons(new Keyboard.Button[]{Keyboard.Button.builder()
-                                .actionType(ActionType.REPLY)
-                                .actionBody("reply to me")
-                                .text("Key text")
-                                .textSize(TextSize.REGULAR)
-                                .build()})
-                        .build())
                 .build();
     }
 }
