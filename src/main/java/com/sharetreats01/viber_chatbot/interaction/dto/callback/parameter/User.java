@@ -1,15 +1,16 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter;
 
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class User {
-    private final String id;
-    private final String name;
-    private final String avatar;
-    private final String country;
-    private final String language;
-    private final Integer apiVersion;
+    private String id;
+    private String name;
+    private String avatar;
+    private String country;
+    private String language;
+    private Integer apiVersion;
 }

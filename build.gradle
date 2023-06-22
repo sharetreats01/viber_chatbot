@@ -29,16 +29,14 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    implementation 'org.flywaydb:flyway-core'
+    compileOnly 'org.flywaydb:flyway-mysql'
     // Monitoring and Management
     implementation 'io.micrometer:micrometer-registry-prometheus'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
-    // Logging
-//    runtimeOnly 'ch.qos.logback:logback-classic:1.4.7'
-//    runtimeOnly 'org.slf4j:log4j-over-slf4j:1.7.36'
-
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.h2database:h2'
+//    runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.mysql:mysql-connector-j'
 
     annotationProcessor 'org.projectlombok:lombok'
@@ -51,6 +49,22 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
+
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources", "src/main/resources-${profile}"
+        }
+    }
+}
+
+tasks {
+    processResources {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
 }
 
 jar {
