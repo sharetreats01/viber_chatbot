@@ -30,7 +30,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     implementation 'org.flywaydb:flyway-core'
-    compileOnly 'org.flywaydb:flyway-mysql'
+    implementation 'org.flywaydb:flyway-mysql'
+
     // Monitoring and Management
     implementation 'io.micrometer:micrometer-registry-prometheus'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
@@ -62,11 +63,6 @@ sourceSets {
             srcDirs "src/main/resources", "src/main/resources-${profile}"
         }
     }
-//    test {
-//        resources {
-//            srcDir "src/test/resources"
-//        }
-//    }
 }
 
 tasks {
