@@ -1,6 +1,5 @@
 package com.sharetreats01.viber_chatbot.interaction.dto;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.Keyboard;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -13,17 +12,15 @@ public class WelcomeMessage {
     private final String text;
     private final String media;
     private final String thumbnail;
-    private Keyboard keyboard;
 
     @Builder
-    public WelcomeMessage(String senderName, String senderAvatar, String trackingData, String type, String text, String media, String thumbnail, Keyboard keyboard) {
+    public WelcomeMessage(String senderName, String senderAvatar, String trackingData, String type, String text, String media, String thumbnail) {
         this.sender = new Sender(senderName, senderAvatar);
         this.trackingData = trackingData;
         this.type = type;
         this.text = text;
         this.media = media;
         this.thumbnail = thumbnail;
-        this.keyboard = keyboard;
     }
 
     @Getter

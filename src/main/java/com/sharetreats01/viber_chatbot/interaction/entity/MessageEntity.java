@@ -24,10 +24,10 @@ public class MessageEntity {
     @Column(name = "language")
     private String language;
 
-    @Column(name = "createdAt")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @Column(name = "modifiedAt")
+    @Column(name = "modified_at")
     private LocalDateTime modifiedAt;
 
     @Column(name = "version")
