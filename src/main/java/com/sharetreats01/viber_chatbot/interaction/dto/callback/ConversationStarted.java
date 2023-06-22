@@ -9,10 +9,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ConversationStarted {
     private final Event event;
-    private final long timestamp;
-    private final long messageToken;
+    private final Long timestamp;
+    private final Long messageToken;
     private final String type;
     private final String context;
     private final User user;
-    private final boolean subscribed;
+    private final Boolean subscribed;
 }

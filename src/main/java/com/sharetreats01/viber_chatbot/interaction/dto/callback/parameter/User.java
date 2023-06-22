@@ -11,5 +11,5 @@ public class User {
     private final String avatar;
     private final String country;
     private final String language;
-    private final int apiVersion;
+    private final Integer apiVersion;
 }
