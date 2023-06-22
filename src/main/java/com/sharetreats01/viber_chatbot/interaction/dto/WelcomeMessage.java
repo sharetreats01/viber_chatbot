@@ -1,5 +1,6 @@
-package com.sharetreats01.viber_chatbot.callback.dto;
+package com.sharetreats01.viber_chatbot.interaction.dto;
 
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.Sender;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,12 +1,14 @@
-package com.sharetreats01.viber_chatbot.callback.dto;
+package com.sharetreats01.viber_chatbot.interaction.dto.callback;
 
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.User;
+import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
 public class ConversationStarted {
-    private final String event;
+    private final Event event;
     private final long timestamp;
     private final long messageToken;
     private final String type;
