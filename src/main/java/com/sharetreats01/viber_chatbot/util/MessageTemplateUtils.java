@@ -3,6 +3,7 @@ package com.sharetreats01.viber_chatbot.util;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,5 +31,18 @@ public class MessageTemplateUtils {
         matcher.appendTail(result);
 
         return result.toString();
+    }
+
+    public static Map<String, String> createTemplateValues(String[] placeHolders, String[] values) {
+        if (placeHolders.length != values.length) {
+            throw new IllegalArgumentException("");
+        }
+
+        Map<String, String> result = new HashMap<>();
+        for(int i = 0; i < placeHolders.length; i++) {
+            result.put(placeHolders[i], values[i]);
+        }
+
+        return result;
     }
 }

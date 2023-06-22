@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.callback.entity;
+package com.sharetreats01.viber_chatbot.interaction.entity;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -7,20 +7,29 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tb_message")
+@Table(name = "tb_message_template")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MessageEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private Integer id;
 
-    @Column(name = "message")
-    private String message;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "template")
+    private String template;
+
+    @Column(name = "language")
+    private String language;
 
     @Column(name = "createdAt")
     private LocalDateTime createdAt;
 
     @Column(name = "modifiedAt")
     private LocalDateTime modifiedAt;
+
+    @Column(name = "version")
+    private String version;
 }
