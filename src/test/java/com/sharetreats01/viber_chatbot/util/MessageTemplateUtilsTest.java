@@ -78,4 +78,34 @@ class MessageTemplateUtilsTest {
                 () -> MessageTemplateUtils.processTemplate(template, values),
                 "No value provided for key: name2");
     }
+
+    @Test
+    public void createTemplateValue() {
+        String[] placeHolders = {"name", "name2"};
+        String[] values = {"jiho", "jiho2"};
+
+        Map<String, String> result = MessageTemplateUtils.createTemplateValues(placeHolders, values);
+
+        assertEquals("jiho2", result.get("name2"));
+        assertEquals(2, result.size());
+    }
+
+    @Test
+    public void createTemplateValueNotCompareParam() {
+        String[] placeHolders = {"name", "name2"};
+        String[] values = {"jiho"};
+        assertThrows(IllegalArgumentException.class, () -> MessageTemplateUtils.createTemplateValues(placeHolders, values), "");
+    }
+
+    @Test
+    public void processTemplateWithCreateValue() {
+        String[] placeHolders = {"name", "name2"};
+        String[] values = {"jiho", "jiho2"};
+
+        Map<String, String> valueMap = MessageTemplateUtils.createTemplateValues(placeHolders, values);
+        String template = "Hello! ${name}! My name is ${name2}.";
+
+        String result = MessageTemplateUtils.processTemplate(template, valueMap);
+        assertEquals("Hello! jiho! My name is jiho2.", result);
+    }
 }
