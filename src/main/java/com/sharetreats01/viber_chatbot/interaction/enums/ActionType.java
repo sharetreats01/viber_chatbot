@@ -6,31 +6,28 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Event {
-    DELIVERED("delivered"),
-    SEEN("seen"),
-    FAILED("failed"),
-    SUBSCRIBED("subscribed"),
-    UNSUBSCRIBED("unsubscribed"),
-    CONVERSATION_STARTED("conversation_started"),
-    MESSAGE("message");
+public enum ActionType {
+    REPLY("reply"),
+    OPEN_URL("open-url"),
+    LOCATION_PICKER("location-picker"),
+    SHARE_PHONE("share_phone"),
+    NONE("none");
 
     private final String value;
+    private static final Map<String, ActionType> map = new HashMap<>();
 
-    Event(String value) {
+    ActionType(String value) {
         this.value = value;
     }
 
-    private static final Map<String, Event> map = new HashMap<>();
-
     static {
-        for (Event event : values()) {
-            map.put(event.value, event);
+        for (ActionType type : values()) {
+            map.put(type.value, type);
         }
     }
 
     @JsonCreator
-    public static Event fromValue(String value) {
+    public static ActionType fromValue(String value) {
         return map.getOrDefault(value, null);
     }
 

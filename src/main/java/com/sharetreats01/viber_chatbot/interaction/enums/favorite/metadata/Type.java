@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.interaction.enums;
+package com.sharetreats01.viber_chatbot.interaction.enums.favorite.metadata;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -7,32 +7,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Type {
-    TEXT("text"),
-    PICTURE("picture"),
-    VIDEO("video"),
-    FILE("file"),
-    STICKER("sticker"),
-    CONTACT("contact"),
-    URL("url"),
-    LOCATION("location");
+    GIF("gif"),
+    LINK("link"),
+    VIDEO("video");
 
     private final String value;
+    private static final Map<String, Type> map = new HashMap<>();
 
     Type(String value) {
         this.value = value;
     }
 
-    private static final Map<String, Type> map = new HashMap<>();
-
     static {
-        for (Type type : values()) {
+        for(Type type : values()) {
             map.put(type.value, type);
         }
     }
 
     @JsonCreator
     public static Type fromValue(String value) {
-        return map.get(value);
+        return map.getOrDefault(value, null);
     }
 
     @JsonValue
