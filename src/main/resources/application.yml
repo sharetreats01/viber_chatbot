@@ -20,3 +20,18 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+
+
+shearetreats:
+  mock:
+    url: https://4e765d5e-13d9-4ec3-a6e7-d21254d2dc43.mock.pstmn.io
+
+url:
+  viberapi:
+    send-message: https://chatapi.viber.com/pa/send_message
+    user-detail: https://chatapi.viber.com/pa/get_user_details
+
+auth:
+  bot:
+    header-name: String
+    token: test

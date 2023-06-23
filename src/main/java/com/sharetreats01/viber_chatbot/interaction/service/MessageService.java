@@ -13,4 +13,5 @@ public class MessageService {
         Map<String, String> valueMap = MessageTemplateUtils.createTemplateValues(placeHolders, values);
         return MessageTemplateUtils.processTemplate("Hello ${name1}! Welcome to our bot.\nMy name is ${name2}.", valueMap);
     }
+
 }
