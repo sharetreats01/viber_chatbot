@@ -24,7 +24,7 @@ class MessageTemplateUtilsTest {
 
     @Test
     public void processTemplateWithMultiplePlaceHolders() {
-        final String template = "Hello {userName}, Welcome to our chatbot. Today is {month}-${day}";
+        final String template = "Hello {userName}, Welcome to our chatbot. Today is {month}-{day}";
         final Map<String, String> values = new HashMap<>();
         final LocalDate date = LocalDate.now();
         values.put("userName", "Jiho");
