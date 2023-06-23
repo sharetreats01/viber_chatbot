@@ -32,10 +32,8 @@ public class ConversationStartedEventHandler implements CallbackEventHandler {
     public WelcomeMessage handleEvent(Callback callback) {
         ConversationStarted conversationStarted = callback.buildConversationStarted();
         UserEntity userEntity = userService.subscribe(conversationStarted.getUser());
-        String message = messageService
-                .createMessage(
-                        new WelcomeMessageTemplateValueDto(MessageType.WELCOME, userEntity.getLanguage(), userEntity.getName())
-                );
+        String message = messageService.createMessage(
+                new WelcomeMessageTemplateValueDto(MessageType.WELCOME, userEntity.getLanguage(), userEntity.getName()));
         return WelcomeMessage.builder()
                 .senderName("Share Treats")
                 .senderAvatar(viberProperties.getBotAvatar())

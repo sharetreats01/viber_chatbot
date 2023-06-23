@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 
@@ -30,7 +31,7 @@ public class MessageService {
                         .orElseThrow(() -> new MessageTemplateException("메시지 템플릿을 찾을 수 없습니다."));
         TemplateDto templateDto =
                 new TemplateDto(entity.getTemplate(), entity.getTemplateVariableEntities()
-                        .stream()
+                        .stream().sorted(Comparator.comparing(MessageTemplatePlaceHolderEntity::getId))
                         .map(MessageTemplatePlaceHolderEntity::getName)
                         .collect(Collectors.toList())
                 );
