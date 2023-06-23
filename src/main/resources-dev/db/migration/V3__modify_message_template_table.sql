@@ -1,1 +1,0 @@
-alter table tb_message_template change name type varchar(10);
