@@ -33,5 +33,12 @@ public class UserEntity {
     private String language;
 
     @Column(name = "api_version")
-    private int apiVersion;
+    private Integer apiVersion;
+
+    @Column(name = "is_subscribe")
+    private Boolean isSubscribe;
+
+    public void unsubscribe() {
+        this.isSubscribe = false;
+    }
 }
