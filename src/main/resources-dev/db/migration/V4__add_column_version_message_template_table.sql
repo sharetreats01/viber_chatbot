@@ -1,0 +1,1 @@
+alter table tb_message_template add version int;

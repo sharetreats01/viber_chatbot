@@ -1,14 +1,14 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.WelcomeMessage;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.WelcomeMessage;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.ConversationStarted;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.Keyboard;
-import com.sharetreats01.viber_chatbot.interaction.enums.ActionType;
+import com.sharetreats01.viber_chatbot.interaction.dto.message.template.WelcomeMessageTemplateValueDto;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
-import com.sharetreats01.viber_chatbot.interaction.enums.TextSize;
+import com.sharetreats01.viber_chatbot.interaction.enums.MessageType;
 import com.sharetreats01.viber_chatbot.interaction.properties.ViberProperties;
 import com.sharetreats01.viber_chatbot.interaction.service.MessageService;
+import com.sharetreats01.viber_chatbot.user.entity.UserEntity;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,14 +31,17 @@ public class ConversationStartedEventHandler implements CallbackEventHandler {
     @Override
     public WelcomeMessage handleEvent(Callback callback) {
         ConversationStarted conversationStarted = callback.buildConversationStarted();
-        String[] placeholders = {"name1", "name2"};
-        String[] values = {conversationStarted.getUser().getName(), viberProperties.getBotName()};
+        UserEntity userEntity = userService.subscribe(conversationStarted.getUser());
+        String message = messageService
+                .createMessage(
+                        new WelcomeMessageTemplateValueDto(MessageType.WELCOME, userEntity.getLanguage(), userEntity.getName())
+                );
         return WelcomeMessage.builder()
                 .senderName("Share Treats")
                 .senderAvatar(viberProperties.getBotAvatar())
                 .trackingData("conversation_started")
                 .type("text")
-                .text(messageService.testCreateMessage(placeholders, values))
+                .text(message)
                 .build();
     }
 }

@@ -1,9 +1,11 @@
-package com.sharetreats01.viber_chatbot.util;
+package com.sharetreats01.viber_chatbot.interaction.util;
 
+import com.sharetreats01.viber_chatbot.interaction.exception.MessageTemplateException;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,14 +35,13 @@ public class MessageTemplateUtils {
         return result.toString();
     }
 
-    public static Map<String, String> createTemplateValues(String[] placeHolders, String[] values) {
-        if (placeHolders.length != values.length) {
-            throw new IllegalArgumentException(""); // 추후 수정
+    public static Map<String, String> createTemplateValues(List<String> placeHolders, List<String> values) {
+        if (placeHolders.size() != values.size()) {
+            throw new MessageTemplateException("템플릿 변수 생성 중에 오류가 발생하였습니다.");
         }
-
         Map<String, String> result = new HashMap<>();
-        for(int i = 0; i < placeHolders.length; i++) {
-            result.put(placeHolders[i], values[i]);
+        for(int i = 0; i < placeHolders.size(); i++) {
+            result.put(placeHolders.get(i), values.get(i));
         }
 
         return result;

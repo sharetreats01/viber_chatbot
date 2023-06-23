@@ -1,9 +1,11 @@
-package com.sharetreats01.viber_chatbot.util;
+package com.sharetreats01.viber_chatbot.interaction.util;
 
+import com.sharetreats01.viber_chatbot.interaction.exception.MessageTemplateException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -81,8 +83,8 @@ class MessageTemplateUtilsTest {
 
     @Test
     public void createTemplateValue() {
-        String[] placeHolders = {"name", "name2"};
-        String[] values = {"jiho", "jiho2"};
+        List<String> placeHolders = List.of("name", "name2");
+        List<String> values = List.of("jiho", "jiho2");
 
         Map<String, String> result = MessageTemplateUtils.createTemplateValues(placeHolders, values);
 
@@ -92,15 +94,15 @@ class MessageTemplateUtilsTest {
 
     @Test
     public void createTemplateValueNotCompareParam() {
-        String[] placeHolders = {"name", "name2"};
-        String[] values = {"jiho"};
-        assertThrows(IllegalArgumentException.class, () -> MessageTemplateUtils.createTemplateValues(placeHolders, values), "");
+        List<String> placeHolders = List.of("name", "name2");
+        List<String> values = List.of("jiho");
+        assertThrows(MessageTemplateException.class, () -> MessageTemplateUtils.createTemplateValues(placeHolders, values), "");
     }
 
     @Test
     public void processTemplateWithCreateValue() {
-        String[] placeHolders = {"name", "name2"};
-        String[] values = {"jiho", "jiho2"};
+        List<String> placeHolders = List.of("name", "name2");
+        List<String> values = List.of("jiho", "jiho2");
 
         Map<String, String> valueMap = MessageTemplateUtils.createTemplateValues(placeHolders, values);
         String template = "Hello! ${name}! My name is ${name2}.";
