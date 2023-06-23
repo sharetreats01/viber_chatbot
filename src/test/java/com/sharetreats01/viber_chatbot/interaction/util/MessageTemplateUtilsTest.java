@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MessageTemplateUtilsTest {
     @Test
     public void processTemplateWithPlaceHolder() {
-        final String template = "Hello ${userName}, Welcome to our chatbot";
+        final String template = "Hello {userName}, Welcome to our chatbot";
         final Map<String, String> values = new HashMap<>();
         values.put("userName", "Jiho");
 
@@ -24,7 +24,7 @@ class MessageTemplateUtilsTest {
 
     @Test
     public void processTemplateWithMultiplePlaceHolders() {
-        final String template = "Hello ${userName}, Welcome to our chatbot. Today is ${month}-${day}";
+        final String template = "Hello {userName}, Welcome to our chatbot. Today is {month}-${day}";
         final Map<String, String> values = new HashMap<>();
         final LocalDate date = LocalDate.now();
         values.put("userName", "Jiho");
@@ -49,7 +49,7 @@ class MessageTemplateUtilsTest {
 
     @Test
     public void processTemplateWithSamePrefixPlaceHolders() {
-        final String template = "Hello ${name1}, Welcome to our chatbot. My name is ${name2}";
+        final String template = "Hello {name1}, Welcome to our chatbot. My name is {name2}";
         final Map<String, String> values = new HashMap<>();
         values.put("name1", "Jiho");
         values.put("name2", "sharetreats");
@@ -61,7 +61,7 @@ class MessageTemplateUtilsTest {
 
     @Test
     public void processTemplateWithSamePlaceHolders() {
-        final String template = "Hello ${name}, Welcome to our chatbot. Your name is ${name}";
+        final String template = "Hello {name}, Welcome to our chatbot. Your name is {name}";
         final Map<String, String> values = new HashMap<>();
         values.put("name", "Jiho");
 
@@ -72,7 +72,7 @@ class MessageTemplateUtilsTest {
 
     @Test
     public void processTemplateWithMissingValue() {
-        final String template = "Hello ${name}, Welcome to out chatbot. My name is ${name2}";
+        final String template = "Hello {name}, Welcome to out chatbot. My name is {name2}";
         final Map<String, String> values = new HashMap<>();
         values.put("name", "Jiho");
 
@@ -105,7 +105,7 @@ class MessageTemplateUtilsTest {
         List<String> values = List.of("jiho", "jiho2");
 
         Map<String, String> valueMap = MessageTemplateUtils.createTemplateValues(placeHolders, values);
-        String template = "Hello! ${name}! My name is ${name2}.";
+        String template = "Hello! {name}! My name is {name2}.";
 
         String result = MessageTemplateUtils.processTemplate(template, valueMap);
         assertEquals("Hello! jiho! My name is jiho2.", result);
