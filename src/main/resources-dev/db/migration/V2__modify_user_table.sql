@@ -8,3 +8,9 @@ create table tb_message_template_placeholder
     name        varchar(10) not null,
     foreign key (template_id) references tb_message_template (id)
 );
+
+alter table tb_message_template
+    change name type varchar(10);
+
+alter table tb_message_template
+    add version int;
