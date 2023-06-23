@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MessageTemplateUtils {
-    private static final Pattern PATTERN = Pattern.compile("\\$\\{(\\w+)}");
+    private static final Pattern PATTERN = Pattern.compile("\\{(\\w+)}");
 
     public static String processTemplate(String template, final Map<String, String> values) {
         StringBuilder result = new StringBuilder();
