@@ -15,6 +15,13 @@ public class MessageEventHandler implements CallbackEventHandler {
 
     @Override
     public Void handleEvent(Callback callback) {
+        
+        // swich로 event를 분류해서 진행 필요
+        // TODO : Callback.Message.type 구분해서 분기로 진행
+        // Message message = callback.buildMessage();
         return null;
     }
+
+
+
 }

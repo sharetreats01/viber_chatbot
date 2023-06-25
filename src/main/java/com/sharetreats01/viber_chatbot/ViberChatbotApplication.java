@@ -9,5 +9,4 @@ public class ViberChatbotApplication {
     public static void main(String[] args) {
         SpringApplication.run(ViberChatbotApplication.class, args);
     }
-
 }
