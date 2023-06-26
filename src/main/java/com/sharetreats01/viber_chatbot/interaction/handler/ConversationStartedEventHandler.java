@@ -8,8 +8,6 @@ import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import com.sharetreats01.viber_chatbot.interaction.enums.MessageType;
 import com.sharetreats01.viber_chatbot.interaction.properties.ViberProperties;
 import com.sharetreats01.viber_chatbot.interaction.service.MessageService;
-import com.sharetreats01.viber_chatbot.user.entity.UserEntity;
-import com.sharetreats01.viber_chatbot.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -21,7 +19,6 @@ import org.springframework.stereotype.Component;
 public class ConversationStartedEventHandler implements CallbackEventHandler {
     private final ViberProperties viberProperties;
     private final MessageService messageService;
-    private final UserService userService;
 
     @Override
     public Event getCallbackEvent() {
@@ -31,9 +28,8 @@ public class ConversationStartedEventHandler implements CallbackEventHandler {
     @Override
     public WelcomeMessage handleEvent(Callback callback) {
         ConversationStarted conversationStarted = callback.buildConversationStarted();
-        UserEntity userEntity = userService.subscribe(conversationStarted.getUser());
         String message = messageService.createMessage(
-                new WelcomeMessageTemplateValueDto(MessageType.WELCOME, userEntity.getLanguage(), userEntity.getName()));
+                new WelcomeMessageTemplateValueDto(MessageType.WELCOME, conversationStarted.getUser().getLanguage(), conversationStarted.getUser().getName()));
         return WelcomeMessage.builder()
                 .senderName("Share Treats")
                 .senderAvatar(viberProperties.getBotAvatar())
