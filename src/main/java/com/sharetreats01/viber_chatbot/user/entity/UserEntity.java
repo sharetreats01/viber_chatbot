@@ -69,4 +69,32 @@ public class UserEntity {
         result = 31 * result + isSubscribe.hashCode();
         return result;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserEntity entity = (UserEntity) o;
+
+        if (!id.equals(entity.id)) return false;
+        if (!name.equals(entity.name)) return false;
+        if (!avatar.equals(entity.avatar)) return false;
+        if (!country.equals(entity.country)) return false;
+        if (!language.equals(entity.language)) return false;
+        if (!apiVersion.equals(entity.apiVersion)) return false;
+        return isSubscribe.equals(entity.isSubscribe);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + avatar.hashCode();
+        result = 31 * result + country.hashCode();
+        result = 31 * result + language.hashCode();
+        result = 31 * result + apiVersion.hashCode();
+        result = 31 * result + isSubscribe.hashCode();
+        return result;
+    }
 }

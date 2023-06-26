@@ -8,13 +8,13 @@ import org.springframework.context.annotation.PropertySource;
 @Getter
 @Configuration
 @PropertySource("classpath:properties/viber/chatbot.properties")
-public class InteractionProperties {
+public class ChatbotProperties {
     @Value("${bot-name}")
-    private String bot_name;
+    private String botName;
 
     @Value("${bot-avatar}")
-    private String bot_avatar;
+    private String botAvatar;
 
     @Value("${bot-thumbnail}")
-    private String bot_thumbnail;
+    private String botThumbnail;
 }

@@ -1,15 +1,14 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.WelcomeMessage;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.ConversationStarted;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.ConversationStartedDto;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.UserDto;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.WelcomeMessage;
 import com.sharetreats01.viber_chatbot.interaction.dto.message.template.WelcomeMessageTemplateValueDto;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import com.sharetreats01.viber_chatbot.interaction.enums.MessageType;
-import com.sharetreats01.viber_chatbot.interaction.properties.InteractionProperties;
+import com.sharetreats01.viber_chatbot.interaction.properties.ChatbotProperties;
 import com.sharetreats01.viber_chatbot.interaction.service.MessageService;
-import com.sharetreats01.viber_chatbot.user.entity.UserEntity;
-import com.sharetreats01.viber_chatbot.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class ConversationStartedEventHandler implements CallbackEventHandler {
-    private final InteractionProperties interactionProperties;
+    private final ChatbotProperties properties;
     private final MessageService messageService;
 
     @Override
@@ -30,12 +29,12 @@ public class ConversationStartedEventHandler implements CallbackEventHandler {
     @Override
     public WelcomeMessage handleEvent(Callback callback) {
         ConversationStartedDto conversationStartedDto = callback.buildConversationStarted();
+        UserDto userDto = conversationStartedDto.getUserDto();
         String message = messageService.createMessage(
-                new WelcomeMessageTemplateValueDto(MessageType.WELCOME, userEntity.getLanguage(), userEntity.getName(), interactionProperties.getBot_name()));
-                new WelcomeMessageTemplateValueDto(MessageType.WELCOME, conversationStartedDto.getUserDto().getLanguage(), conversationStartedDto.getUserDto().getName()));
+                new WelcomeMessageTemplateValueDto(MessageType.WELCOME, userDto.getLanguage(), userDto.getName(), properties.getBotName()));
         return WelcomeMessage.builder()
-                .senderName(viberProperties.getBotName())
-                .senderAvatar(viberProperties.getBotAvatar())
+                .senderName(properties.getBotName())
+                .senderAvatar(properties.getBotAvatar())
                 .trackingData("conversation_started")
                 .type("text")
                 .text(message)

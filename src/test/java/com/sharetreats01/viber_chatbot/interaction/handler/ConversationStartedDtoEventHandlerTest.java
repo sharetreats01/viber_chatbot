@@ -6,7 +6,7 @@ import com.sharetreats01.viber_chatbot.interaction.dto.callback.UserDtoFactory;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.WelcomeMessage;
 import com.sharetreats01.viber_chatbot.interaction.dto.message.template.WelcomeMessageTemplateValueDto;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
-import com.sharetreats01.viber_chatbot.interaction.properties.ViberProperties;
+import com.sharetreats01.viber_chatbot.interaction.properties.ChatbotProperties;
 import com.sharetreats01.viber_chatbot.interaction.service.MessageService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ import static org.mockito.MockitoAnnotations.openMocks;
 
 class ConversationStartedDtoEventHandlerTest {
     @Mock
-    private ViberProperties viberProperties;
+    private ChatbotProperties properties;
 
     @Mock
     private MessageService messageService;
@@ -45,8 +45,8 @@ class ConversationStartedDtoEventHandlerTest {
                         false);
 
         when(messageService.createMessage(any(WelcomeMessageTemplateValueDto.class))).thenReturn("Hello! John McClane. I'm Share Treats bot.");
-        when(viberProperties.getBotName()).thenReturn("Share Treats");
-        when(viberProperties.getBotAvatar()).thenReturn("http://avatar.example.com");
+        when(properties.getBotName()).thenReturn("Share Treats");
+        when(properties.getBotAvatar()).thenReturn("http://avatar.example.com");
 
         WelcomeMessage expectedTarget = WelcomeMessage.builder()
                 .senderName("Share Treats")
@@ -59,8 +59,8 @@ class ConversationStartedDtoEventHandlerTest {
         WelcomeMessage result = conversationStartedEventHandler.handleEvent(callback);
 
         verify(messageService, times(1)).createMessage(any());
-        verify(viberProperties, times(1)).getBotAvatar();
-        verify(viberProperties, times(1)).getBotName();
+        verify(properties, times(1)).getBotAvatar();
+        verify(properties, times(2)).getBotName();
 
         assertEquals(expectedTarget,  result);
     }
