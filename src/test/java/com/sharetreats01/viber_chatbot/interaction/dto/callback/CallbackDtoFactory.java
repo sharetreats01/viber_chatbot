@@ -14,7 +14,7 @@ public class CallbackDtoFactory {
     private static final Field MESSAGE_TOKEN = ReflectionUtils.findField(Callback.class, "messageToken");
     private static final Field TYPE = ReflectionUtils.findField(Callback.class, "type");
     private static final Field CONTEXT = ReflectionUtils.findField(Callback.class, "context");
-    private static final Field USER_DTO = ReflectionUtils.findField(Callback.class, "userDto");
+    private static final Field USER_DTO = ReflectionUtils.findField(Callback.class, "user");
     private static final Field SUBSCRIBED = ReflectionUtils.findField(Callback.class, "subscribed");
     private static final Field USER_ID = ReflectionUtils.findField(Callback.class, "user_id");
     private static final Field DESC = ReflectionUtils.findField(Callback.class, "desc");
