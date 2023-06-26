@@ -1,7 +1,7 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.Sender;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.User;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.UserDto;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -15,7 +15,7 @@ public class Callback {
     private Long messageToken;
     private String type;
     private String context;
-    private User user;
+    private UserDto userDto;
     private Boolean subscribed;
     private String user_id;
     private String desc;
@@ -23,15 +23,15 @@ public class Callback {
     private com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.Message message;
 
     public Subscribed buildSubscribed() {
-        return new Subscribed(event, timestamp, user, messageToken);
+        return new Subscribed(event, timestamp, userDto, messageToken);
     }
 
     public Unsubscribed buildUnsubscribed() {
         return new Unsubscribed(event, timestamp, user_id, messageToken);
     }
 
-    public ConversationStarted buildConversationStarted() {
-        return new ConversationStarted(event, timestamp, messageToken, type, context, user, subscribed);
+    public ConversationStartedDto buildConversationStarted() {
+        return new ConversationStartedDto(event, timestamp, messageToken, type, context, userDto, subscribed);
     }
 
     public Delivered buildDelivered() {

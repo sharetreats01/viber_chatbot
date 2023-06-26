@@ -6,11 +6,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class User {
+public class UserDto {
     private String id;
     private String name;
     private String avatar;
     private String country;
     private String language;
     private Integer apiVersion;
+
 }

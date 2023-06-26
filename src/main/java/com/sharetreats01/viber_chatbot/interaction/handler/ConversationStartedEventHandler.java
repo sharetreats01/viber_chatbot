@@ -2,7 +2,7 @@ package com.sharetreats01.viber_chatbot.interaction.handler;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.WelcomeMessage;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.ConversationStarted;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.ConversationStartedDto;
 import com.sharetreats01.viber_chatbot.interaction.dto.message.template.WelcomeMessageTemplateValueDto;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import com.sharetreats01.viber_chatbot.interaction.enums.MessageType;
@@ -27,11 +27,11 @@ public class ConversationStartedEventHandler implements CallbackEventHandler {
 
     @Override
     public WelcomeMessage handleEvent(Callback callback) {
-        ConversationStarted conversationStarted = callback.buildConversationStarted();
+        ConversationStartedDto conversationStartedDto = callback.buildConversationStarted();
         String message = messageService.createMessage(
-                new WelcomeMessageTemplateValueDto(MessageType.WELCOME, conversationStarted.getUser().getLanguage(), conversationStarted.getUser().getName()));
+                new WelcomeMessageTemplateValueDto(MessageType.WELCOME, conversationStartedDto.getUserDto().getLanguage(), conversationStartedDto.getUserDto().getName()));
         return WelcomeMessage.builder()
-                .senderName("Share Treats")
+                .senderName(viberProperties.getBotName())
                 .senderAvatar(viberProperties.getBotAvatar())
                 .trackingData("conversation_started")
                 .type("text")
