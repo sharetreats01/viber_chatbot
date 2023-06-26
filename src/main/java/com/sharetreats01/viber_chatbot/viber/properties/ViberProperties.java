@@ -9,9 +9,18 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:properties/viber/viber.properties")
 public class ViberProperties {
+    @Value("${viber.api.auth.header}")
+    private String viberAuthHeader;
+
+    @Value("${viber.api.auth.token}")
+    private String viberAuthToken;
+
     @Value("${viber.api.url}")
     private String viberApiUrl;
 
     @Value("${viber.api.set_webhook.uri}")
     private String setWebhookUri;
+
+    @Value("${viber.api.send_message.uri}")
+    private String sendMessageUri;
 }

@@ -9,7 +9,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: MySQL5InnoDBDialect
+#        dialect: MySQL5InnoDBDialect
   jackson:
     default-property-inclusion: non_null
   datasource:

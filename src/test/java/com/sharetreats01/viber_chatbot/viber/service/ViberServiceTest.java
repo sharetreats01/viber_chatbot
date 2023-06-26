@@ -1,10 +1,6 @@
 package com.sharetreats01.viber_chatbot.viber.service;
 
-import com.sharetreats01.viber_chatbot.enums.Status;
-import com.sharetreats01.viber_chatbot.utils.RetrofitUtils;
 import com.sharetreats01.viber_chatbot.viber.client.ViberRetrofitClient;
-import com.sharetreats01.viber_chatbot.viber.dto.SetWebhookRequest;
-import com.sharetreats01.viber_chatbot.viber.dto.SetWebhookResponse;
 import com.sharetreats01.viber_chatbot.viber.entity.ViberWebhookSettingEntity;
 import com.sharetreats01.viber_chatbot.viber.repository.ViberRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.util.ReflectionUtils;
-import retrofit2.Call;
-import retrofit2.mock.Calls;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -22,7 +16,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class ViberServiceTest {
     @Mock
