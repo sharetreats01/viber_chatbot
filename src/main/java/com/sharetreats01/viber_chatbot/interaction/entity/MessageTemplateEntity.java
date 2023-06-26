@@ -1,7 +1,8 @@
 package com.sharetreats01.viber_chatbot.interaction.entity;
 
-import com.sharetreats01.viber_chatbot.interaction.enums.MessageType;
+import com.sharetreats01.viber_chatbot.viber.enums.MessageType;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -31,14 +32,22 @@ public class MessageTemplateEntity {
     private String language;
 
     @Column(name = "created_at")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @Column(name = "modified_at")
-    private LocalDateTime modifiedAt;
+    private LocalDateTime modifiedAt = LocalDateTime.now();
 
     @Column(name = "version", nullable = false)
     private Integer version;
 
     @OneToMany(mappedBy = "templateEntity", fetch = FetchType.LAZY)
     private List<MessageTemplatePlaceHolderEntity> templateVariableEntities = new ArrayList<>();
+
+    @Builder
+    public MessageTemplateEntity(MessageType type, String template, String language, Integer version) {
+        this.type = type;
+        this.template = template;
+        this.language = language;
+        this.version = version;
+    }
 }

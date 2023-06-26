@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.enums;
+package com.sharetreats01.viber_chatbot.viber.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

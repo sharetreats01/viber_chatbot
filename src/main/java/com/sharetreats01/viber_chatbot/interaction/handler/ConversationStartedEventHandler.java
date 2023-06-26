@@ -6,7 +6,7 @@ import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.User;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.WelcomeMessage;
 import com.sharetreats01.viber_chatbot.interaction.dto.message.template.WelcomeMessageTemplateValueDto;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
-import com.sharetreats01.viber_chatbot.interaction.enums.MessageType;
+import com.sharetreats01.viber_chatbot.viber.enums.MessageType;
 import com.sharetreats01.viber_chatbot.interaction.properties.ChatbotProperties;
 import com.sharetreats01.viber_chatbot.interaction.service.MessageService;
 import lombok.RequiredArgsConstructor;

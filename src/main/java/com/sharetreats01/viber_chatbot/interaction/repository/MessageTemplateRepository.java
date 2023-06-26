@@ -1,7 +1,7 @@
 package com.sharetreats01.viber_chatbot.interaction.repository;
 
 import com.sharetreats01.viber_chatbot.interaction.entity.MessageTemplateEntity;
-import com.sharetreats01.viber_chatbot.interaction.enums.MessageType;
+import com.sharetreats01.viber_chatbot.viber.enums.MessageType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
