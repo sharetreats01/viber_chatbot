@@ -28,7 +28,6 @@ management:
     tags:
       application: ${spring.application.name}
 
-
 domain:
   viber-api: https://chatapi.viber.com
   sharetreats:

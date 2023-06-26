@@ -22,7 +22,7 @@ public class ViberClientConfig {
                 .build();
     }
 
-    @Bean
+//    @Bean
     public ViberRetrofitClient viberRetrofitClient() {
         return ArmeriaRetrofit
                 .builder(viberProperties.getViberApiUrl())
