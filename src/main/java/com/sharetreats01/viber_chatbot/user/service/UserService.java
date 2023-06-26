@@ -5,5 +5,5 @@ import com.sharetreats01.viber_chatbot.user.entity.UserEntity;
 
 public interface UserService {
     UserEntity subscribe(User user);
-    UserEntity unsubscribe(User user);
+    UserEntity unsubscribe(String id);
 }

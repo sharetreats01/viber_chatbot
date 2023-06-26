@@ -25,9 +25,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserEntity unsubscribe(User user) {
-        UserEntity entity = repository.findById(user.getId()).orElseThrow();
+    public UserEntity unsubscribe(String id) {
+        UserEntity entity = repository.findById(id).orElseThrow();
         entity.unsubscribe();
+        log.info("{}", entity);
         return entity;
     }
 }
