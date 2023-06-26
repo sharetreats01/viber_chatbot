@@ -4,9 +4,11 @@ import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.User;
 import com.sharetreats01.viber_chatbot.user.entity.UserEntity;
 import com.sharetreats01.viber_chatbot.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -17,6 +19,7 @@ public class UserServiceImpl implements UserService {
     public UserEntity subscribe(User user) {
         UserEntity entity = new UserEntity(user.getId(), user.getName(), user.getAvatar(), user.getCountry(), user.getLanguage(), user.getApiVersion(), true);
         repository.save(entity);
+        log.info("User Save: {}", entity);
         return entity;
     }
 

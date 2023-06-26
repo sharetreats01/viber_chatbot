@@ -69,4 +69,17 @@ public class UserEntity {
         result = 31 * result + isSubscribe.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", country='" + country + '\'' +
+                ", language='" + language + '\'' +
+                ", apiVersion=" + apiVersion +
+                ", isSubscribe=" + isSubscribe +
+                '}';
+    }
 }

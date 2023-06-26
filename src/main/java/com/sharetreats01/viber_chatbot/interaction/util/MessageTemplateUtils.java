@@ -37,7 +37,7 @@ public class MessageTemplateUtils {
 
     public static Map<String, String> createTemplateValues(List<String> placeHolders, List<String> values) {
         if (placeHolders.size() != values.size()) {
-            throw new MessageTemplateException("템플릿 변수 생성 중에 오류가 발생하였습니다.");
+            throw new MessageTemplateException("메시지 템플릿 자리 표시자의 개수와 메시지 템플릿 변수의 개수가 일치하지 않습니다.");
         }
         Map<String, String> result = new HashMap<>();
         for(int i = 0; i < placeHolders.size(); i++) {

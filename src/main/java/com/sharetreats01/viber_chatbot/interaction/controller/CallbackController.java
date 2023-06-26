@@ -16,6 +16,7 @@ public class CallbackController {
     private final CallbackDispatcher callbackDispatcher;
     @PostMapping("/sharetreats01_chatbot")
     public ResponseEntity<?> callback(@RequestBody Callback callback) {
+        log.info("{}", callback.getEvent().getValue());
         return ResponseEntity.ok(callbackDispatcher.dispatch(callback));
     }
 }
