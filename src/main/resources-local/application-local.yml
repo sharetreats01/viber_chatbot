@@ -9,6 +9,10 @@ spring:
     password: dlwlgh9412
   jpa:
     open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
   jackson:
     default-property-inclusion: non_null
     property-naming-strategy: SNAKE_CASE
@@ -31,7 +35,5 @@ management:
     tags:
       application: ${spring.application.name}
 
-#logging:
-#  level:
-#    web: error
-#    root: error
+logging:
+  config: classpath:log4j2.xml

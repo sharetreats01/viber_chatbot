@@ -1,0 +1,1 @@
+alter table tb_viber_webhook_setting modify set_on timestamp default null;

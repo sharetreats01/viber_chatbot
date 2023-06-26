@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.interaction.properties;
+package com.sharetreats01.viber_chatbot.viber.properties;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,12 +9,9 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:properties/viber/viber.properties")
 public class ViberProperties {
-    @Value("${bot-name}")
-    private String botName;
+    @Value("${viber.api.url}")
+    private String viberApiUrl;
 
-    @Value("${bot-avatar}")
-    private String botAvatar;
-
-    @Value("${bot-thumbnail}")
-    private String botThumbnail;
+    @Value("${viber.api.set_webhook.uri}")
+    private String setWebhookUri;
 }

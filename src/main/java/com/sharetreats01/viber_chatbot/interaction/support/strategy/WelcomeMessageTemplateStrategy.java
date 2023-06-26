@@ -19,7 +19,7 @@ public class WelcomeMessageTemplateStrategy implements MessageTemplateStrategy<W
     public String create(TemplateDto templateDto, WelcomeMessageTemplateValueDto valueDto) {
         List<String> placeHolders = templateDto.getPlaceHolders();
         // 각자 맞게 value 리스트를 생성
-        List<String> values = List.of(valueDto.getUserName());
+        List<String> values = List.of(valueDto.getUserName(), valueDto.getBotName());
         Map<String, String> result = MessageTemplateUtils.createTemplateValues(placeHolders, values);
         return MessageTemplateUtils.processTemplate(templateDto.getTemplate(), result);
     }

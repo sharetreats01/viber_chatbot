@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="INFO" name="Share Treats">
+    <Properties>
+        <Property name="LOG_PATTERN">%d %p %c{1.} [%t] %m%n</Property>
+    </Properties>
+    <Appenders>
+        <Console name="ConsoleLog" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}" charset="UTF-8">
+            </PatternLayout>
+        </Console>
+        <Async name="ASYNC_LogApp" includeLocation="true">
+            <AppenderRef ref="ConsoleLog"/>
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="ASYNC_LogApp"/>
+        </Root>
+    </Loggers>
+</Configuration>
