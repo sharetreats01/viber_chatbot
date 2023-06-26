@@ -9,10 +9,10 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:properties/viber/viber.properties")
 public class ViberProperties {
-    @Value("${viber.auth.header}")
+    @Value("${viber.api.auth.header}")
     private String viberAuthHeader;
 
-    @Value("${viber.auth.token}")
+    @Value("${viber.api.auth.token}")
     private String viberAuthToken;
 
     @Value("${viber.api.url}")
