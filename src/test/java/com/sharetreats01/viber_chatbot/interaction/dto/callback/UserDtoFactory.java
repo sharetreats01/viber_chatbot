@@ -1,6 +1,6 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.UserDto;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.User;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Constructor;
@@ -8,12 +8,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class UserDtoFactory {
-    private static final Field ID = ReflectionUtils.findField(UserDto.class, "id");
-    private static final Field NAME = ReflectionUtils.findField(UserDto.class, "name");
-    private static final Field AVATAR = ReflectionUtils.findField(UserDto.class, "avatar");
-    private static final Field COUNTRY = ReflectionUtils.findField(UserDto.class, "country");
-    private static final Field LANGUAGE = ReflectionUtils.findField(UserDto.class, "language");
-    private static final Field API_VERSION = ReflectionUtils.findField(UserDto.class, "apiVersion");
+    private static final Field ID = ReflectionUtils.findField(User.class, "id");
+    private static final Field NAME = ReflectionUtils.findField(User.class, "name");
+    private static final Field AVATAR = ReflectionUtils.findField(User.class, "avatar");
+    private static final Field COUNTRY = ReflectionUtils.findField(User.class, "country");
+    private static final Field LANGUAGE = ReflectionUtils.findField(User.class, "language");
+    private static final Field API_VERSION = ReflectionUtils.findField(User.class, "apiVersion");
 
     static {
         ID.setAccessible(true);
@@ -24,16 +24,16 @@ public class UserDtoFactory {
         API_VERSION.setAccessible(true);
     }
 
-    public static UserDto createUserDto(String id, String name, String avatar, String country, String language, int apiVersion) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Constructor<UserDto> constructor = ReflectionUtils.accessibleConstructor(UserDto.class);
-        UserDto userDto = constructor.newInstance();
-        ReflectionUtils.setField(ID, userDto, id);
-        ReflectionUtils.setField(NAME, userDto, name);
-        ReflectionUtils.setField(AVATAR, userDto, avatar);
-        ReflectionUtils.setField(COUNTRY, userDto, country);
-        ReflectionUtils.setField(LANGUAGE, userDto, language);
-        ReflectionUtils.setField(API_VERSION, userDto, apiVersion);
+    public static User createUserDto(String id, String name, String avatar, String country, String language, int apiVersion) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Constructor<User> constructor = ReflectionUtils.accessibleConstructor(User.class);
+        User user = constructor.newInstance();
+        ReflectionUtils.setField(ID, user, id);
+        ReflectionUtils.setField(NAME, user, name);
+        ReflectionUtils.setField(AVATAR, user, avatar);
+        ReflectionUtils.setField(COUNTRY, user, country);
+        ReflectionUtils.setField(LANGUAGE, user, language);
+        ReflectionUtils.setField(API_VERSION, user, apiVersion);
 
-        return userDto;
+        return user;
     }
 }

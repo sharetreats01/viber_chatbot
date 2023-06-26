@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserDto {
+public class User {
     private String id;
     private String name;
     private String avatar;
