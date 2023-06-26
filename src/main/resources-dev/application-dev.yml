@@ -8,7 +8,9 @@ spring:
     username: dlwlgh9412
     password: dlwlgh9412
 
-#logging:
-#  level:
-#    web: error
-#    root: error
+logging:
+  config: classpath:log4j2.xml
+
+jasypt:
+  encryptor:
+    bean: jasyptStringEncryptor
