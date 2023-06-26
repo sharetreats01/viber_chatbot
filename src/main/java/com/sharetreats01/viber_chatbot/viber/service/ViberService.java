@@ -1,6 +1,6 @@
 package com.sharetreats01.viber_chatbot.viber.service;
 
-import com.sharetreats01.viber_chatbot.enums.Status;
+import com.sharetreats01.viber_chatbot.viber.enums.Status;
 import com.sharetreats01.viber_chatbot.viber.client.ViberRetrofitClient;
 import com.sharetreats01.viber_chatbot.viber.dto.SetWebhookRequest;
 import com.sharetreats01.viber_chatbot.viber.dto.SetWebhookResponse;
@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 

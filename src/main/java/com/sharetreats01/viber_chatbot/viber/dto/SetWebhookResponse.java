@@ -1,6 +1,6 @@
 package com.sharetreats01.viber_chatbot.viber.dto;
 
-import com.sharetreats01.viber_chatbot.enums.Status;
+import com.sharetreats01.viber_chatbot.viber.enums.Status;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

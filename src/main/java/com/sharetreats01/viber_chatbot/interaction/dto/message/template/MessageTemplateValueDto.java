@@ -1,6 +1,6 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.message.template;
 
-import com.sharetreats01.viber_chatbot.interaction.enums.MessageType;
+import com.sharetreats01.viber_chatbot.viber.enums.MessageType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
