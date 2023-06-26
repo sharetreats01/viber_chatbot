@@ -1,12 +1,10 @@
 package com.sharetreats01.viber_chatbot.interaction.entity;
 
-import com.fasterxml.uuid.Generators;
 import com.sharetreats01.viber_chatbot.interaction.enums.MessageDirection;
 import com.sharetreats01.viber_chatbot.interaction.util.MessageHistoryUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
