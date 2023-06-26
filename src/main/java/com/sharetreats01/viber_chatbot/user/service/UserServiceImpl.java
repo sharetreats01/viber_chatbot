@@ -14,17 +14,15 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserEntity subscribe(UserDto userDto) {
+    public void subscribe(UserDto userDto) {
         UserEntity entity = new UserEntity(userDto.getId(), userDto.getName(), userDto.getAvatar(), userDto.getCountry(), userDto.getLanguage(), userDto.getApiVersion(), true);
         repository.save(entity);
-        return entity;
     }
 
     @Override
     @Transactional
-    public UserEntity unsubscribe(UserDto userDto) {
+    public void unsubscribe(UserDto userDto) {
         UserEntity entity = repository.findById(userDto.getId()).orElseThrow();
         entity.unsubscribe();
-        return entity;
     }
 }

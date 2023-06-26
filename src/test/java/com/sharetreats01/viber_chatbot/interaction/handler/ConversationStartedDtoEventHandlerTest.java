@@ -17,7 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
 class ConversationStartedDtoEventHandlerTest {
@@ -37,12 +37,13 @@ class ConversationStartedDtoEventHandlerTest {
     }
 
     @Test
-    public void testEventHandle() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public void 대화시작_이벤트_핸들러_테스트() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Callback callback =
                 CallbackDtoFactory.createConversationDto(
                         Event.CONVERSATION_STARTED, 1457764197627L, 4912661846655238145L, "open", "context_information",
                         UserDtoFactory.createUserDto("01234567890A=", "John McClane", "http://avatar.example.com", "UK", "en", 1),
                         false);
+
         when(messageService.createMessage(any(WelcomeMessageTemplateValueDto.class))).thenReturn("Hello! John McClane. I'm Share Treats bot.");
         when(viberProperties.getBotName()).thenReturn("Share Treats");
         when(viberProperties.getBotAvatar()).thenReturn("http://avatar.example.com");
@@ -56,6 +57,10 @@ class ConversationStartedDtoEventHandlerTest {
                 .build();
 
         WelcomeMessage result = conversationStartedEventHandler.handleEvent(callback);
+
+        verify(messageService, times(1)).createMessage(any());
+        verify(viberProperties, times(1)).getBotAvatar();
+        verify(viberProperties, times(1)).getBotName();
 
         assertEquals(expectedTarget,  result);
     }

@@ -22,8 +22,8 @@ public class Callback {
     private Sender sender;
     private com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.Message message;
 
-    public Subscribed buildSubscribed() {
-        return new Subscribed(event, timestamp, userDto, messageToken);
+    public SubscribedDto buildSubscribed() {
+        return new SubscribedDto(event, timestamp, userDto, messageToken);
     }
 
     public Unsubscribed buildUnsubscribed() {

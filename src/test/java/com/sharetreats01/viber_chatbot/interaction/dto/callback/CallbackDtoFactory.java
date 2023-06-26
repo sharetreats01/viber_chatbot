@@ -53,4 +53,13 @@ public class CallbackDtoFactory {
         ReflectionUtils.setField(SUBSCRIBED, callback, subscribed);
         return callback;
     }
+
+    public static Callback createSubscribed(Event event, Long timeStamp, UserDto userDto, Long messageToken) throws InvocationTargetException, InstantiationException, IllegalAccessException {
+        Callback callback = constructor.newInstance();
+        ReflectionUtils.setField(EVENT, callback, event);
+        ReflectionUtils.setField(TIMESTAMP, callback, timeStamp);
+        ReflectionUtils.setField(USER_DTO, callback, userDto);
+        ReflectionUtils.setField(MESSAGE_TOKEN, callback, messageToken);
+        return callback;
+    }
 }
