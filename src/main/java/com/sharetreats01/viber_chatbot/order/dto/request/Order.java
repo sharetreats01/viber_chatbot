@@ -1,15 +1,15 @@
 package com.sharetreats01.viber_chatbot.order.dto.request;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-/**
- * 봇으로 주문 요청 시 필요한 DTO
- */
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class BotOrder {
+public class Order {
 
     private String viberId;
 

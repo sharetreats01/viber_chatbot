@@ -10,13 +10,11 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDetail {
+public class GetOrderDetail {
 
     private Long id;
 
     private Long userId;
-
-    private String viberId;
 
     private Long brandId;
 
