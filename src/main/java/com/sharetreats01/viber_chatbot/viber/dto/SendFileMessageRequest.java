@@ -1,7 +1,5 @@
 package com.sharetreats01.viber_chatbot.viber.dto;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.Sender;
-import com.sharetreats01.viber_chatbot.viber.enums.MessageType;
 import lombok.Getter;
 
 @Getter
