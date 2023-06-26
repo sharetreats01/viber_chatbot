@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.openMocks;
 
-class ConversationStartedDtoEventHandlerTest {
+class ConversationStartedEventHandlerTest {
     @Mock
     private ChatbotProperties properties;
 

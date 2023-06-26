@@ -2,7 +2,7 @@ package com.sharetreats01.viber_chatbot.interaction.handler;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.CallbackDtoFactory;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.SubscribedDto;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.Subscribed;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.UserDtoFactory;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
@@ -34,9 +34,9 @@ class SubScribedEventHandlerTest {
                 Event.SUBSCRIBED, 1457764197627L,
                 UserDtoFactory.createUserDto("01234567890A=", "John McClane", "http://avatar.example.com", "UK", "en", 1),
                 4912661846655238145L);
-        SubscribedDto subscribedDto = callback.buildSubscribed();
+        Subscribed subscribed = callback.buildSubscribed();
         handler.handleEvent(callback);
 
-        verify(userService, times(1)).subscribe(subscribedDto.getUserDto());
+        verify(userService, times(1)).subscribe(subscribed.getUser());
     }
 }

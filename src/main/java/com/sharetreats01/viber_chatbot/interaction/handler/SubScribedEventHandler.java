@@ -1,7 +1,7 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.SubscribedDto;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.Subscribed;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +19,8 @@ public class SubScribedEventHandler implements CallbackEventHandler {
 
     @Override
     public Void handleEvent(Callback callback) {
-        SubscribedDto subscribedDto = callback.buildSubscribed();
-        userService.subscribe(subscribedDto.getUserDto());
+        Subscribed subscribed = callback.buildSubscribed();
+        userService.subscribe(subscribed.getUser());
         return null;
     }
 }

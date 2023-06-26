@@ -1,6 +1,6 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.UserDto;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.User;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import org.springframework.util.ReflectionUtils;
 
@@ -42,23 +42,23 @@ public class CallbackDtoFactory {
         MESSAGE.setAccessible(true);
     }
 
-    public static Callback createConversationDto(Event event, Long timeStamp, Long messageToken, String type, String context, UserDto userDto, boolean subscribed) throws InvocationTargetException, InstantiationException, IllegalAccessException {
+    public static Callback createConversationDto(Event event, Long timeStamp, Long messageToken, String type, String context, User user, boolean subscribed) throws InvocationTargetException, InstantiationException, IllegalAccessException {
         Callback callback = constructor.newInstance();
         ReflectionUtils.setField(EVENT, callback, event);
         ReflectionUtils.setField(TIMESTAMP, callback, timeStamp);
         ReflectionUtils.setField(MESSAGE_TOKEN, callback, messageToken);
         ReflectionUtils.setField(TYPE, callback, type);
         ReflectionUtils.setField(CONTEXT, callback, context);
-        ReflectionUtils.setField(USER_DTO, callback, userDto);
+        ReflectionUtils.setField(USER_DTO, callback, user);
         ReflectionUtils.setField(SUBSCRIBED, callback, subscribed);
         return callback;
     }
 
-    public static Callback createSubscribed(Event event, Long timeStamp, UserDto userDto, Long messageToken) throws InvocationTargetException, InstantiationException, IllegalAccessException {
+    public static Callback createSubscribed(Event event, Long timeStamp, User user, Long messageToken) throws InvocationTargetException, InstantiationException, IllegalAccessException {
         Callback callback = constructor.newInstance();
         ReflectionUtils.setField(EVENT, callback, event);
         ReflectionUtils.setField(TIMESTAMP, callback, timeStamp);
-        ReflectionUtils.setField(USER_DTO, callback, userDto);
+        ReflectionUtils.setField(USER_DTO, callback, user);
         ReflectionUtils.setField(MESSAGE_TOKEN, callback, messageToken);
         return callback;
     }
