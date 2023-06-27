@@ -23,4 +23,7 @@ public class ViberProperties {
 
     @Value("${viber.api.send_message.uri}")
     private String sendMessageUri;
+
+    @Value("${viber.api.get_user_details}")
+    private String getUserDetailsUri;
 }
