@@ -18,4 +18,21 @@ public class User {
     private Integer mcc;
     private Integer mnc;
     private String deviceType;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", country='" + country + '\'' +
+                ", language='" + language + '\'' +
+                ", primaryDeviceOs='" + primaryDeviceOs + '\'' +
+                ", apiVersion=" + apiVersion +
+                ", viberVersion='" + viberVersion + '\'' +
+                ", mcc=" + mcc +
+                ", mnc=" + mnc +
+                ", deviceType='" + deviceType + '\'' +
+                '}';
+    }
 }

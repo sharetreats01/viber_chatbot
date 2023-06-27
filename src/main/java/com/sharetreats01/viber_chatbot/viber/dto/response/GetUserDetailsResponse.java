@@ -8,9 +8,17 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class GetUserDetailsResponse {
-    private Status status;
-    private String statusMessage;
+public class GetUserDetailsResponse extends ViberResponse {
     private Long messageToken;
     private User user;
+
+    @Override
+    public String toString() {
+        return "GetUserDetailsResponse{" +
+                "status=" + super.getStatus() +
+                ", statusMessage=" + super.getStatusMessage() +
+                ", messageToken=" + messageToken +
+                ", user=" + user +
+                '}';
+    }
 }
