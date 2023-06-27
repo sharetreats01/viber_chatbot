@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.product.dto.request;
+package com.sharetreats01.viber_chatbot.product.dto.response.parameter;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,6 +11,6 @@ public class Payment {
     private Long id;
     private String name;
     private String iconUrl;
-    private String origin_price;
+    private String originPrice;
     private String discountPrice;
 }

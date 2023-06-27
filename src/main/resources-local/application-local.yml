@@ -4,7 +4,7 @@ spring:
       on-profile: local
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sharetreats
+    url: jdbc:mysql://localhost:13306/sharetreats
     username: dlwlgh9412
     password: dlwlgh9412
   jpa:
@@ -13,3 +13,26 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+
+domain:
+  viber-api: https://chatapi.viber.com
+  sharetreats:
+    mock: https://4e765d5e-13d9-4ec3-a6e7-d21254d2dc43.mock.pstmn.io
+
+uri:
+  viber-api:
+    send-message: /pa/send_message
+    user-detail: /pa/get_user_details
+
+  product:
+    get-brand-list: /brands/list
+    get-product-list: /products/list
+    get-product-detail: /products/
+    get-payments-list: /products/%s/payments
+  order:
+    get-order-detail: /order/
+
+auth:
+  viber:
+    header-name: X-Viber-Auth-Token
+    token: 512ba6f8a427dede-b2adc805486e8805-c9412664f7581300

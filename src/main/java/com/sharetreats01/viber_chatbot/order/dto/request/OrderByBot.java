@@ -6,7 +6,6 @@ import lombok.*;
  * 봇으로 주문 요청 시 필요한 DTO
  */
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class OrderByBot {

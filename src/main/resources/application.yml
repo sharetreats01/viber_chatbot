@@ -27,18 +27,3 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
-
-domain:
-  viber-api: https://chatapi.viber.com
-  sharetreats:
-    mock: https://4e765d5e-13d9-4ec3-a6e7-d21254d2dc43.mock.pstmn.io
-
-uri:
-  viber-api:
-    send-message: /pa/send_message
-    user-detail: /pa/get_user_details
-
-auth:
-  viber:
-    header-name: X-Viber-Auth-Token
-    token: 512ba6f8a427dede-b2adc805486e8805-c9412664f7581300

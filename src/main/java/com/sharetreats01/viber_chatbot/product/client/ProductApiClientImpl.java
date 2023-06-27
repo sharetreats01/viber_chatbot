@@ -1,14 +1,14 @@
-package com.sharetreats01.viber_chatbot.client.service;
+package com.sharetreats01.viber_chatbot.product.client;
 
+import com.sharetreats01.viber_chatbot.product.dto.response.AvailablePayments;
 import com.sharetreats01.viber_chatbot.product.dto.response.BrandList;
 import com.sharetreats01.viber_chatbot.product.dto.response.ProductDetail;
 import com.sharetreats01.viber_chatbot.product.dto.response.ProductList;
 
-import com.sharetreats01.viber_chatbot.product.dto.response.parameter.Brand;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
-public class ProductApiClient {
+public class ProductApiClientImpl {
     private WebClient productClient;
 
     @Value("${domain.sharetreats.mock}")
@@ -16,7 +16,7 @@ public class ProductApiClient {
 
     private String uri;
 
-    public ProductApiClient() {
+    public ProductApiClientImpl() {
         this.productClient = WebClient.builder()
             .baseUrl(domain)
             .build();
@@ -46,6 +46,15 @@ public class ProductApiClient {
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
             .bodyToMono(ProductList.class)
+            .block();
+    }
+
+    public AvailablePayments getProductPayments(String productId) {
+        String requestUri = String.format("uri", productId);
+        return this.productClient.get().uri(domain + requestUri)
+            .accept(MediaType.APPLICATION_JSON)
+            .retrieve()
+            .bodyToMono(AvailablePayments.class)
             .block();
     }
 
