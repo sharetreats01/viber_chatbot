@@ -5,6 +5,7 @@ import com.sharetreats01.viber_chatbot.user.entity.UserEntity;
 import com.sharetreats01.viber_chatbot.user.repository.UserRepository;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
 import com.sharetreats01.viber_chatbot.viber.dto.request.GetUserDetailsRequest;
+import com.sharetreats01.viber_chatbot.viber.dto.response.GetUserDetailsResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     private UserEntity insertUser(String id) {
         GetUserDetailsRequest request = new GetUserDetailsRequest(id);
-        com.sharetreats01.viber_chatbot.viber.dto.response.GetUserDetailsResponse response = viberWebClient.getUserDetails(request);
+        GetUserDetailsResponse response = viberWebClient.getUserDetails(request);
         UserEntity entity = new UserEntity(response.getUser().getId(), response.getUser().getName(), response.getUser().getAvatar(), response.getUser().getCountry(), response.getUser().getLanguage(), response.getUser().getApiVersion(), response.getUser().getPrimaryDeviceOs(), response.getUser().getViberVersion(), response.getUser().getDeviceType(), response.getUser().getMcc(), response.getUser().getMnc());
 
         return repository.save(entity);
