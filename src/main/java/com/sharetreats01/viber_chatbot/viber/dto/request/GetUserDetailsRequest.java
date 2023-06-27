@@ -7,4 +7,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GetUserDetailsRequest {
     private final String id;
+
+    @Override
+    public String toString() {
+        return "GetUserDetailsRequest{" +
+                "id='" + id + '\'' +
+                '}';
+    }
 }
