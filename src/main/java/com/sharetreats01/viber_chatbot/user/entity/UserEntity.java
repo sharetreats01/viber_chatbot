@@ -32,13 +32,13 @@ public class UserEntity {
     @Column(name = "api_version")
     private Integer apiVersion;
 
-    @Column(name = "primary_device_os", length = 20, nullable = false)
+    @Column(name = "primary_device_os", length = 20)
     private String primaryDeviceOs;
 
-    @Column(name = "viber_version", length = 20, nullable = false)
+    @Column(name = "viber_version", length = 20)
     private String viberVersion;
 
-    @Column(name = "device_type", length = 20, nullable = false)
+    @Column(name = "device_type", length = 20)
     private String deviceType;
 
     @Column(name = "mobile_country_code", length = 2)
