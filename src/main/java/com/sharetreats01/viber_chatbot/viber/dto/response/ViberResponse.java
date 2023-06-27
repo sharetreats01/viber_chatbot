@@ -1,20 +1,12 @@
 package com.sharetreats01.viber_chatbot.viber.dto.response;
 
 import com.sharetreats01.viber_chatbot.viber.enums.Status;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@RequiredArgsConstructor
 public class ViberResponse {
-    private Status status;
-    private String statusMessage;
-
-    @Override
-    public String toString() {
-        return "ViberResponse{" +
-
-                '}';
-    }
+    private final Status status;
+    private final String statusMessage;
 }
