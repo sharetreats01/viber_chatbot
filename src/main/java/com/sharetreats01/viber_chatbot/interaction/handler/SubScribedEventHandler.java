@@ -20,7 +20,7 @@ public class SubScribedEventHandler implements CallbackEventHandler {
     @Override
     public Void handleEvent(Callback callback) {
         Subscribed subscribed = callback.buildSubscribed();
-        userService.subscribe(subscribed.getUser());
+        userService.subscribe(subscribed.getUser().getId());
         return null;
     }
 }

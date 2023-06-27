@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.viber.dto;
+package com.sharetreats01.viber_chatbot.viber.dto.response;
 
 import com.sharetreats01.viber_chatbot.viber.enums.Status;
 import lombok.Getter;

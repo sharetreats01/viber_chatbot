@@ -1,5 +1,6 @@
-package com.sharetreats01.viber_chatbot.viber.dto;
+package com.sharetreats01.viber_chatbot.viber.dto.request;
 
+import com.sharetreats01.viber_chatbot.viber.dto.request.SendMessageRequest;
 import lombok.Getter;
 
 @Getter

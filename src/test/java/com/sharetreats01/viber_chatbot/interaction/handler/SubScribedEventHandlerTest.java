@@ -37,6 +37,6 @@ class SubScribedEventHandlerTest {
         Subscribed subscribed = callback.buildSubscribed();
         handler.handleEvent(callback);
 
-        verify(userService, times(1)).subscribe(subscribed.getUser());
+        verify(userService, times(1)).subscribe(subscribed.getUser().getId());
     }
 }

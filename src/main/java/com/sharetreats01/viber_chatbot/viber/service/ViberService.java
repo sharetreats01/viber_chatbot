@@ -2,8 +2,8 @@ package com.sharetreats01.viber_chatbot.viber.service;
 
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
 import com.sharetreats01.viber_chatbot.viber.enums.Status;
-import com.sharetreats01.viber_chatbot.viber.dto.SetWebhookRequest;
-import com.sharetreats01.viber_chatbot.viber.dto.SetWebhookResponse;
+import com.sharetreats01.viber_chatbot.viber.dto.request.SetWebhookRequest;
+import com.sharetreats01.viber_chatbot.viber.dto.response.SetWebhookResponse;
 import com.sharetreats01.viber_chatbot.viber.entity.ViberWebhookSettingEntity;
 import com.sharetreats01.viber_chatbot.viber.repository.ViberRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.viber.dto;
+package com.sharetreats01.viber_chatbot.viber.dto.request;
 
 import lombok.Getter;
 
