@@ -17,8 +17,16 @@ public class ViberWebClientResponseResolver {
 
     private <T> Mono<T> handleHTTPStatus(WebClient.ResponseSpec response, Class<T> className) {
         return response
-                .onStatus(HttpStatus::is4xxClientError, clientResponse -> Mono.error(new ViberException("")))
-                .onStatus(HttpStatus::is5xxServerError, clientResponse -> Mono.error(new ViberException("")))
+                .onStatus(HttpStatus::is4xxClientError, clientResponse -> {
+                            log.error("{}", clientResponse);
+                            return Mono.error(new ViberException("바이버 API 요청 중 에러가 발생하였습니다."));
+                        }
+                )
+                .onStatus(HttpStatus::is5xxServerError, clientResponse -> {
+                            log.error("{}", clientResponse);
+                            return Mono.error(new ViberException("바이버 API 요청 중 에러가 발생하였습니다."));
+                        }
+                )
                 .bodyToMono(className);
     }
 
