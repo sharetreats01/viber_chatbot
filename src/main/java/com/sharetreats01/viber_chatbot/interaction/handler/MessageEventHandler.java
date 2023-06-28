@@ -22,6 +22,10 @@ public class MessageEventHandler implements CallbackEventHandler {
         return null;
     }
 
-
-
+    public void brandKeyboarMessage() {
+        return ;
+    }
+    public void ProductAvailableMessage() {
+        //productId를 이용해서 DTO 만들기
+    }
 }

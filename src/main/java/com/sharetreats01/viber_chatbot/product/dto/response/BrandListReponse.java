@@ -5,6 +5,6 @@ import java.util.List;
 import lombok.Getter;
 
 @Getter
-public class BrandList {
+public class BrandListReponse {
     private List<Brand> brands;
 }

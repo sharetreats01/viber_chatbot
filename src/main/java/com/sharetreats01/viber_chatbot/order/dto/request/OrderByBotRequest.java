@@ -5,10 +5,12 @@ import lombok.*;
 /**
  * 봇으로 주문 요청 시 필요한 DTO
  */
-@Getter
-@NoArgsConstructor
 @Builder
-public class OrderByBot {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class OrderByBotRequest {
 
     private String viberId;
 
@@ -30,4 +32,5 @@ public class OrderByBot {
 
     private String message;
 
+    private String email;
 }

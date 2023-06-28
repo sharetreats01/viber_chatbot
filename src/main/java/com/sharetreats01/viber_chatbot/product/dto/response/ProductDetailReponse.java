@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDetail {
+public class ProductDetailReponse {
 
     @JsonProperty("brand_id")
     private Long brandId;
