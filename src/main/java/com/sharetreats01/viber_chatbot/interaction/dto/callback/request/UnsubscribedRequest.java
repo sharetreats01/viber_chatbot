@@ -6,6 +6,6 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class UnsubscribeRequest extends CallbackRequest {
+public class UnsubscribedRequest extends CallbackRequest {
     private String userId;
 }

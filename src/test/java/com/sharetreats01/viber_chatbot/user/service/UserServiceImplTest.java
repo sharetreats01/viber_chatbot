@@ -1,7 +1,7 @@
 package com.sharetreats01.viber_chatbot.user.service;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.UserFactory;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.User;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.User;
 import com.sharetreats01.viber_chatbot.user.entity.UserEntity;
 import com.sharetreats01.viber_chatbot.user.repository.UserRepository;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;

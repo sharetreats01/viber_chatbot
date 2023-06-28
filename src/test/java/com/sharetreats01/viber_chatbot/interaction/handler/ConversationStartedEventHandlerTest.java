@@ -40,7 +40,7 @@ class ConversationStartedEventHandlerTest {
     public void 대화시작_이벤트_핸들러_테스트() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ConversationStartedRequest request =
                 CallbackRequestFactory.createConversationRequest(
-                        Event.CONVERSATION_STARTED, 1457764197627L, 4912661846655238145L, "open", "context_information",
+                        1457764197627L, 4912661846655238145L, "open", "context_information",
                         UserFactory.createUserDto("01234567890A=", "John McClane", "http://avatar.example.com", "UK", "en", 1),
                         false);
 
@@ -62,6 +62,6 @@ class ConversationStartedEventHandlerTest {
         verify(properties, times(1)).getBotAvatar();
         verify(properties, times(2)).getBotName();
 
-        assertEquals(expectedTarget,  result);
+        assertEquals(expectedTarget, result);
     }
 }
