@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.interaction.util;
+package com.sharetreats01.viber_chatbot.tracking.utils;
 
 import com.fasterxml.uuid.Generators;
 import lombok.AccessLevel;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.UUID;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class MessageHistoryUtils {
+public class TrackingUtils {
     public static UUID createSessionId() {
         UUID uuid = Generators.timeBasedGenerator().generate();
         String[] uuidArr = uuid.toString().split("-");

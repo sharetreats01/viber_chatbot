@@ -10,7 +10,7 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class MessageTemplateUtilsTest {
+class CallbackMessageTemplateUtilsTest {
     @Test
     public void processTemplateWithPlaceHolder() {
         final String template = "Hello {userName}, Welcome to our chatbot";

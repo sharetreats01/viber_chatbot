@@ -1,9 +1,8 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.CallbackDtoFactory;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.Subscribed;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.UserDtoFactory;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.CallbackRequestFactory;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.SubscribeRequest;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.UserFactory;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,13 +29,12 @@ class SubScribedEventHandlerTest {
 
     @Test
     public void 구독_이벤트_테스트() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        Callback callback = CallbackDtoFactory.createSubscribed(
+        SubscribeRequest subscribeRequest = CallbackRequestFactory.createSubscribedRequest(
                 Event.SUBSCRIBED, 1457764197627L,
-                UserDtoFactory.createUserDto("01234567890A=", "John McClane", "http://avatar.example.com", "UK", "en", 1),
+                UserFactory.createUserDto("01234567890A=", "John McClane", "http://avatar.example.com", "UK", "en", 1),
                 4912661846655238145L);
-        Subscribed subscribed = callback.buildSubscribed();
-        handler.handleEvent(callback);
+        handler.handleEvent(subscribeRequest);
 
-        verify(userService, times(1)).subscribe(subscribed.getUser().getId());
+        verify(userService, times(1)).subscribe(subscribeRequest.getUser().getId());
     }
 }

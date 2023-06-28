@@ -1,13 +1,13 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.User;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.User;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
-public class UserDtoFactory {
+public class UserFactory {
     private static final Field ID = ReflectionUtils.findField(User.class, "id");
     private static final Field NAME = ReflectionUtils.findField(User.class, "name");
     private static final Field AVATAR = ReflectionUtils.findField(User.class, "avatar");

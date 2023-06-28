@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter;
+package com.sharetreats01.viber_chatbot.interaction.dto.callback.request;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -13,5 +13,4 @@ public class User {
     private String country;
     private String language;
     private Integer apiVersion;
-
 }

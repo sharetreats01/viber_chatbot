@@ -1,7 +1,7 @@
 package com.sharetreats01.viber_chatbot.user.service;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.UserDtoFactory;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.User;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.UserFactory;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.User;
 import com.sharetreats01.viber_chatbot.user.entity.UserEntity;
 import com.sharetreats01.viber_chatbot.user.repository.UserRepository;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
@@ -41,7 +41,7 @@ class UserServiceImplTest {
 
     @Test
     public void 유저_구독_테스트() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        User user = UserDtoFactory.createUserDto("01234567890A=", "John McClane", "http://avatar.example.com", "UK", "en", 1);
+        User user = UserFactory.createUserDto("01234567890A=", "John McClane", "http://avatar.example.com", "UK", "en", 1);
         GetUserDetailsResponse response = GetUserDetailsResponseFactory.create();
         when(userRepository.findById(any(String.class))).thenReturn(Optional.empty());
         when(viberWebClient.getUserDetails(any(GetUserDetailsRequest.class))).thenReturn(response);
