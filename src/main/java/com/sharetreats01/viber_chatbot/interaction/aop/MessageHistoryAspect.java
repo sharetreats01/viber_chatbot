@@ -1,6 +1,6 @@
 package com.sharetreats01.viber_chatbot.interaction.aop;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.CallbackRequest;
 import com.sharetreats01.viber_chatbot.interaction.repository.MessageHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.lang.JoinPoint;
@@ -30,12 +30,12 @@ public class MessageHistoryAspect {
 
     }
 
-    private Callback convert(JoinPoint joinPoint) {
-        Callback callback = null;
+    private CallbackRequest convert(JoinPoint joinPoint) {
+        CallbackRequest callbackRequest = null;
         for (Object obj : joinPoint.getArgs()) {
-            if (obj.getClass().equals(Callback.class))
-                callback = (Callback) obj;
+            if (obj.getClass().equals(CallbackRequest.class))
+                callbackRequest = (CallbackRequest) obj;
         }
-        return callback;
+        return callbackRequest;
     }
 }

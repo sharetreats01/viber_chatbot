@@ -1,9 +1,8 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.ConversationStarted;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter.User;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.WelcomeMessage;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.ConversationStartedRequest;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.User;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.ConversationStartedResponse;
 import com.sharetreats01.viber_chatbot.interaction.dto.message.template.WelcomeMessageTemplateValueDto;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import com.sharetreats01.viber_chatbot.viber.enums.MessageType;
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class ConversationStartedEventHandler implements CallbackEventHandler {
+public class ConversationStartedEventHandler implements CallbackEventHandler<ConversationStartedRequest, ConversationStartedResponse> {
     private final ChatbotProperties properties;
     private final MessageService messageService;
 
@@ -27,12 +26,11 @@ public class ConversationStartedEventHandler implements CallbackEventHandler {
     }
 
     @Override
-    public WelcomeMessage handleEvent(Callback callback) {
-        ConversationStarted conversationStarted = callback.buildConversationStarted();
-        User user = conversationStarted.getUser();
+    public ConversationStartedResponse handleEvent(ConversationStartedRequest request) {
+        User user = request.getUser();
         String message = messageService.createMessage(
                 new WelcomeMessageTemplateValueDto(MessageType.WELCOME, user.getLanguage(), user.getName(), properties.getBotName()));
-        return WelcomeMessage.builder()
+        return ConversationStartedResponse.builder()
                 .senderName(properties.getBotName())
                 .senderAvatar(properties.getBotAvatar())
                 .trackingData("conversation_started")
