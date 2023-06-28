@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class AvailablePaymentsReponse {
+public class AvailablePaymentsResponse {
     private List<Payment> payments;
 }

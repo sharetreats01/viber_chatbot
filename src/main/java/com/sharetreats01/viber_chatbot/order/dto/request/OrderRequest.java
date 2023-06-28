@@ -2,6 +2,7 @@ package com.sharetreats01.viber_chatbot.order.dto.request;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
@@ -26,10 +27,6 @@ public class OrderRequest {
 
     private String email;
 
-
-    private OrderRequest () {
-
-    }
     public static OrderRequest botOrderRequestToOrderRequest (OrderByBotRequest botOrderRequest) {
         return OrderRequest.builder()
                 .productId(botOrderRequest.getProductId())
