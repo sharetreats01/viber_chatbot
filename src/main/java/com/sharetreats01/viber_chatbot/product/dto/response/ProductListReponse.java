@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class ProductList {
+public class ProductListReponse {
     @JsonProperty("products")
     private List<Product> products;
 }

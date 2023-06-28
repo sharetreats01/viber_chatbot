@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.config;
+ package com.sharetreats01.viber_chatbot.config;
 
 import org.jasypt.encryption.StringEncryptor;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
