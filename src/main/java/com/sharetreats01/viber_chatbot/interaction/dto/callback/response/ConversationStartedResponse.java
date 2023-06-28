@@ -1,5 +1,6 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.property.Sender;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import java.util.Objects;
 @Getter
 public class ConversationStartedResponse extends CallbackResponse {
     private final Sender sender;
+    @JsonProperty("tracking_data")
     private final String trackingData;
     private final String type;
     private final String text;
