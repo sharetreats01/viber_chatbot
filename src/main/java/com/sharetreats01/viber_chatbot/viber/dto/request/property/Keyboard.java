@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.interaction.dto.callback.parameter;
+package com.sharetreats01.viber_chatbot.viber.dto.request.property;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sharetreats01.viber_chatbot.interaction.enums.*;
