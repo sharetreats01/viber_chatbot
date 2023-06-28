@@ -1,9 +1,12 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.CallbackRequest;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.CallbackResponse;
 import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 
-public interface CallbackEventHandler {
+public interface CallbackEventHandler<T extends CallbackRequest, R extends CallbackResponse> {
     Event getCallbackEvent();
-    Object handleEvent(Callback dto);
+
+    R handleEvent(T data);
 }
+
