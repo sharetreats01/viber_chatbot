@@ -1,10 +1,9 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.ConversationStartedRequest;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.User;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.User;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.ConversationStartedResponse;
 import com.sharetreats01.viber_chatbot.interaction.dto.message.template.WelcomeMessageTemplateValueDto;
-import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import com.sharetreats01.viber_chatbot.viber.enums.MessageType;
 import com.sharetreats01.viber_chatbot.interaction.properties.ChatbotProperties;
 import com.sharetreats01.viber_chatbot.interaction.service.MessageService;
@@ -21,8 +20,8 @@ public class ConversationStartedEventHandler implements CallbackEventHandler<Con
     private final MessageService messageService;
 
     @Override
-    public Event getCallbackEvent() {
-        return Event.CONVERSATION_STARTED;
+    public Class<ConversationStartedRequest> getCallbackType() {
+        return ConversationStartedRequest.class;
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.sharetreats01.viber_chatbot.interaction.handler;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.DeliveredRequest;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.DeliveredResponseMessage;
-import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -10,8 +9,8 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class DeliveredEventHandler implements CallbackEventHandler<DeliveredRequest, DeliveredResponseMessage> {
     @Override
-    public Event getCallbackEvent() {
-        return Event.DELIVERED;
+    public Class<DeliveredRequest> getCallbackType() {
+        return DeliveredRequest.class;
     }
 
     @Override

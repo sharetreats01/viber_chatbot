@@ -1,6 +1,6 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback.request;
 
-import com.sharetreats01.viber_chatbot.interaction.enums.Event;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.User;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Constructor;
@@ -8,7 +8,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public class ConversationStartedRequestFactory {
-    private static final Field EVENT = ReflectionUtils.findField(ConversationStartedRequest.class, "event");
     private static final Field TIMESTAMP = ReflectionUtils.findField(ConversationStartedRequest.class, "timestamp");
     private static final Field MESSAGE_TOKEN = ReflectionUtils.findField(ConversationStartedRequest.class, "messageToken");
     private static final Field TYPE = ReflectionUtils.findField(ConversationStartedRequest.class, "type");
@@ -18,7 +17,6 @@ public class ConversationStartedRequestFactory {
 
     static {
 
-        EVENT.setAccessible(true);
         TIMESTAMP.setAccessible(true);
         MESSAGE_TOKEN.setAccessible(true);
         TYPE.setAccessible(true);
@@ -38,9 +36,8 @@ public class ConversationStartedRequestFactory {
 
     }
 
-    protected static ConversationStartedRequest createConversationRequest(Event event, Long timeStamp, Long messageToken, String type, String context, User user, boolean subscribed) throws InvocationTargetException, InstantiationException, IllegalAccessException {
+    protected static ConversationStartedRequest createConversationRequest(Long timeStamp, Long messageToken, String type, String context, User user, boolean subscribed) throws InvocationTargetException, InstantiationException, IllegalAccessException {
         ConversationStartedRequest request = CONSTRUCTOR.newInstance();
-        ReflectionUtils.setField(EVENT, request, event);
         ReflectionUtils.setField(TIMESTAMP, request, timeStamp);
         ReflectionUtils.setField(MESSAGE_TOKEN, request, messageToken);
         ReflectionUtils.setField(TYPE, request, type);

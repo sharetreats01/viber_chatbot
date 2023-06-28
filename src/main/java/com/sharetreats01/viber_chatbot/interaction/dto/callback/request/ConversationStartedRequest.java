@@ -1,5 +1,6 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback.request;
 
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.User;
 import lombok.*;
 
 @Getter
