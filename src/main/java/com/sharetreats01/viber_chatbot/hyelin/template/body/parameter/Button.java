@@ -24,7 +24,7 @@ public class Button {
     @JsonProperty("Rows")
     private int Rows;
     @JsonProperty("Text")
-    private String Text = "<br><font color=\"#494E67\"><b>%s</b></font>";
+    private final String Text = "<br><font color=\"#494E67\"><b>%s</b></font>";
 
 
 

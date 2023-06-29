@@ -20,6 +20,7 @@ public class OrderApiClientImpl implements OrderApiClient{
                 .uri(orderApiProperties.getOrderCreateUri())
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
+                .accept(MediaType.APPLICATION_JSON)
                 .retrieve();
         return responseResolver.messageResolve(responseSpec, OrderSuccessResponse.class);
     }
