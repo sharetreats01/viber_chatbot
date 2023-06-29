@@ -15,4 +15,7 @@ public class ProductApiProperties {
     @Value("${sharetreats.api.get-payments-list}")
     private String ProductPaymentListUri;
 
+    @Value("${sharetreats.api.get-brand-list}")
+    private String BrandListUri;
+
 }

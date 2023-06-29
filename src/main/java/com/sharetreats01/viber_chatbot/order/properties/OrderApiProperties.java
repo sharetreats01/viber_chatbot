@@ -14,5 +14,4 @@ public class OrderApiProperties {
 
     @Value("${sharetreats.api.post-order}")
     private String orderCreateUri;
-
 }

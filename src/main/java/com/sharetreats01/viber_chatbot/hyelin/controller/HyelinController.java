@@ -4,7 +4,9 @@ package com.sharetreats01.viber_chatbot.hyelin.controller;
 import com.sharetreats01.viber_chatbot.order.dto.request.OrderByBotRequest;
 import com.sharetreats01.viber_chatbot.order.dto.response.OrderSuccessResponse;
 import com.sharetreats01.viber_chatbot.order.service.OrderService;
+import com.sharetreats01.viber_chatbot.product.dto.request.GetBrandRequest;
 import com.sharetreats01.viber_chatbot.product.dto.response.AvailablePaymentsResponse;
+import com.sharetreats01.viber_chatbot.product.dto.response.BrandListResponse;
 import com.sharetreats01.viber_chatbot.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +34,15 @@ public class HyelinController {
         OrderSuccessResponse response = orderService.createOrderByBot(requestBody);
         return ResponseEntity.ok().body(response);
     }
+
+    @GetMapping("/brand-list")
+    public ResponseEntity<BrandListResponse> getBrandList() {
+        GetBrandRequest request = new GetBrandRequest();
+        BrandListResponse response = productService.getBrandList(request);
+        return ResponseEntity.ok().body(response);
+
+    }
+
 
 
 }
