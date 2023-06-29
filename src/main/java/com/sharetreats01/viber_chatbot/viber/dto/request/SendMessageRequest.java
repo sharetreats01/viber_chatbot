@@ -13,7 +13,7 @@ public class SendMessageRequest {
     private final String trackingData;
     @JsonProperty("min_api_version")
     private final Integer minApiVersion;
-    private final Keyboard keyboard;
+    private Keyboard keyboard;
 
     public SendMessageRequest(String receiver, String senderName, String senderAvatar, String trackingData, Integer minApiVersion) {
         this.receiver = receiver;
@@ -23,11 +23,7 @@ public class SendMessageRequest {
         this.keyboard = null;
     }
 
-    public SendMessageRequest(String receiver, String senderName, String senderAvatar, String trackingData, Integer minApiVersion, Keyboard keyboard) {
-        this.receiver = receiver;
-        this.sender = new Sender(senderName, senderAvatar);
-        this.trackingData = trackingData;
-        this.minApiVersion = minApiVersion;
+    public void setKeyboard(Keyboard keyboard) {
         this.keyboard = keyboard;
     }
 

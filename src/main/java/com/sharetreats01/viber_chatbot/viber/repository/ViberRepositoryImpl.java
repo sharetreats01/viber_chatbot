@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 
 @Repository
 @RequiredArgsConstructor
-public class WebhookSettingRepositoryImpl implements ViberRepository {
+public class ViberRepositoryImpl implements ViberRepository {
     private final EntityManager em;
 
     @Override
