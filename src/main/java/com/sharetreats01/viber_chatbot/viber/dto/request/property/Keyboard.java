@@ -21,7 +21,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Keyboard {
     @JsonProperty("BgColor")
-    private final String bgColor;
+    private String bgColor;
     @JsonProperty("DefaultHeight")
     private Boolean defaultHeight;
     @JsonProperty("CustomDefaultHeight")

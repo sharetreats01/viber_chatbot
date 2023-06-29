@@ -1,7 +1,6 @@
 package com.sharetreats01.viber_chatbot.viber.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sharetreats01.viber_chatbot.viber.dto.request.property.Keyboard;
 import lombok.Getter;
 
 @Getter
@@ -14,13 +13,6 @@ public class SendFileMessageRequest extends SendMessageRequest {
 
     public SendFileMessageRequest(String receiver, String senderName, String senderAvatar, String trackingData, Integer minApiVersion, String media, Integer size, String fileName) {
         super(receiver, senderName, senderAvatar, trackingData, minApiVersion);
-        this.media = media;
-        this.size = size;
-        this.fileName = fileName;
-    }
-
-    public SendFileMessageRequest(String receiver, String senderName, String senderAvatar, String trackingData, Integer minApiVersion, String media, Integer size, String fileName, Keyboard keyboard) {
-        super(receiver, senderName, senderAvatar, trackingData, minApiVersion, keyboard);
         this.media = media;
         this.size = size;
         this.fileName = fileName;
