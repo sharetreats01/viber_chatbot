@@ -29,7 +29,9 @@ public class ViberWebClientImpl implements ViberWebClient {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve();
-        return responseResolver.messageResolve(responseSpec, SetWebhookResponse.class);
+        SetWebhookResponse response = responseResolver.messageResolve(responseSpec, SetWebhookResponse.class);
+        log.info("SetWebhookResponse: " + request);
+        return response;
     }
 
     @Override
@@ -39,7 +41,9 @@ public class ViberWebClientImpl implements ViberWebClient {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve();
-        return responseResolver.messageResolve(responseSpec, SendMessageResponse.class);
+        SendMessageResponse response = responseResolver.messageResolve(responseSpec, SendMessageResponse.class);
+        log.info("SendMessageResponse: " + response);
+        return response;
     }
 
     @Override
@@ -49,7 +53,9 @@ public class ViberWebClientImpl implements ViberWebClient {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve();
-        return responseResolver.messageResolve(responseSpec, com.sharetreats01.viber_chatbot.viber.dto.response.GetUserDetailsResponse.class);
+        GetUserDetailsResponse response = responseResolver.messageResolve(responseSpec, com.sharetreats01.viber_chatbot.viber.dto.response.GetUserDetailsResponse.class);
+        log.info("GetUserDetailsResponse: " + response);
+        return response;
     }
 
     @Override

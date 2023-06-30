@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Getter
 @EqualsAndHashCode(callSuper = false)
-@ToString
+@ToString(callSuper = true)
 public class SendTextMessageRequest extends SendMessageRequest {
     private final String type = "text";
     private final String text;

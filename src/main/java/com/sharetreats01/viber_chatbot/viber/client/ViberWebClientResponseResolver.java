@@ -12,9 +12,7 @@ import reactor.core.publisher.Mono;
 @Component
 public class ViberWebClientResponseResolver {
     public <T> T messageResolve(WebClient.ResponseSpec response, Class<T> className) {
-        T result = handleError(handleHTTPStatus(response, className)).block();
-        log.info("Error occurred: " + result);
-        return result;
+        return handleError(handleHTTPStatus(response, className)).block();
     }
 
     private <T> Mono<T> handleHTTPStatus(WebClient.ResponseSpec response, Class<T> className) {
