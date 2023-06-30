@@ -1,11 +1,15 @@
 package com.sharetreats01.viber_chatbot.viber.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sharetreats01.viber_chatbot.viber.dto.request.property.Keyboard;
+import com.fasterxml.jackson.annotation.JsonRawValue;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Getter
+@ToString
+@EqualsAndHashCode
 public class SendMessageRequest {
     private final String receiver;
     private final Sender sender;
@@ -13,7 +17,8 @@ public class SendMessageRequest {
     private final String trackingData;
     @JsonProperty("min_api_version")
     private final Integer minApiVersion;
-    private Keyboard keyboard;
+    @JsonRawValue
+    private String keyboard;
 
     public SendMessageRequest(String receiver, String senderName, String senderAvatar, String trackingData, Integer minApiVersion) {
         this.receiver = receiver;
@@ -23,12 +28,14 @@ public class SendMessageRequest {
         this.keyboard = null;
     }
 
-    public void setKeyboard(Keyboard keyboard) {
+    public void setKeyboard(String keyboard) {
         this.keyboard = keyboard;
     }
 
     @Getter
     @RequiredArgsConstructor
+    @ToString
+    @EqualsAndHashCode
     private static class Sender {
         private final String name;
         private final String avatar;

@@ -5,10 +5,12 @@ import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.Subscrib
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.UserFactory;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
+import com.sharetreats01.viber_chatbot.viber.dto.request.SendMessageRequest;
 import com.sharetreats01.viber_chatbot.viber.dto.request.SendTextMessageRequest;
-import com.sharetreats01.viber_chatbot.viber.support.KeyboardFactory;
+import com.sharetreats01.viber_chatbot.viber.service.KeyBoardService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -25,7 +27,7 @@ class SubScribedEventHandlerTest {
     private ViberWebClient viberWebClient;
 
     @Mock
-    private KeyboardFactory keyboardFactory;
+    private KeyBoardService keyBoardService;
 
     @InjectMocks
     private SubScribedEventHandler handler;
@@ -41,10 +43,18 @@ class SubScribedEventHandlerTest {
                 1457764197627L,
                 UserFactory.createUserDto("01234567890A=", "John McClane", "http://avatar.example.com", "UK", "en", 1),
                 4912661846655238145L);
-        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getUser().getId(), "Viber  Treats", "", "subscribe", request.getUser().getApiVersion(), "text");
+        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getUser().getId(), "Viber  Treats", "", "subscribe", request.getUser().getApiVersion(), "Thank you for Subscribe!");
+        String keyboard = null;
+        when(keyBoardService.findCategory()).thenReturn(keyboard);
 
 
         handler.handleEvent(request);
+
+//        ArgumentCaptor<SendMessageRequest> captor = ArgumentCaptor.forClass(SendMessageRequest.class);
+//        verify(viberWebClient, times(1)).sendMessage(captor.capture());
+//        SendMessageRequest actualRequest = captor.getValue();
+//        System.out.println(actualRequest);
+
 
         verify(userService, times(1)).subscribe(request.getUser().getId());
         verify(viberWebClient, times(1)).sendMessage(textMessageRequest);

@@ -1,16 +1,24 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.MessageRequest;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.Tracking;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.MessageResponse;
-import com.sharetreats01.viber_chatbot.user.service.UserService;
-import lombok.RequiredArgsConstructor;
+import com.sharetreats01.viber_chatbot.interaction.handler.processor.MessageTrackingProcessor;
+
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
+
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
 public class MessageEventHandler implements CallbackEventHandler<MessageRequest, MessageResponse> {
-    private final UserService userService;
+    private final Map<Tracking, MessageTrackingProcessor> processors;
+
+    public MessageEventHandler(List<MessageTrackingProcessor> processorList) {
+        this.processors = processorList.stream().collect(Collectors.toMap(MessageTrackingProcessor::getTrackingType, Function.identity()));
+    }
 
     @Override
     public Class<MessageRequest> getCallbackType() {
@@ -19,11 +27,9 @@ public class MessageEventHandler implements CallbackEventHandler<MessageRequest,
 
     @Override
     public MessageResponse handleEvent(MessageRequest request) {
-        if (!StringUtils.hasText(request.getTrackingData()))
-            userService.subscribe(request.getSender().getId());
-        // swich로 event를 분류해서 진행 필요
-        // TODO : Callback.Message.type 구분해서 분기로 진행
-        // Message message = callback.buildMessage();
+        Tracking tracking = Tracking.fromTrackingData(request.getTrackingData());
+        MessageTrackingProcessor processor = processors.get(tracking);
+        processor.process(request);
         return null;
     }
 
@@ -32,5 +38,6 @@ public class MessageEventHandler implements CallbackEventHandler<MessageRequest,
     }
     public void ProductAvailableMessage() {
         //productId를 이용해서 DTO 만들기
+        return null;
     }
 }

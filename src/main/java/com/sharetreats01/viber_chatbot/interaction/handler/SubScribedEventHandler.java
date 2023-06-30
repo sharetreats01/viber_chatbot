@@ -2,11 +2,10 @@ package com.sharetreats01.viber_chatbot.interaction.handler;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.SubscribedRequest;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.SubscribeResponse;
-import com.sharetreats01.viber_chatbot.interaction.service.MessageService;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
 import com.sharetreats01.viber_chatbot.viber.dto.request.SendTextMessageRequest;
-import com.sharetreats01.viber_chatbot.viber.support.KeyboardFactory;
+import com.sharetreats01.viber_chatbot.viber.service.KeyBoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class SubScribedEventHandler implements CallbackEventHandler<SubscribedRequest, SubscribeResponse> {
     private final UserService userService;
     private final ViberWebClient viberWebClient;
-    private final KeyboardFactory keyboardFactory;
+    private final KeyBoardService keyBoardService;
 //    private final MessageService messageService;
 
     @Override
@@ -26,8 +25,9 @@ public class SubScribedEventHandler implements CallbackEventHandler<SubscribedRe
     @Override
     public SubscribeResponse handleEvent(SubscribedRequest request) {
         userService.subscribe(request.getUser().getId());
-        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getUser().getId(), "Viber  Treats", "", "subscribe", request.getUser().getApiVersion(), "text");
-        textMessageRequest.setKeyboard(keyboardFactory.create());
+        SendTextMessageRequest textMessageRequest =
+                new SendTextMessageRequest(request.getUser().getId(), "Viber  Treats", "", "subscribe", request.getUser().getApiVersion(), "Thank you for Subscribe!");
+        textMessageRequest.setKeyboard(keyBoardService.findCategory());
         viberWebClient.sendMessage(textMessageRequest);
         return null;
     }

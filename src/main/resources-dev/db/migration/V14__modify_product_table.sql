@@ -1,0 +1,1 @@
+alter table tb_sharetreats_product add column product_desc varchar(50);
