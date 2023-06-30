@@ -1,5 +1,6 @@
 package com.sharetreats01.viber_chatbot.viber.entity;
 
+import com.sharetreats01.viber_chatbot.viber.enums.KeyboardType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,11 +15,11 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ViberKeyboardEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "keyboard_type", length = 10, nullable = false)
-    private String keyBoardType;
+    @Enumerated
+    private KeyboardType keyBoardType;
 
     @Column(name = "keyboard_desc", length = 50, nullable = false)
     private String keyBoardDesc;

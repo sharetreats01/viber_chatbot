@@ -6,6 +6,7 @@ import com.sharetreats01.viber_chatbot.interaction.dto.callback.UserFactory;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
 import com.sharetreats01.viber_chatbot.viber.dto.request.SendTextMessageRequest;
+import com.sharetreats01.viber_chatbot.viber.service.KeyBoardService;
 import com.sharetreats01.viber_chatbot.viber.support.KeyboardFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class SubScribedEventHandlerTest {
     private ViberWebClient viberWebClient;
 
     @Mock
-    private KeyboardFactory keyboardFactory;
+    private KeyBoardService keyBoardService;
 
     @InjectMocks
     private SubScribedEventHandler handler;
@@ -42,6 +43,7 @@ class SubScribedEventHandlerTest {
                 UserFactory.createUserDto("01234567890A=", "John McClane", "http://avatar.example.com", "UK", "en", 1),
                 4912661846655238145L);
         SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getUser().getId(), "Viber  Treats", "", "subscribe", request.getUser().getApiVersion(), "text");
+        when(keyBoardService.findCategory()).thenReturn(any(String.class));
 
 
         handler.handleEvent(request);
