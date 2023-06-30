@@ -25,7 +25,8 @@ public class SubScribedEventHandler implements CallbackEventHandler<SubscribedRe
     @Override
     public SubscribeResponse handleEvent(SubscribedRequest request) {
         userService.subscribe(request.getUser().getId());
-        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getUser().getId(), "Viber  Treats", "", "subscribe", request.getUser().getApiVersion(), "text");
+        SendTextMessageRequest textMessageRequest =
+                new SendTextMessageRequest(request.getUser().getId(), "Viber  Treats", "", "subscribe", request.getUser().getApiVersion(), "Thank you for Subscribe!");
         textMessageRequest.setKeyboard(keyBoardService.findCategory());
         viberWebClient.sendMessage(textMessageRequest);
         return null;

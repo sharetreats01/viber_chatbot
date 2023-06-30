@@ -2,12 +2,14 @@ package com.sharetreats01.viber_chatbot.viber.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRawValue;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @ToString
+@EqualsAndHashCode
 public class SendMessageRequest {
     private final String receiver;
     private final Sender sender;
@@ -33,6 +35,7 @@ public class SendMessageRequest {
     @Getter
     @RequiredArgsConstructor
     @ToString
+    @EqualsAndHashCode
     private static class Sender {
         private final String name;
         private final String avatar;

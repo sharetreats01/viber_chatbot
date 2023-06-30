@@ -17,7 +17,7 @@ public class ViberKeyboardRepositoryImpl implements ViberKeyboardRepository {
         return em.createQuery(
                         "select kv.data " +
                                 "from ViberKeyboardEntity k " +
-                                "left join ViberKeyBoardVersionEntity kv " +
+                                "inner join ViberKeyBoardVersionEntity kv " +
                                 "on k.id = kv.keyBoardId where k.keyBoardType =: type order by kv.version desc",
                         String.class)
                 .setParameter("type", type)
