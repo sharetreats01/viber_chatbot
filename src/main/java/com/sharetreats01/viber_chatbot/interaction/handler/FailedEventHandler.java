@@ -1,20 +1,20 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
-import com.sharetreats01.viber_chatbot.interaction.enums.Event;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.FailedRequest;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.FailedResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class FailedEventHandler implements CallbackEventHandler{
+public class FailedEventHandler implements CallbackEventHandler<FailedRequest, FailedResponse> {
     @Override
-    public Event getCallbackEvent() {
-        return Event.FAILED;
+    public Class<FailedRequest> getCallbackType() {
+        return FailedRequest.class;
     }
 
     @Override
-    public Void handleEvent(Callback callback) {
+    public FailedResponse handleEvent(FailedRequest request) {
         return null;
     }
 }

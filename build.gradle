@@ -37,7 +37,9 @@ dependencies {
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
 
     implementation 'org.flywaydb:flyway-mysql'
-    implementation "com.fasterxml.uuid:java-uuid-generator:4.0.1"
+    implementation 'com.fasterxml.uuid:java-uuid-generator:4.0.1'
+
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
     // Monitoring and Management
     implementation 'io.micrometer:micrometer-registry-prometheus'

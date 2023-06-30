@@ -1,6 +1,6 @@
 package com.sharetreats01.viber_chatbot.interaction.support.strategy;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.TemplateDto;
+import com.sharetreats01.viber_chatbot.interaction.dto.message.template.TemplateDto;
 import com.sharetreats01.viber_chatbot.interaction.dto.message.template.WelcomeMessageTemplateValueDto;
 import com.sharetreats01.viber_chatbot.interaction.support.factory.MessageTemplateStrategyFactory;
 import com.sharetreats01.viber_chatbot.interaction.util.MessageTemplateUtils;

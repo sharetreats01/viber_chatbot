@@ -12,13 +12,18 @@ import reactor.core.publisher.Mono;
 @Component
 public class ViberWebClientResponseResolver {
     public <T> T messageResolve(WebClient.ResponseSpec response, Class<T> className) {
-        return handleError(handleHTTPStatus(response, className)).block();
+        T result = handleError(handleHTTPStatus(response, className)).block();
+        log.info("Error occurred: " + result);
+        return result;
     }
 
     private <T> Mono<T> handleHTTPStatus(WebClient.ResponseSpec response, Class<T> className) {
         return response
-                .onStatus(HttpStatus::is4xxClientError, clientResponse -> Mono.error(new ViberException("")))
-                .onStatus(HttpStatus::is5xxServerError, clientResponse -> Mono.error(new ViberException("")))
+                .onStatus(HttpStatus::isError, clientResponse -> {
+                            log.error("Error occurred: " + clientResponse.statusCode());
+                            return clientResponse.createException().flatMap(Mono::error);
+                        }
+                )
                 .bodyToMono(className);
     }
 

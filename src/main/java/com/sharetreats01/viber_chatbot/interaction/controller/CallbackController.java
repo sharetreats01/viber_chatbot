@@ -1,7 +1,8 @@
 package com.sharetreats01.viber_chatbot.interaction.controller;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.Callback;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.CallbackRequest;
 import com.sharetreats01.viber_chatbot.interaction.dispatcher.CallbackDispatcher;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.CallbackResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class CallbackController {
-    private final CallbackDispatcher callbackDispatcher;
+    private final CallbackDispatcher<CallbackRequest, CallbackResponse> callbackDispatcher;
     @PostMapping("/sharetreats01_chatbot")
-    public ResponseEntity<?> callback(@RequestBody Callback callback) {
-        log.info("{}", callback.getEvent().getValue());
-        return ResponseEntity.ok(callbackDispatcher.dispatch(callback));
+    public <T extends CallbackRequest> ResponseEntity<?> callback(@RequestBody T request) {
+        return ResponseEntity.ok(callbackDispatcher.dispatch(request));
     }
 }

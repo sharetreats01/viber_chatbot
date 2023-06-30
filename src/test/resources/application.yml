@@ -12,6 +12,7 @@ spring:
 #        dialect: MySQL5InnoDBDialect
   jackson:
     default-property-inclusion: non_null
+    property-naming-strategy: SNAKE_CASE
   datasource:
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL
     username: sa

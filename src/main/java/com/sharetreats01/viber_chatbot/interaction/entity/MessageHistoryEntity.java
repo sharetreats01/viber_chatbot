@@ -1,7 +1,7 @@
 package com.sharetreats01.viber_chatbot.interaction.entity;
 
 import com.sharetreats01.viber_chatbot.interaction.enums.MessageDirection;
-import com.sharetreats01.viber_chatbot.interaction.util.MessageHistoryUtils;
+import com.sharetreats01.viber_chatbot.tracking.utils.TrackingUtils;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,7 +36,7 @@ public class MessageHistoryEntity {
     private LocalDateTime timeStamp;
 
     public MessageHistoryEntity(String type, String userId, MessageDirection direction) {
-        this.sessionId = MessageHistoryUtils.createSessionId();
+        this.sessionId = TrackingUtils.createSessionId();
         this.type = type;
         this.userId = userId;
         this.direction = direction;
