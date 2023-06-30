@@ -8,6 +8,8 @@ import com.sharetreats01.viber_chatbot.product.dto.request.GetBrandRequest;
 import com.sharetreats01.viber_chatbot.product.dto.response.AvailablePaymentsResponse;
 import com.sharetreats01.viber_chatbot.product.dto.response.BrandListResponse;
 import com.sharetreats01.viber_chatbot.product.service.ProductService;
+import com.sharetreats01.viber_chatbot.template.body.KeyBoardBody;
+import com.sharetreats01.viber_chatbot.template.util.BodyToTemplate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,7 @@ public class HyelinController {
 
     private final OrderService orderService;
     private final ProductService productService;
+    private final BodyToTemplate bodyToTemplate;
     @GetMapping("/payment-list")
     public ResponseEntity<AvailablePaymentsResponse> getPaymentCase() {
         AvailablePaymentsResponse response = productService.getPaymentList("1");
@@ -37,12 +40,14 @@ public class HyelinController {
 
     @GetMapping("/brand-list")
     public ResponseEntity<BrandListResponse> getBrandList() {
-        GetBrandRequest request = new GetBrandRequest();
-        BrandListResponse response = productService.getBrandList(request);
+        BrandListResponse response = productService.getBrandList(new GetBrandRequest());
         return ResponseEntity.ok().body(response);
 
     }
 
-
-
+    @GetMapping("/brands/keyboard")
+    public ResponseEntity<KeyBoardBody> getBrandKeyboard() {
+        KeyBoardBody keyboard = bodyToTemplate.makeBrandKeyboard();
+        return ResponseEntity.ok().body(keyboard);
+    }
 }
