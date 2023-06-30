@@ -38,6 +38,5 @@ public class MessageEventHandler implements CallbackEventHandler<MessageRequest,
     }
     public void ProductAvailableMessage() {
         //productId를 이용해서 DTO 만들기
-        return null;
     }
 }
