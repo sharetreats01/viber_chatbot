@@ -15,6 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ViberKeyboardEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "keyboard_type", length = 10, nullable = false)
@@ -23,4 +24,9 @@ public class ViberKeyboardEntity {
 
     @Column(name = "keyboard_desc", length = 50, nullable = false)
     private String keyBoardDesc;
+
+    public ViberKeyboardEntity(KeyboardType keyBoardType, String keyBoardDesc) {
+        this.keyBoardType = keyBoardType;
+        this.keyBoardDesc = keyBoardDesc;
+    }
 }

@@ -28,4 +28,11 @@ public class ViberKeyBoardVersionEntity {
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    public ViberKeyBoardVersionEntity(Integer keyBoardId, Integer version, String data, LocalDateTime createdAt) {
+        this.keyBoardId = keyBoardId;
+        this.version = version;
+        this.data = data;
+        this.createdAt = createdAt;
+    }
 }
