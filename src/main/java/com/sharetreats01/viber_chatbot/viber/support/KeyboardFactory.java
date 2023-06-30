@@ -5,10 +5,15 @@ import com.sharetreats01.viber_chatbot.interaction.enums.TextHAlign;
 import com.sharetreats01.viber_chatbot.interaction.enums.TextSize;
 import com.sharetreats01.viber_chatbot.interaction.enums.TextVAlign;
 import com.sharetreats01.viber_chatbot.viber.dto.request.property.Keyboard;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
+@RequiredArgsConstructor
 public class KeyboardFactory {
+
     public Keyboard create() {
         return defaultCategory();
     }

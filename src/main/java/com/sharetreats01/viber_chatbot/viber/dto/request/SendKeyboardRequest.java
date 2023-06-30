@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SendKeyboardRequest {
     @JsonProperty("Type")
-    private final String type = "keyboard";
+    private final java.lang.String type = "keyboard";
 
     @JsonProperty("Buttons")
     private final Keyboard.Button[] buttons;
