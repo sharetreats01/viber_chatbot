@@ -1,6 +1,7 @@
 package com.sharetreats01.viber_chatbot.viber.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -14,6 +15,7 @@ public class SendMessageRequest {
     private final String trackingData;
     @JsonProperty("min_api_version")
     private final Integer minApiVersion;
+    @JsonRawValue
     private String keyboard;
 
     public SendMessageRequest(String receiver, String senderName, String senderAvatar, String trackingData, Integer minApiVersion) {
