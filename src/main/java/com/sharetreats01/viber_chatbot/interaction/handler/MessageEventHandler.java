@@ -28,10 +28,16 @@ public class MessageEventHandler implements CallbackEventHandler<MessageRequest,
     @Override
     public MessageResponse handleEvent(MessageRequest request) {
         Tracking tracking = Tracking.fromTrackingData(request.getTrackingData());
-
         MessageTrackingProcessor processor = processors.get(tracking);
-
         processor.process(request);
+        return null;
+    }
+
+    public void brandKeyboarMessage() {
+        return ;
+    }
+    public void ProductAvailableMessage() {
+        //productId를 이용해서 DTO 만들기
         return null;
     }
 }

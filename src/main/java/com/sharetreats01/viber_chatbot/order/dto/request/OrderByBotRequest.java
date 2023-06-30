@@ -1,15 +1,15 @@
 package com.sharetreats01.viber_chatbot.order.dto.request;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+/**
+ * 봇으로 주문 요청 시 필요한 DTO
+ */
 @Builder
-public class Order {
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+public class OrderByBotRequest {
 
     private String viberId;
 
@@ -31,4 +31,5 @@ public class Order {
 
     private String message;
 
+    private String email;
 }

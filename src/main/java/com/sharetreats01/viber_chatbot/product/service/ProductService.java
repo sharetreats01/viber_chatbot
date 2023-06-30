@@ -1,24 +1,25 @@
 package com.sharetreats01.viber_chatbot.product.service;
 
-import com.sharetreats01.viber_chatbot.client.service.ProductApiClient;
-import com.sharetreats01.viber_chatbot.product.dto.response.BrandList;
-import com.sharetreats01.viber_chatbot.product.dto.response.ProductDetail;
+
+import com.sharetreats01.viber_chatbot.product.client.ProductApiClient;
+import com.sharetreats01.viber_chatbot.product.dto.request.GetBrandRequest;
+import com.sharetreats01.viber_chatbot.product.dto.response.AvailablePaymentsResponse;
+import com.sharetreats01.viber_chatbot.product.dto.response.BrandListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
-    private ProductApiClient productApiClient;
-    public BrandList getProductListByBrand(String BrandName) {
-        return productApiClient.getBrandList();
+    private final ProductApiClient productApiClient;
+
+    public AvailablePaymentsResponse getPaymentList(String productIdStr) {
+        Long productId = Long.parseLong(productIdStr,10);
+        return productApiClient.getPaymentList(productId);
     }
 
-    public ProductDetail getProductDetail(String productId) {
-        return productApiClient.getProductDetail();
+    public BrandListResponse getBrandList(GetBrandRequest request){
+        return productApiClient.getBrandList(request);
     }
 
-    public void getAvailablePayments() {
-
-    }
 }

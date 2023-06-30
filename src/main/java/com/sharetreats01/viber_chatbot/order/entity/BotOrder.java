@@ -3,6 +3,7 @@ package com.sharetreats01.viber_chatbot.order.entity;
 import com.sharetreats01.viber_chatbot.order.status.OrderStatus;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "TB_ORDER_BOT")
+@NoArgsConstructor
 public class BotOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,4 +64,5 @@ public class BotOrder {
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
     }
+
 }
