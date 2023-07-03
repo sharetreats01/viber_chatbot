@@ -22,7 +22,6 @@ public class UserJacksonConvertTest {
 
         String json = objectMapper.writeValueAsString(user);
 
-        System.out.println(json);
         assertTrue(json.contains("\"id\":\"01234567890A=\""));
         assertTrue(json.contains("\"primary_device_os\":\"android 7.1\""));
     }

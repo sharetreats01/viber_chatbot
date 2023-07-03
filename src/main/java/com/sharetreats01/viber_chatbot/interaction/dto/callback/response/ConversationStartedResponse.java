@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class ConversationStartedResponse extends CallbackResponse {
     private final Sender sender;
