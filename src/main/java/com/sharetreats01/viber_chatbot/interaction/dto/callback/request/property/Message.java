@@ -2,40 +2,41 @@ package com.sharetreats01.viber_chatbot.interaction.dto.callback.request.propert
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sharetreats01.viber_chatbot.interaction.enums.Type;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Message {
-    private final Type type;
-    private final String text;
-    private final String media;
-    private final Location location;
-    private final Contact contact;
+    private Type type;
+    private String text;
+    private String media;
+    private Location location;
+    private Contact contact;
     @JsonProperty("tracking_data")
-    private final String trackingData;
+    private String trackingData;
     @JsonProperty("file_name")
-    private final String fileName;
+    private String fileName;
     @JsonProperty("file_size")
-    private final Integer fileSize;
-    private final Integer duration;
+    private Integer fileSize;
+    private Integer duration;
     @JsonProperty("sticker_id")
-    private final Integer stickerId;
+    private Integer stickerId;
 
     @Getter
-    @RequiredArgsConstructor
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class Location {
-        private final String lat;
-        private final String lon;
+        private String lat;
+        private String lon;
     }
 
     @Getter
-    @RequiredArgsConstructor
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class Contact {
         @JsonProperty("name")
-        private final String name;
+        private String name;
         @JsonProperty("phone_number")
-        private final String phoneNumber;
+        private String phoneNumber;
     }
 }

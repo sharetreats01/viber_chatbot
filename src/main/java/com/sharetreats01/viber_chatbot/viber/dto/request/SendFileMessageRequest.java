@@ -1,6 +1,7 @@
 package com.sharetreats01.viber_chatbot.viber.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.TrackingJSONData;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -15,8 +16,8 @@ public class SendFileMessageRequest extends SendMessageRequest {
     @JsonProperty("file_name")
     private final String fileName;
 
-    public SendFileMessageRequest(String receiver, String senderName, String senderAvatar, String trackingData, Integer minApiVersion, String media, Integer size, String fileName) {
-        super(receiver, senderName, senderAvatar, trackingData, minApiVersion);
+    public SendFileMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String media, Integer size, String fileName, TrackingJSONData trackingData) {
+        super(receiver, senderName, senderAvatar, minApiVersion, trackingData);
         this.media = media;
         this.size = size;
         this.fileName = fileName;

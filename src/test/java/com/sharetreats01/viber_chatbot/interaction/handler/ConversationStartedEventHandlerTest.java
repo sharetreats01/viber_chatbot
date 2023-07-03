@@ -3,9 +3,9 @@ package com.sharetreats01.viber_chatbot.interaction.handler;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.CallbackRequestFactory;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.UserFactory;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.ConversationStartedRequest;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.TrackingJSONData;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.ConversationStartedResponse;
 import com.sharetreats01.viber_chatbot.interaction.dto.message.template.WelcomeMessageTemplateValueDto;
-import com.sharetreats01.viber_chatbot.interaction.enums.Event;
 import com.sharetreats01.viber_chatbot.interaction.properties.ChatbotProperties;
 import com.sharetreats01.viber_chatbot.interaction.service.MessageService;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,7 +51,7 @@ class ConversationStartedEventHandlerTest {
         ConversationStartedResponse expectedTarget = ConversationStartedResponse.builder()
                 .senderName("Share Treats")
                 .senderAvatar("http://avatar.example.com")
-                .trackingData("conversation_started")
+                .trackingJSONData(new TrackingJSONData())
                 .type("text")
                 .text("Hello! John McClane. I'm Share Treats bot.")
                 .build();

@@ -1,0 +1,95 @@
+{
+  "Type": "keyboard",
+  "InputFieldState": "hidden",
+  "Silent": true,
+  "Buttons": [
+    {
+      "Columns": 2,
+      "Rows": 2,
+      "Text": "<br><font color=\"#494E67\"><b>ALL</b></font>",
+      "TextSize": "large",
+      "TextHAlign": "center",
+      "TextVAlign": "middle",
+      "ActionType": "reply",
+      "ActionBody": "ALL",
+      "BgColor": "#f3f6f4"
+    },
+    {
+      "Columns": 2,
+      "Rows": 2,
+      "Text": "<br><font color=\"#494E67\"><b>Groceries & Shop</b></font>",
+      "TextSize": "large",
+      "TextHAlign": "center",
+      "TextVAlign": "middle",
+      "ActionType": "reply",
+      "ActionBody": "Groceries & Shop",
+      "BgColor": "#f3f6f4"
+    },
+    {
+      "Columns": 2,
+      "Rows": 2,
+      "Text": "<br><font color=\"#494E67\"><b>Food & Delivery</b></font>",
+      "TextSize": "large",
+      "TextHAlign": "center",
+      "TextVAlign": "middle",
+      "ActionType": "reply",
+      "ActionBody": "Food & Delivery",
+      "BgColor": "#f3f6f4"
+    },
+    {
+      "Columns": 2,
+      "Rows": 2,
+      "Text": "<br><font color=\"#494E67\"><b>Bread & Dessert</b></font>",
+      "TextSize": "large",
+      "TextHAlign": "center",
+      "TextVAlign": "middle",
+      "ActionType": "reply",
+      "ActionBody": "Bread & Dessert",
+      "BgColor": "#f3f6f4"
+    },
+    {
+      "Columns": 2,
+      "Rows": 2,
+      "Text": "<br><font color=\"#494E67\"><b>Beauty & Lifestyle</b></font>",
+      "TextSize": "large",
+      "TextHAlign": "center",
+      "TextVAlign": "middle",
+      "ActionType": "reply",
+      "ActionBody": "Beauty & Lifestyle",
+      "BgColor": "#f3f6f4"
+    },
+    {
+      "Columns": 2,
+      "Rows": 2,
+      "Text": "<br><font color=\"#494E67\"><b>Home & Kids</b></font>",
+      "TextSize": "large",
+      "TextHAlign": "center",
+      "TextVAlign": "middle",
+      "ActionType": "reply",
+      "ActionBody": "Home & Kids",
+      "BgColor": "#f3f6f4"
+    },
+    {
+      "Columns": 2,
+      "Rows": 2,
+      "Text": "<br><font color=\"#494E67\"><b>Digital & Appliance</b></font>",
+      "TextSize": "large",
+      "TextHAlign": "center",
+      "TextVAlign": "middle",
+      "ActionType": "reply",
+      "ActionBody": "Home & Kids",
+      "BgColor": "#f3f6f4"
+    },
+    {
+      "Columns": 2,
+      "Rows": 2,
+      "Text": "<br><font color=\"#494E67\"><b>Transpo & Travel</b></font>",
+      "TextSize": "large",
+      "TextHAlign": "center",
+      "TextVAlign": "middle",
+      "ActionType": "reply",
+      "ActionBody": "Home & Kids",
+      "BgColor": "#f3f6f4"
+    }
+  ]
+}

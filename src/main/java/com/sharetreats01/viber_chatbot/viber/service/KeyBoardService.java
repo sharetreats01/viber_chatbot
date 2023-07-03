@@ -16,7 +16,7 @@ public class KeyBoardService {
         return keyboardRepository.findKeyboardJsonByType(KeyboardType.CATEGORY).orElseThrow();
     }
 
-    public String findBrand() {
+    public String findBrands() {
         return keyboardRepository.findKeyboardJsonByType(KeyboardType.BRAND).orElseThrow();
     }
 }

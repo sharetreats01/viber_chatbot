@@ -1,5 +1,6 @@
 package com.sharetreats01.viber_chatbot.viber.dto.request;
 
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.TrackingJSONData;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -14,8 +15,8 @@ public class SendVideoMessageRequest extends SendMessageRequest {
     private final Integer size;
     private final Integer duration;
 
-    public SendVideoMessageRequest(String receiver, String senderName, String senderAvatar, String trackingData, Integer minApiVersion, String media, String thumbnail, Integer size, Integer duration) {
-        super(receiver, senderName, senderAvatar, trackingData, minApiVersion);
+    public SendVideoMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, TrackingJSONData trackingData, String media, String thumbnail, Integer size, Integer duration) {
+        super(receiver, senderName, senderAvatar, minApiVersion, trackingData);
         this.media = media;
         this.thumbnail = thumbnail;
         this.size = size;
