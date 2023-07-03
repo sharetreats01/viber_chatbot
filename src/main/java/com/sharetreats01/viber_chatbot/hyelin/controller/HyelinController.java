@@ -2,6 +2,7 @@ package com.sharetreats01.viber_chatbot.hyelin.controller;
 
 
 import com.sharetreats01.viber_chatbot.order.dto.request.OrderByBotRequest;
+import com.sharetreats01.viber_chatbot.order.dto.request.OrderRequest;
 import com.sharetreats01.viber_chatbot.order.dto.response.OrderSuccessResponse;
 import com.sharetreats01.viber_chatbot.order.service.OrderService;
 import com.sharetreats01.viber_chatbot.product.dto.request.GetBrandRequest;
@@ -9,6 +10,8 @@ import com.sharetreats01.viber_chatbot.product.dto.response.AvailablePaymentsRes
 import com.sharetreats01.viber_chatbot.product.dto.response.BrandListResponse;
 import com.sharetreats01.viber_chatbot.product.service.ProductService;
 import com.sharetreats01.viber_chatbot.template.body.KeyBoardBody;
+import com.sharetreats01.viber_chatbot.template.body.MessageBody;
+import com.sharetreats01.viber_chatbot.template.body.PhotoTypeMessage;
 import com.sharetreats01.viber_chatbot.template.util.BodyToTemplate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,9 +36,12 @@ public class HyelinController {
     }
 
     @PostMapping("/order")
-    public ResponseEntity<OrderSuccessResponse> postOrderByBot(@RequestBody OrderByBotRequest requestBody) {
+    public ResponseEntity<?> postOrderByBot(@RequestBody OrderByBotRequest requestBody) {
+        // response API -> DTO화 시키기
         OrderSuccessResponse response = orderService.createOrderByBot(requestBody);
-        return ResponseEntity.ok().body(response);
+        PhotoTypeMessage pt = bodyToTemplate.makePictureMessage(response);
+        log.info(pt.getThumbnail(),pt.getText(),pt.getMedia());
+        return ResponseEntity.ok().body((MessageBody)pt);
     }
 
     @GetMapping("/brand-list")
@@ -50,4 +56,5 @@ public class HyelinController {
         KeyBoardBody keyboard = bodyToTemplate.makeBrandKeyboard();
         return ResponseEntity.ok().body(keyboard);
     }
+
 }

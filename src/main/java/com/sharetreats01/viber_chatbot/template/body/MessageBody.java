@@ -13,16 +13,21 @@ public class MessageBody {
     private String trackingData;
     private int minApiVersion;
 
+    private KeyBoardBody keyboard;
+
     @JsonProperty("Type")
     private String type;
 
-    private String text;
-
-    private KeyBoardBody keyboard;
+    MessageBody(String type) {
+        this.sender = new Sender();
+        this.minApiVersion = 6;
+        this.type = type;
+    }
 
     MessageBody(Sender sender) {
         this.sender = sender;
         this.minApiVersion = 6;
     }
+
 
 }

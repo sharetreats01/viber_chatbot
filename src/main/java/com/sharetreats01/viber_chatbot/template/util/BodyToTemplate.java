@@ -1,9 +1,11 @@
 package com.sharetreats01.viber_chatbot.template.util;
 
+import com.sharetreats01.viber_chatbot.order.dto.response.OrderSuccessResponse;
 import com.sharetreats01.viber_chatbot.product.dto.request.GetBrandRequest;
 import com.sharetreats01.viber_chatbot.product.dto.response.BrandListResponse;
 import com.sharetreats01.viber_chatbot.product.service.ProductService;
 import com.sharetreats01.viber_chatbot.template.body.KeyBoardBody;
+import com.sharetreats01.viber_chatbot.template.body.PhotoTypeMessage;
 import com.sharetreats01.viber_chatbot.template.body.component.Button;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,4 +38,9 @@ public class BodyToTemplate {
                 .buttons(buttons)
                 .build();
     }
+
+    public PhotoTypeMessage makePictureMessage(OrderSuccessResponse orderSuccessDto) {
+        return new PhotoTypeMessage(orderSuccessDto);
+    }
+
 }
