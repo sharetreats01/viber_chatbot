@@ -13,10 +13,10 @@ public class KeyBoardService {
     private final ViberKeyboardRepository keyboardRepository;
 
     public String findCategory() {
-        return keyboardRepository.findKeyboardJsonByType(KeyboardType.CATEGORY).orElseThrow();
+        return keyboardRepository.findKeyboardJsonByType(KeyboardType.CATEGORY.toString()).orElseThrow();
     }
 
     public String findBrands() {
-        return keyboardRepository.findKeyboardJsonByType(KeyboardType.BRAND).orElseThrow();
+        return keyboardRepository.findKeyboardJsonByType(KeyboardType.BRAND.toString()).orElseThrow();
     }
 }

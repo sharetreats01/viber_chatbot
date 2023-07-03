@@ -13,7 +13,7 @@ public class ViberKeyboardRepositoryImpl implements ViberKeyboardRepository {
     private final EntityManager em;
 
     @Override
-    public Optional<String> findKeyboardJsonByType(KeyboardType type) {
+    public Optional<String> findKeyboardJsonByType(String type) {
         return em.createQuery(
                         "select kv.data " +
                                 "from ViberKeyboardEntity k " +
