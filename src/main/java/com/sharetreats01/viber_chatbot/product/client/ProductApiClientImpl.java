@@ -1,8 +1,10 @@
 package com.sharetreats01.viber_chatbot.product.client;
 
 import com.sharetreats01.viber_chatbot.product.dto.request.GetBrandRequest;
+import com.sharetreats01.viber_chatbot.product.dto.request.GetProductDetailRequest;
 import com.sharetreats01.viber_chatbot.product.dto.response.AvailablePaymentsResponse;
 import com.sharetreats01.viber_chatbot.product.dto.response.BrandListResponse;
+import com.sharetreats01.viber_chatbot.product.dto.response.ProductDetailResponse;
 import com.sharetreats01.viber_chatbot.product.properties.ProductApiProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,6 +43,20 @@ public class ProductApiClientImpl implements ProductApiClient {
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve();
         return responseResolver.messageResolve(responseSpec,BrandListResponse.class);
+    }
+
+    @Override
+    public ProductDetailResponse getProductDetail(GetProductDetailRequest request) {
+        log.info("ProductDetailResponse {}", request);
+        WebClient.ResponseSpec responseSpec = productApiClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(productApiProperties.getProductDetailUri())
+                        .queryParam("product", request.getProductId())
+                        .build()
+                )
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve();
+        return responseResolver.messageResolve(responseSpec, ProductDetailResponse.class);
     }
 
 }
