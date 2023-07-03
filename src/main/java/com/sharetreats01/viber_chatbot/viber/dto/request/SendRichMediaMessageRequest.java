@@ -1,5 +1,7 @@
 package com.sharetreats01.viber_chatbot.viber.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.TrackingJSONData;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
@@ -9,8 +11,11 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class SendRichMediaMessageRequest extends SendMessageRequest {
     private final String type = "rich_media";
+    @JsonProperty("rich_media")
+    private final String richMedia;
 
-    public SendRichMediaMessageRequest(String receiver, String senderName, String senderAvatar, String trackingData, Integer minApiVersion) {
-        super(receiver, senderName, senderAvatar, trackingData, minApiVersion);
+    public SendRichMediaMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String richMedia, TrackingJSONData trackingData) {
+        super(receiver, senderName, senderAvatar, minApiVersion, trackingData);
+        this.richMedia = richMedia;
     }
 }
