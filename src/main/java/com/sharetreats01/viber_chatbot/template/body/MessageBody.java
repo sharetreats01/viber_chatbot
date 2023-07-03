@@ -18,6 +18,8 @@ public class MessageBody {
     @JsonProperty("Type")
     private String type;
 
+
+
     MessageBody(String type) {
         this.sender = new Sender();
         this.minApiVersion = 6;

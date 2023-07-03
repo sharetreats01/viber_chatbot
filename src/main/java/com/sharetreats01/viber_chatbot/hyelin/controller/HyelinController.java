@@ -12,6 +12,7 @@ import com.sharetreats01.viber_chatbot.product.service.ProductService;
 import com.sharetreats01.viber_chatbot.template.body.KeyBoardBody;
 import com.sharetreats01.viber_chatbot.template.body.MessageBody;
 import com.sharetreats01.viber_chatbot.template.body.PhotoTypeMessage;
+import com.sharetreats01.viber_chatbot.template.body.RichMediaTypeMessage;
 import com.sharetreats01.viber_chatbot.template.util.BodyToTemplate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,9 +40,8 @@ public class HyelinController {
     public ResponseEntity<?> postOrderByBot(@RequestBody OrderByBotRequest requestBody) {
         // response API -> DTO화 시키기
         OrderSuccessResponse response = orderService.createOrderByBot(requestBody);
-        PhotoTypeMessage pt = bodyToTemplate.makePictureMessage(response);
-        log.info(pt.getThumbnail(),pt.getText(),pt.getMedia());
-        return ResponseEntity.ok().body((MessageBody)pt);
+        RichMediaTypeMessage pt = bodyToTemplate.makeOrderSuccessLinkButtons(response);
+        return ResponseEntity.ok().body(pt);
     }
 
     @GetMapping("/brand-list")

@@ -6,7 +6,10 @@ import com.sharetreats01.viber_chatbot.product.dto.response.BrandListResponse;
 import com.sharetreats01.viber_chatbot.product.service.ProductService;
 import com.sharetreats01.viber_chatbot.template.body.KeyBoardBody;
 import com.sharetreats01.viber_chatbot.template.body.PhotoTypeMessage;
+import com.sharetreats01.viber_chatbot.template.body.RichMediaTypeMessage;
 import com.sharetreats01.viber_chatbot.template.body.component.Button;
+import com.sharetreats01.viber_chatbot.template.body.component.RichButton;
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -41,6 +44,25 @@ public class BodyToTemplate {
 
     public PhotoTypeMessage makePictureMessage(OrderSuccessResponse orderSuccessDto) {
         return new PhotoTypeMessage(orderSuccessDto);
+    }
+
+    public RichMediaTypeMessage makeOrderSuccessLinkButtons (OrderSuccessResponse orderSuccessDto) {
+        List<RichButton> buttons = new ArrayList<>();
+        buttons.add(new RichButton.builder()
+                .actionBody(orderSuccessDto.getParticipatingUrl())
+                .text("see participating stores")
+                .build()
+        );
+        buttons.add(new RichButton.builder()
+            .actionBody(orderSuccessDto.getParticipatingUrl())
+            .text("terms of use")
+            .build()
+        );
+
+        RichMediaTypeMessage message = new RichMediaTypeMessage();
+        message.setButtons(buttons);
+        return message;
+
     }
 
 }
