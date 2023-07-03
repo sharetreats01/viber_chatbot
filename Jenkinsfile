@@ -11,7 +11,7 @@ pipeline {
         stage("build jar") {
             steps {
                 // 프로젝트 빌드
-                sh './gradlew -Pprofile=dev build '
+                sh './gradlew -Pprofile=dev clean build '
             }
         }
 
