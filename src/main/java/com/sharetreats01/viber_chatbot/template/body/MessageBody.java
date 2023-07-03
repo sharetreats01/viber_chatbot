@@ -18,8 +18,6 @@ public class MessageBody {
     @JsonProperty("Type")
     private String type;
 
-
-
     MessageBody(String type) {
         this.sender = new Sender();
         this.minApiVersion = 6;
@@ -30,6 +28,5 @@ public class MessageBody {
         this.sender = sender;
         this.minApiVersion = 6;
     }
-
 
 }

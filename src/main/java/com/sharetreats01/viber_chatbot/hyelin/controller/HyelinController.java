@@ -32,7 +32,6 @@ public class HyelinController {
     @GetMapping("/payment-list")
     public ResponseEntity<AvailablePaymentsResponse> getPaymentCase() {
         AvailablePaymentsResponse response = productService.getPaymentList("1");
-        log.info(response.getPayments().toString());
         return ResponseEntity.ok().body(response);
     }
 

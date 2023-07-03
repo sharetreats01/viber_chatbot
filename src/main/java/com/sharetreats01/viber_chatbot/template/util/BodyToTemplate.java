@@ -1,12 +1,15 @@
 package com.sharetreats01.viber_chatbot.template.util;
 
+import com.sharetreats01.viber_chatbot.order.dto.request.OrderByBotRequest;
 import com.sharetreats01.viber_chatbot.order.dto.response.OrderSuccessResponse;
 import com.sharetreats01.viber_chatbot.product.dto.request.GetBrandRequest;
+import com.sharetreats01.viber_chatbot.product.dto.response.AvailablePaymentsResponse;
 import com.sharetreats01.viber_chatbot.product.dto.response.BrandListResponse;
 import com.sharetreats01.viber_chatbot.product.service.ProductService;
 import com.sharetreats01.viber_chatbot.template.body.KeyBoardBody;
 import com.sharetreats01.viber_chatbot.template.body.PhotoTypeMessage;
 import com.sharetreats01.viber_chatbot.template.body.RichMediaTypeMessage;
+import com.sharetreats01.viber_chatbot.template.body.TextMessage;
 import com.sharetreats01.viber_chatbot.template.body.component.Button;
 import com.sharetreats01.viber_chatbot.template.body.component.RichButton;
 import java.util.ArrayList;
@@ -65,4 +68,33 @@ public class BodyToTemplate {
 
     }
 
+    public KeyBoardBody getPaymentsKeyboard(AvailablePaymentsResponse paymentsdto){
+        List<Button> buttons = paymentsdto.getPayments().stream()
+            .map(payment -> new Button.paymentBuilder()
+                    .payementId(payment.getId())
+                    .name(payment.getName())
+                    .originPrice(payment.getOriginPrice())
+                    .discountedPrice(payment.getDiscountPrice())
+                    .discounted(payment.isDiscounted())
+                    .build()
+                )
+            .collect(Collectors.toList());
+        KeyBoardBody keyboardbody = KeyBoardBody
+                                    .builder()
+                                    .buttons(buttons)
+                                    .build();
+        return keyboardbody;
+    }
+    public TextMessage paymentCaseMessage(
+        String productName,
+        OrderByBotRequest orderRequest, AvailablePaymentsResponse paymentsdto
+    ) {
+        KeyBoardBody keyboard = this.getPaymentsKeyboard(paymentsdto);
+
+        return new TextMessage.paymentsBuilder()
+            .productName(productName)
+            .receiverName(orderRequest.getReceiverName())
+            .keyboard(keyboard)
+            .build();
+    }
 }

@@ -13,12 +13,11 @@ public class Payment {
 
     private String name;
 
-    @JsonProperty("icon_url")
     private String iconUrl;
 
-    @JsonProperty("origin_price")
     private String originPrice;
 
-    @JsonProperty("discount_price")
     private String discountPrice;
+
+    private boolean discounted;
 }
