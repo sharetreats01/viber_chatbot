@@ -95,6 +95,9 @@ tasks {
     processResources {
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }
+    processTestResources {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    }
 }
 
 jar {
