@@ -77,9 +77,6 @@ sourceSets {
             srcDirs "src/main/resources", "src/main/resources-${profile}"
         }
     }
-}
-
-sourceSets {
     test {
         java {
             srcDir 'src/test/java'
