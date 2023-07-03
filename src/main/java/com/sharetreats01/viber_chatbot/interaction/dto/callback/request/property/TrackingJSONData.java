@@ -6,7 +6,9 @@ import lombok.*;
 import java.util.UUID;
 
 @Getter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class TrackingJSONData {
+    @EqualsAndHashCode.Exclude
     private final UUID session;
     private Status status;
 
