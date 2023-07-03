@@ -19,14 +19,12 @@ public class ViberKeyboardEntity {
     private Integer id;
 
     @Column(name = "keyboard_type", length = 10, nullable = false)
-    @Enumerated
-    private KeyboardType keyBoardType;
+    private String keyBoardType;
 
     @Column(name = "keyboard_desc", length = 50, nullable = false)
     private String keyBoardDesc;
 
-    public ViberKeyboardEntity(KeyboardType keyBoardType, String keyBoardDesc) {
-        this.keyBoardType = keyBoardType;
+    public ViberKeyboardEntity(String keyBoardType, String keyBoardDesc) {
         this.keyBoardDesc = keyBoardDesc;
     }
 }
