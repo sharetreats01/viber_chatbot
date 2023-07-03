@@ -40,9 +40,9 @@ class NewMessageSenderTest extends AbstractMockTest {
     }
 
     @Test
-    @DisplayName("SUBSCRIBED 반환")
+    @DisplayName("Null 반환")
     public void getTrackingType() {
-        assertEquals(subscribeProcessor.getSenderKey(), Status.NEW);
+        assertNull(subscribeProcessor.getSenderKey());
     }
 
     @Test
