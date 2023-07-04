@@ -4,13 +4,19 @@ import com.fasterxml.uuid.Generators;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.State;
 import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class TrackingDataUtils {
     private static final String DELIMITER = ":";
     private static final State DEFAULT_STATE = State.BRANDS;
 
     public static String getSession(String trackingData) {
+        if (!StringUtils.hasText(trackingData))
+            return null;
         return trackingData.split(DELIMITER)[0];
     }
 
@@ -19,26 +25,38 @@ public class TrackingDataUtils {
     }
 
     public static State getState(String trackingData) {
-        if (!StringUtils.hasText(trackingData)) {
+        if (!StringUtils.hasText(trackingData))
             return DEFAULT_STATE;
-        }
 
-        return State.fromValue(trackingData.split(DELIMITER)[1]);
+        String[] parts = trackingData.split(":");
+        return State.fromValue(parts[parts.length - 1]);
     }
 
-    public static String updateState(String trackingData, State newState) {
+    public static List<State> getStates(String trackingData) {
+        if (!StringUtils.hasText(trackingData))
+            return Collections.emptyList();
+
+        String[] parts = trackingData.split(":");
+        return Arrays.stream(parts).map(State::fromValue).collect(Collectors.toList());
+    }
+
+    public static String updateState(String trackingData, State state, String value) {
         if (!StringUtils.hasText(trackingData)) {
             return createTrackingData();
         }
 
-        String[] parts = trackingData.split(":");
+        return trackingData + DELIMITER + state.getValue() + DELIMITER + value;
+    }
 
-        if (parts.length < 2) {
-            return trackingData + ":" + newState.getValue();
-        }
 
-        parts[1] = newState.getValue();
-        return String.join(":", parts);
+    public static String removeLastState(String trackingData) {
+        if (!StringUtils.hasText(trackingData))
+            return null;
+
+        int lastDelimiterIndex = trackingData.lastIndexOf(DELIMITER);
+        if (0 < lastDelimiterIndex)
+            return trackingData.substring(0, lastDelimiterIndex);
+        return trackingData;
     }
 
     private static UUID createSession() {
