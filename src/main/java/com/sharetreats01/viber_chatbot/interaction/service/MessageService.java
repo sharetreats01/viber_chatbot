@@ -27,7 +27,7 @@ public class MessageService {
         MessageTemplateStrategy<MessageTemplateValueDto> strategy = templateStrategyFactory.getInstance(valueDto);
         MessageTemplateEntity entity =
                 messageTemplateRepository
-                        .findTopByTypeAndLanguageOrderByVersion(valueDto.getType(), valueDto.getLanguage())
+                        .findTopByTypeAndLanguageOrderByVersionDesc(valueDto.getType(), valueDto.getLanguage())
                         .orElseThrow(() -> new MessageTemplateException("메시지 템플릿을 찾을 수 없습니다."));
         TemplateDto templateDto =
                 new TemplateDto(entity.getTemplate(), entity.getTemplateVariableEntities()
