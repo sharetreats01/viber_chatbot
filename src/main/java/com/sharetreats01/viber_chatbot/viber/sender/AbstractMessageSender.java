@@ -17,10 +17,8 @@ public abstract class AbstractMessageSender {
 
     void sendResponse(MessageRequest messageRequest) {
         SendMessageRequest sendMessageRequest = createSendMessageRequest(messageRequest);
-        setTrackingData(sendMessageRequest);
         webClient.sendMessage(sendMessageRequest);
     }
 
     protected abstract SendMessageRequest createSendMessageRequest(MessageRequest request);
-    protected abstract void setTrackingData(SendMessageRequest request);
 }

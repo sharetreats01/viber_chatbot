@@ -9,21 +9,21 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Getter
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 public class ConversationStartedResponse extends CallbackResponse {
     private final Sender sender;
     @JsonProperty("tracking_data")
-    private final TrackingJSONData trackingJSONData;
+    private final String trackingData;
     private final String type;
     private final String text;
     private final String media;
     private final String thumbnail;
 
     @Builder
-    public ConversationStartedResponse(String senderName, String senderAvatar, TrackingJSONData trackingJSONData, String type, String text, String media, String thumbnail) {
+    public ConversationStartedResponse(String senderName, String senderAvatar, String trackingData, String type, String text, String media, String thumbnail) {
         this.sender = new Sender(senderName, senderAvatar);
-        this.trackingJSONData = trackingJSONData;
+        this.trackingData = trackingData;
         this.type = type;
         this.text = text;
         this.media = media;

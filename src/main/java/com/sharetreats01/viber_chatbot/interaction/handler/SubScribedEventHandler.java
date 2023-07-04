@@ -1,7 +1,6 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.SubscribedRequest;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.TrackingJSONData;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.response.SubscribeResponse;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
@@ -16,7 +15,6 @@ public class SubScribedEventHandler implements CallbackEventHandler<SubscribedRe
     private final UserService userService;
     private final ViberWebClient viberWebClient;
     private final KeyBoardService keyBoardService;
-//    private final MessageService messageService;
 
     @Override
     public Class<SubscribedRequest> getCallbackType() {
@@ -26,7 +24,7 @@ public class SubScribedEventHandler implements CallbackEventHandler<SubscribedRe
     @Override
     public SubscribeResponse handleEvent(SubscribedRequest request) {
         userService.subscribe(request.getUser().getId());
-        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getUser().getId(), "Viber Treats", "", request.getUser().getApiVersion(), "Thank you for Subscribe!", new TrackingJSONData());
+        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getUser().getId(), "Viber Treats", "", request.getUser().getApiVersion(), "Thank you for Subscribe!");
         textMessageRequest.setKeyboard(keyBoardService.findBrands());
         viberWebClient.sendMessage(textMessageRequest);
         return null;

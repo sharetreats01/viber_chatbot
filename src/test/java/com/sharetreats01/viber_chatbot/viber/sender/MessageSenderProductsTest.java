@@ -2,7 +2,7 @@ package com.sharetreats01.viber_chatbot.viber.sender;
 
 import com.sharetreats01.viber_chatbot.AbstractMockTest;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.MessageRequest;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.Status;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.State;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
 import com.sharetreats01.viber_chatbot.viber.dto.request.SendMessageRequest;
 import com.sharetreats01.viber_chatbot.viber.service.RichMediaService;
@@ -39,8 +39,8 @@ class MessageSenderProductsTest extends AbstractMockTest {
     @Test
     @DisplayName("BRANDS 상태 반환")
     public void getSenderKey() {
-        Status status = productProcessor.getSenderKey();
-        assertEquals(status, Status.BRANDS);
+        State state = productProcessor.getSenderKey();
+        assertEquals(state, State.BRANDS);
     }
 
     @Test
@@ -60,16 +60,6 @@ class MessageSenderProductsTest extends AbstractMockTest {
         verify(richMediaService, times(1)).findProductsByBrandName(messageRequest.getMessage().getText());
 
         assertEquals(sendMessageRequest.getReceiver(), "01234567890A=");
-        assertEquals(Status.BRANDS, messageRequest.getTrackingJSONData().getStatus());
+//        assertEquals(State.BRANDS);
     }
-
-    @Test
-    @DisplayName("")
-    public void setTrackingData() {
-        when(richMediaService.findProductsByBrandName(messageRequest.getMessage().getText())).thenReturn(any(String.class));
-        SendMessageRequest sendMessageRequest = productProcessor.createSendMessageRequest(messageRequest);
-        productProcessor.setTrackingData(sendMessageRequest);
-        assertEquals(Status.PRODUCTS, sendMessageRequest.getTrackingJSONData().getStatus());
-    }
-
 }

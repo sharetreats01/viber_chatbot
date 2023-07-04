@@ -17,10 +17,7 @@
     "location": {
       "lat": 50.76891,
       "lon": 6.11499
-    }
-  },
-  "tracking_data" : {
-    "session" : "f047a6df-a628-433d-abb2-df7075ddb9ce",
-    "status" : "brands"
+    },
+    "tracking_data": "11ee1982-1bef-3bc7-8664-cf1e0bd45cbf:brands"
   }
 }
