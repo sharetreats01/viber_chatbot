@@ -33,6 +33,6 @@ public class MessageSenderProductDetail extends AbstractMessageSender implements
     protected SendMessageRequest createSendMessageRequest(MessageRequest messageRequest) {
         String richMedia = richMediaService.findProductDetailByProductId(messageRequest.getMessage().getText());
         String trackingData = TrackingDataUtils.updateState(messageRequest.getMessage().getTrackingData(), State.PRODUCT_DETAIL, messageRequest.getMessage().getText());
-        return new SendRichMediaMessageRequest(messageRequest.getSender().getId(), 1, richMedia, trackingData);
+        return new SendRichMediaMessageRequest(messageRequest.getSender().getId(), 7, richMedia, trackingData);
     }
 }
