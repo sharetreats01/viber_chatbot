@@ -1,5 +1,6 @@
 package com.sharetreats01.viber_chatbot.order.entity;
 
+import com.sharetreats01.viber_chatbot.order.dto.response.OrderSuccessResponse;
 import com.sharetreats01.viber_chatbot.order.status.OrderStatus;
 import lombok.Builder;
 import lombok.Getter;
@@ -49,20 +50,5 @@ public class BotOrder {
 
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-
-    @Builder
-    public BotOrder(String brandName, Long productName, String viberId, Integer price,
-                    String giverPhone, String receiverPhone, OrderStatus status)
-    {
-        this.brandName = brandName;
-        this.productName = productName;
-        this.viberId = viberId;
-        this.price = price;
-        this.giverPhone = giverPhone;
-        this.receiverPhone = receiverPhone;
-        this.status = status;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
 
 }
