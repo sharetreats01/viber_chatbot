@@ -14,7 +14,7 @@ public class SendStickerMessageRequest extends SendMessageRequest {
     private final Integer stickerId;
 
     public SendStickerMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, Integer stickerId, String trackingData) {
-        super(receiver, senderName, senderAvatar, minApiVersion, trackingData);
+        super(receiver, new Sender(senderName, senderAvatar), minApiVersion, trackingData);
         this.stickerId = stickerId;
     }
 }

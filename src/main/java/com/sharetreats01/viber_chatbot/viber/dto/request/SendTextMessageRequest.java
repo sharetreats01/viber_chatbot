@@ -12,12 +12,12 @@ public class SendTextMessageRequest extends SendMessageRequest {
     private final String text;
 
     public SendTextMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String text, String trackingData) {
-        super(receiver, senderName, senderAvatar, minApiVersion, trackingData);
+        super(receiver, new Sender(senderName, senderAvatar), minApiVersion, trackingData);
         this.text = text;
     }
 
     public  SendTextMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String text) {
-        super(receiver, senderName, senderAvatar, minApiVersion, null);
+        super(receiver, new Sender(senderName, senderAvatar), minApiVersion, null);
         this.text = text;
     }
 }

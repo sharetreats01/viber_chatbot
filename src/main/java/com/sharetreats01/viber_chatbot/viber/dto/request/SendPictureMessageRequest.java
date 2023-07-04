@@ -13,7 +13,7 @@ public class SendPictureMessageRequest extends SendMessageRequest {
     private final String thumbnail;
 
     public SendPictureMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String trackingData, String media, String thumbnail) {
-        super(receiver, senderName, senderAvatar, minApiVersion, trackingData);
+        super(receiver, new Sender(senderName, senderAvatar), minApiVersion, trackingData);
         this.media = media;
         this.thumbnail = thumbnail;
     }

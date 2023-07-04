@@ -17,7 +17,7 @@ public class SendFileMessageRequest extends SendMessageRequest {
     private final String fileName;
 
     public SendFileMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String media, Integer size, String fileName, String trackingData) {
-        super(receiver, senderName, senderAvatar, minApiVersion, trackingData);
+        super(receiver, new Sender(senderName, senderAvatar), minApiVersion, trackingData);
         this.media = media;
         this.size = size;
         this.fileName = fileName;
