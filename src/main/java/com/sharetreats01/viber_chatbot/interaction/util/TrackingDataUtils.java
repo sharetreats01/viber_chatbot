@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 public class TrackingDataUtils {
     private static final String DELIMITER = ":";
+    private static final String DATA_DELIMITER = "-";
     private static final State DEFAULT_STATE = State.BRANDS;
 
     public static String getSession(String trackingData) {
@@ -50,7 +51,7 @@ public class TrackingDataUtils {
             return createTrackingData();
         }
 
-        return trackingData + DELIMITER + state.getValue() + DELIMITER + value;
+        return trackingData + DATA_DELIMITER + value + DELIMITER + state.getValue();
     }
 
 
