@@ -54,10 +54,10 @@ class MessageSenderProductsTest extends AbstractMockTest {
     @Test
     @DisplayName("전송받은 추적데이터 상태값: SUBSCRIBED\n새로운 추적데이터 상태값: PRODUCT")
     public void createSendMessageRequestTest() {
-        when(richMediaService.findProductsByBrandName(messageRequest.getMessage().getText())).thenReturn(any(String.class));
+        when(richMediaService.findProductsByBrand(messageRequest.getMessage().getText())).thenReturn(any(String.class));
         SendMessageRequest sendMessageRequest = productProcessor.createSendMessageRequest(messageRequest);
 
-        verify(richMediaService, times(1)).findProductsByBrandName(messageRequest.getMessage().getText());
+        verify(richMediaService, times(1)).findProductsByBrand(messageRequest.getMessage().getText());
 
         assertEquals(sendMessageRequest.getReceiver(), "01234567890A=");
 //        assertEquals(State.BRANDS);

@@ -32,8 +32,8 @@ public class MessageSenderProducts extends AbstractMessageSender implements Mess
 
     @Override
     protected SendMessageRequest createSendMessageRequest(MessageRequest messageRequest) {
-        String richMedia = richMediaService.findProductsByBrandName(messageRequest.getMessage().getText());
-        String trackingData = TrackingDataUtils.updateState(messageRequest.getMessage().getTrackingData(), getSenderKey(), messageRequest.getMessage().getText());
+        String richMedia = richMediaService.findProductsByBrand(messageRequest.getMessage().getText());
+        String trackingData = TrackingDataUtils.updateState(messageRequest.getMessage().getTrackingData(), State.PRODUCTS, messageRequest.getMessage().getText());
         return new SendRichMediaMessageRequest(messageRequest.getSender().getId(), chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), 1, richMedia, trackingData);
     }
 }
