@@ -1,8 +1,12 @@
 package com.sharetreats01.viber_chatbot.product.client;
 
 import com.sharetreats01.viber_chatbot.product.dto.request.GetBrandRequest;
+import com.sharetreats01.viber_chatbot.product.dto.request.GetProductDetailRequest;
+import com.sharetreats01.viber_chatbot.product.dto.request.GetProductListRequest;
 import com.sharetreats01.viber_chatbot.product.dto.response.AvailablePaymentsResponse;
 import com.sharetreats01.viber_chatbot.product.dto.response.BrandListResponse;
+import com.sharetreats01.viber_chatbot.product.dto.response.ProductDetailResponse;
+import com.sharetreats01.viber_chatbot.product.dto.response.ProductListResponse;
 import com.sharetreats01.viber_chatbot.product.properties.ProductApiProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +21,7 @@ public class ProductApiClientImpl implements ProductApiClient {
     private final WebClient productApiClient;
     private final ProductApiProperties productApiProperties;
     private final ProductApiClientResponseResolver responseResolver;
+
     @Override
     public AvailablePaymentsResponse getPaymentList(Long productId) {
 
@@ -31,6 +36,20 @@ public class ProductApiClientImpl implements ProductApiClient {
     }
 
     @Override
+    public ProductListResponse getProductsList(GetProductListRequest request) {
+        log.info("GetProductListRequest {}", request);
+        WebClient.ResponseSpec responseSpec = productApiClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(productApiProperties.getProductListUri())
+                        .queryParam("partners", request.getBrand())
+                        .build()
+                )
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve();
+        return responseResolver.messageResolve(responseSpec, ProductListResponse.class);
+    }
+
+    @Override
     public BrandListResponse getBrandList(GetBrandRequest request) {
         WebClient.ResponseSpec responseSpec = productApiClient.get()
                 .uri( uriBuilder -> uriBuilder
@@ -41,6 +60,20 @@ public class ProductApiClientImpl implements ProductApiClient {
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve();
         return responseResolver.messageResolve(responseSpec,BrandListResponse.class);
+    }
+
+    @Override
+    public ProductDetailResponse getProductDetail(GetProductDetailRequest request) {
+        log.info("ProductDetailResponse {}", request);
+        WebClient.ResponseSpec responseSpec = productApiClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(productApiProperties.getProductDetailUri())
+                        .queryParam("product", request.getProductId())
+                        .build()
+                )
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve();
+        return responseResolver.messageResolve(responseSpec, ProductDetailResponse.class);
     }
 
 }
