@@ -34,7 +34,6 @@ public class ConversationStartedEventHandler implements CallbackEventHandler<Con
                 .senderName(properties.getBotName())
                 .senderAvatar(properties.getBotAvatar())
                 .type("text")
-                .trackingData(TrackingUtils.createSessionId().toString())
                 .text(message)
                 .build();
     }

@@ -29,7 +29,12 @@ public class TrackingDataUtils {
             return DEFAULT_STATE;
 
         String[] parts = trackingData.split(":");
-        return State.fromValue(parts[parts.length - 1]);
+        if (parts.length < 2)
+            return null;
+        String lastPart = parts[parts.length - 1];
+        String[] lastState = lastPart.split("-");
+
+        return lastState.length > 0 ? State.fromValue(lastState[0]) : null;
     }
 
     public static List<State> getStates(String trackingData) {
