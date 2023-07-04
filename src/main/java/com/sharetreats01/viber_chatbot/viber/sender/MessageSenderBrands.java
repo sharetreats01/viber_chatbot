@@ -3,6 +3,7 @@ package com.sharetreats01.viber_chatbot.viber.sender;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.MessageRequest;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.State;
 import com.sharetreats01.viber_chatbot.interaction.properties.ChatbotProperties;
+import com.sharetreats01.viber_chatbot.interaction.util.TrackingDataUtils;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
 import com.sharetreats01.viber_chatbot.viber.dto.request.SendMessageRequest;
@@ -25,7 +26,7 @@ public class MessageSenderBrands extends AbstractMessageSender implements Messag
 
     @Override
     public State getSenderKey() {
-        return null;
+        return State.NEW;
     }
 
     @Override
@@ -39,7 +40,8 @@ public class MessageSenderBrands extends AbstractMessageSender implements Messag
     protected SendMessageRequest createSendMessageRequest(MessageRequest request) {
         log.info("{}", request);
         String keyboard = keyBoardService.findBrands();
-        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getSender().getId(), chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), request.getSender().getApiVersion(), "Thank you for Subscribe!");
+        String trackingData = TrackingDataUtils.createTrackingData();
+        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getSender().getId(), chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), request.getSender().getApiVersion(), "Thank you for Subscribe!", trackingData);
         textMessageRequest.setKeyboard(keyboard);
 
         return textMessageRequest;
