@@ -23,7 +23,7 @@ public class MessageSenderBrands extends AbstractMessageSender implements Messag
 
     @Override
     public State getSenderKey() {
-        return null;
+        return State.BRANDS;
     }
 
     @Override
