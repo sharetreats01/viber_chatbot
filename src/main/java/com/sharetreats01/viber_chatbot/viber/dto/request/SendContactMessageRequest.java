@@ -14,7 +14,7 @@ public class SendContactMessageRequest extends SendMessageRequest {
     private final Contact contact;
 
     public SendContactMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String trackingData, Contact contact) {
-        super(receiver, senderName, senderAvatar, minApiVersion, trackingData);
+        super(receiver, new Sender(senderName, senderAvatar), minApiVersion, trackingData);
         this.contact = contact;
     }
 }

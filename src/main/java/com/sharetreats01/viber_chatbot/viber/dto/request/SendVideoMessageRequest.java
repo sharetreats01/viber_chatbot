@@ -15,7 +15,7 @@ public class SendVideoMessageRequest extends SendMessageRequest {
     private final Integer duration;
 
     public SendVideoMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String trackingData, String media, String thumbnail, Integer size, Integer duration) {
-        super(receiver, senderName, senderAvatar, minApiVersion, trackingData);
+        super(receiver, new Sender(senderName, senderAvatar), minApiVersion, trackingData);
         this.media = media;
         this.thumbnail = thumbnail;
         this.size = size;

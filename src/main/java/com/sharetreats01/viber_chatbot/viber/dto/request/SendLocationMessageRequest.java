@@ -14,7 +14,7 @@ public class SendLocationMessageRequest extends SendMessageRequest {
     private final Location location;
 
     public SendLocationMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String trackingData, Location location) {
-        super(receiver, senderName, senderAvatar, minApiVersion, trackingData);
+        super(receiver, new Sender(senderName, senderAvatar), minApiVersion, trackingData);
         this.location = location;
     }
 }
