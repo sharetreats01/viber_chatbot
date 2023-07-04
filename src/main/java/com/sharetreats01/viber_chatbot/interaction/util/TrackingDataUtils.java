@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class TrackingDataUtils {
     private static final String DELIMITER = ":";
-    private static final State DEFAULT_STATE = State.BRANDS;
+    private static final State DEFAULT_STATE = State.NEW;
 
     public static String getSession(String trackingData) {
         if (!StringUtils.hasText(trackingData))
@@ -26,7 +26,7 @@ public class TrackingDataUtils {
 
     public static State getState(String trackingData) {
         if (!StringUtils.hasText(trackingData))
-            return null;
+            return State.NEW;
 
         String[] parts = trackingData.split(":");
         if (parts.length < 2)
