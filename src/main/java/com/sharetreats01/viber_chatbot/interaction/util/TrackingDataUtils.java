@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class TrackingDataUtils {
     private static final String DELIMITER = ":";
-    private static final State DEFAULT_STATE = State.NEW;
+    private static final State DEFAULT_STATE = State.BRANDS;
 
     public static String getSession(String trackingData) {
         if (!StringUtils.hasText(trackingData))
