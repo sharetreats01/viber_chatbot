@@ -31,7 +31,7 @@ public class MessageService {
                         .orElseThrow(() -> new MessageTemplateException("메시지 템플릿을 찾을 수 없습니다."));
         TemplateDto templateDto =
                 new TemplateDto(entity.getTemplate(), entity.getTemplateVariableEntities()
-                        .stream().sorted(Comparator.comparing(MessageTemplatePlaceHolderEntity::getId))
+                        .stream()
                         .map(MessageTemplatePlaceHolderEntity::getName)
                         .collect(Collectors.toList())
                 );
