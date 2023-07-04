@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface MessageTemplateRepository extends JpaRepository<MessageTemplateEntity, Integer> {
-    Optional<MessageTemplateEntity> findTopByTypeAndLanguageOrderByVersion(MessageType type, String language);
+    Optional<MessageTemplateEntity> findTopByTypeAndLanguageOrderByVersionDesc(MessageType type, String language);
 }

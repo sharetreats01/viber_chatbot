@@ -41,7 +41,7 @@ public class MessageSenderBrands extends AbstractMessageSender implements Messag
         log.info("{}", request);
         String keyboard = keyBoardService.findBrands();
         String trackingData = TrackingDataUtils.createTrackingData();
-        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getSender().getId(), chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), request.getSender().getApiVersion(), "Thank you for Subscribe!", trackingData);
+        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getSender().getId(), chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), request.getSender().getApiVersion(), "choose a brand", trackingData);
         textMessageRequest.setKeyboard(keyboard);
 
         return textMessageRequest;
