@@ -26,7 +26,7 @@ public class ViberKeyboardRepositoryImpl implements ViberKeyboardRepository {
     @Override
     public Optional<String> findProductsRichMediaByBrand(String brand) {
         return em.createQuery(
-                        "select pr from ViberProductsRichMediaEntity pr where pr.brand =: brand", String.class
+                        "select pr.data from ViberProductsRichMediaEntity pr where pr.brand =: brand", String.class
                 ).setParameter("brand", brand)
                 .getResultList().stream().findFirst();
     }
