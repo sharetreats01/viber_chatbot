@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Status {
+public enum State {
     NEW("new"),
     BRANDS("brands"),
     PRODUCTS("products"),
@@ -15,20 +15,20 @@ public enum Status {
     PAYMENT("payment");
 
     private final String value;
-    private static final Map<String, Status> map = new HashMap<>();
+    private static final Map<String, State> map = new HashMap<>();
 
-    Status(String value) {
+    State(String value) {
         this.value = value;
     }
 
     static {
-        for (Status status : values()) {
-            map.put(status.value, status);
+        for (State state : values()) {
+            map.put(state.value, state);
         }
     }
 
     @JsonCreator
-    public static Status fromValue(String value) {
+    public static State fromValue(String value) {
         return map.getOrDefault(value, NEW);
     }
 
@@ -37,7 +37,7 @@ public enum Status {
         return value;
     }
 
-    public Status prev() {
+    public State prev() {
         int current = this.ordinal() - 1;
 
         if (1 < current)
@@ -45,7 +45,7 @@ public enum Status {
         return values()[1];
     }
 
-    public Status next() {
+    public State next() {
         int current = this.ordinal();
 
         if (current < values().length - 1)
