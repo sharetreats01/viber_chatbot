@@ -2,7 +2,6 @@ package com.sharetreats01.viber_chatbot.viber.sender;
 
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.MessageRequest;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.State;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.TrackingJSONData;
 import com.sharetreats01.viber_chatbot.interaction.util.TrackingDataUtils;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
 import com.sharetreats01.viber_chatbot.viber.dto.request.SendMessageRequest;
@@ -33,7 +32,7 @@ public class MessageSenderProducts extends AbstractMessageSender implements Mess
     @Override
     protected SendMessageRequest createSendMessageRequest(MessageRequest messageRequest) {
         String richMedia = richMediaService.findProductsByBrandName(messageRequest.getMessage().getText());
-        String trackingData = TrackingDataUtils.updateState(messageRequest.getMessage().getTrackingData(), State.PRODUCTS);
+        String trackingData = TrackingDataUtils.updateState(messageRequest.getMessage().getTrackingData(), getSenderKey(), messageRequest.getMessage().getText());
         return new SendRichMediaMessageRequest(messageRequest.getSender().getId(), super.senderName, super.senderAvatar, 1, richMedia, trackingData);
     }
 }

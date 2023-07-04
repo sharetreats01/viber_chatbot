@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class NewMessageSenderTest extends AbstractMockTest {
+class MessageSenderBrandsTest extends AbstractMockTest {
     @Mock
     private UserService userService;
 
@@ -30,7 +30,7 @@ class NewMessageSenderTest extends AbstractMockTest {
     private ViberWebClient viberWebClient;
 
     @InjectMocks
-    private NewMessageSender subscribeProcessor;
+    private MessageSenderBrands subscribeProcessor;
 
     private final MessageRequest messageRequest = JsonToValue(MessageRequest.class, "/json/NewMessageRequest.json");
     private final String keyboard = JsonToString("/json/BrandKeyboard.json");
