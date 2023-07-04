@@ -1,9 +1,8 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.Message;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.Sender;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.TrackingJSONData;
+
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +12,4 @@ import lombok.NoArgsConstructor;
 public class MessageRequest extends CallbackRequest {
     private Sender sender;
     private Message message;
-    @JsonProperty("tracking_data")
-    private TrackingJSONData trackingJSONData;
 }

@@ -1,6 +1,5 @@
 package com.sharetreats01.viber_chatbot.viber.entity;
 
-import com.sharetreats01.viber_chatbot.viber.enums.KeyboardType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

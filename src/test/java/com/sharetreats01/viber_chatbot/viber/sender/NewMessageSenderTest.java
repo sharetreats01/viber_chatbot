@@ -2,7 +2,8 @@ package com.sharetreats01.viber_chatbot.viber.sender;
 
 import com.sharetreats01.viber_chatbot.AbstractMockTest;
 import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.MessageRequest;
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.Status;
+import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.State;
+import com.sharetreats01.viber_chatbot.interaction.util.TrackingDataUtils;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
 import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
 import com.sharetreats01.viber_chatbot.viber.dto.request.SendMessageRequest;
@@ -51,7 +52,7 @@ class NewMessageSenderTest extends AbstractMockTest {
         when(keyBoardService.findBrands()).thenReturn(keyboard);
         SendMessageRequest request = subscribeProcessor.createSendMessageRequest(messageRequest);
 
-        assertNotNull(request.getTrackingJSONData().getSession());
+        assertNotNull(request.getTrackingData());
         assertEquals(keyboard, request.getKeyboard());
     }
 
@@ -60,9 +61,8 @@ class NewMessageSenderTest extends AbstractMockTest {
     public void setTrackingData() {
         when(keyBoardService.findBrands()).thenReturn(keyboard);
         SendMessageRequest request = subscribeProcessor.createSendMessageRequest(messageRequest);
-        subscribeProcessor.setTrackingData(request);
 
-        assertEquals(Status.NEW, request.getTrackingJSONData().getStatus());
+        assertEquals(State.NEW, TrackingDataUtils.getState(request.getTrackingData()));
     }
 
     @Test

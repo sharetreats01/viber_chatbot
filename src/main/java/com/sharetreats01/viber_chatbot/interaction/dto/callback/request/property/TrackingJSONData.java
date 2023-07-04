@@ -10,13 +10,21 @@ import java.util.UUID;
 public class TrackingJSONData {
     @EqualsAndHashCode.Exclude
     private final UUID session;
-    private Status status;
+    private State state;
 
     public TrackingJSONData() {
         this.session = TrackingUtils.createSessionId();
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        if (state != null)
+            return "{\"session\":" + "\"" + session + "\"" + "\"status\":" + "\"" + state.getValue() + "\"" + "}";
+        return "{\"session\":" + "\"" + session + "\"" + "}";
+
     }
 }
