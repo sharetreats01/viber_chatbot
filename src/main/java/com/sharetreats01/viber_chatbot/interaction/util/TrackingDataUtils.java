@@ -30,7 +30,7 @@ public class TrackingDataUtils {
 
         String[] parts = trackingData.split(":");
         if (parts.length < 2)
-            return null;
+            return DEFAULT_STATE;
         String lastPart = parts[parts.length - 1];
         String[] lastState = lastPart.split("-");
 
