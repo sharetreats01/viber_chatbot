@@ -8,8 +8,10 @@ import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
 import com.sharetreats01.viber_chatbot.viber.dto.request.SendMessageRequest;
 import com.sharetreats01.viber_chatbot.viber.dto.request.SendTextMessageRequest;
 import com.sharetreats01.viber_chatbot.viber.service.KeyBoardService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class MessageSenderBrands extends AbstractMessageSender implements MessageSender {
     private final UserService userService;
@@ -23,7 +25,7 @@ public class MessageSenderBrands extends AbstractMessageSender implements Messag
 
     @Override
     public State getSenderKey() {
-        return State.BRANDS;
+        return null;
     }
 
     @Override
@@ -35,6 +37,7 @@ public class MessageSenderBrands extends AbstractMessageSender implements Messag
 
     @Override
     protected SendMessageRequest createSendMessageRequest(MessageRequest request) {
+        log.info("{}", request);
         String keyboard = keyBoardService.findBrands();
         SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(request.getSender().getId(), chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), request.getSender().getApiVersion(), "Thank you for Subscribe!");
         textMessageRequest.setKeyboard(keyboard);
