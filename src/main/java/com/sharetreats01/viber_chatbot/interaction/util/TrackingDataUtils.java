@@ -26,7 +26,7 @@ public class TrackingDataUtils {
 
     public static State getState(String trackingData) {
         if (!StringUtils.hasText(trackingData))
-            return DEFAULT_STATE;
+            return null;
 
         String[] parts = trackingData.split(":");
         if (parts.length < 2)
