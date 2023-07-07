@@ -54,6 +54,13 @@ public class TrackingDataUtils {
         return trackingData + DATA_DELIMITER + value + DELIMITER + state.getValue();
     }
 
+    public static String updateNextState(String trackingData, State state) {
+        if (!StringUtils.hasText(trackingData)) {
+            return createTrackingData();
+        }
+        return trackingData + DELIMITER + state.next().getValue();
+    }
+
 
     public static String removeLastState(String trackingData) {
         if (!StringUtils.hasText(trackingData))
