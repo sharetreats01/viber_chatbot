@@ -1,6 +1,7 @@
 package com.sharetreats01.viber_chatbot.interaction.util;
 
-import com.sharetreats01.viber_chatbot.interaction.exception.MessageTemplateException;
+import com.sharetreats01.viber_chatbot.exception.MessageTemplateException;
+import com.sharetreats01.viber_chatbot.util.MessageTemplateUtils;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;

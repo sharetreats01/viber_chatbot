@@ -1,7 +1,5 @@
 package com.sharetreats01.viber_chatbot.order.enums;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.State;
-
 import java.util.HashMap;
 import java.util.Map;
 

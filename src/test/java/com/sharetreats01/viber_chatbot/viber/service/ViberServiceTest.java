@@ -1,8 +1,9 @@
 package com.sharetreats01.viber_chatbot.viber.service;
 
-import com.sharetreats01.viber_chatbot.viber.client.ViberWebClient;
-import com.sharetreats01.viber_chatbot.viber.entity.ViberWebhookSettingEntity;
-import com.sharetreats01.viber_chatbot.viber.repository.ViberRepository;
+import com.sharetreats01.viber_chatbot.infra.viber.client.ViberWebClient;
+import com.sharetreats01.viber_chatbot.infra.viber.entity.ViberWebhookSettingEntity;
+import com.sharetreats01.viber_chatbot.infra.viber.repository.ViberRepository;
+import com.sharetreats01.viber_chatbot.infra.viber.service.ViberService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

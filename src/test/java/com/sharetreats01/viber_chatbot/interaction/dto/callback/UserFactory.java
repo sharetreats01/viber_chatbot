@@ -1,6 +1,6 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback;
 
-import com.sharetreats01.viber_chatbot.interaction.dto.callback.request.property.User;
+import com.sharetreats01.viber_chatbot.dto.callback.request.property.User;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Constructor;
