@@ -17,11 +17,12 @@ public class OrderService {
     private final OrderBotRepository orderBotRepository;
 
     public OrderSuccessResponse createOrderByBot(OrderByBotRequest request) {
-        //따로 변환 클래스 작성 필요 Or 따로 Service 단에서 DTO 변환하기 ...
+
         OrderSuccessResponse response = orderApiClient.createOrder(
             OrderRequest.botOrderRequestToOrderRequest(request)
         );
-        // 성공 시 -> orderRequest를 OrderEntity로 변환,저장
         return response;
     }
+
+
 }
