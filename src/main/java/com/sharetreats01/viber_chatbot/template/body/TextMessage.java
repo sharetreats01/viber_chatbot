@@ -1,7 +1,5 @@
 package com.sharetreats01.viber_chatbot.template.body;
 
-import com.sharetreats01.viber_chatbot.viber.dto.request.property.Keyboard;
-
 public class TextMessage extends MessageBody{
 
     private String text;
