@@ -2,7 +2,6 @@ package com.sharetreats01.viber_chatbot.infra.viber.dto.request.property;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sharetreats01.viber_chatbot.enums.*;
-import com.sharetreats01.viber_chatbot.interaction.enums.*;
 import com.sharetreats01.viber_chatbot.enums.internal.browser.ActionButton;
 import com.sharetreats01.viber_chatbot.enums.internal.browser.FooterType;
 import com.sharetreats01.viber_chatbot.enums.internal.browser.Mode;
@@ -154,7 +153,7 @@ public class Keyboard {
             @JsonProperty("BorderColor")
             private String borderColor;
             @JsonProperty("CornerRadius")
-            private String cornerRadius;
+            private Integer cornerRadius;
         }
 
         @Getter
