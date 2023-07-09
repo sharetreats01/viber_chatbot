@@ -13,8 +13,6 @@ public class OrderRequest {
 
     private String paymentTypeId;
 
-    private String price;
-
     private String giverPhone;
 
     private String giverName;
@@ -30,9 +28,8 @@ public class OrderRequest {
     public static OrderRequest botOrderRequestToOrderRequest (OrderByBotRequest botOrderRequest) {
         return OrderRequest.builder()
                 .productId(botOrderRequest.getProductId())
-                .discountCode(botOrderRequest.getDiscountCode())
-                .paymentTypeId(botOrderRequest.getPaymentTypeId())
-                .price(botOrderRequest.getPrice())
+                .discountCode(botOrderRequest.getPromoCode())
+                .paymentTypeId(botOrderRequest.getPaymentId())
                 .giverPhone(botOrderRequest.getGiverPhone())
                 .giverName(botOrderRequest.getGiverName())
                 .receiverPhone(botOrderRequest.getReceiverPhone())

@@ -15,11 +15,9 @@ public class OrderByBotRequest {
 
     private String productId;
 
-    private String discountCode;
+    private String paymentId;
 
-    private String paymentTypeId;
-
-    private String price;
+    private String promoCode;
 
     private String giverPhone;
 
@@ -32,4 +30,9 @@ public class OrderByBotRequest {
     private String message;
 
     private String email;
+
+
+    public void setPromoCode(String code) {
+        this.promoCode = code;
+    }
 }

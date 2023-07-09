@@ -36,6 +36,8 @@ public class MessageSenderOrderForm extends AbstractMessageSender implements Mes
         if (curState == OrderFormState.FORM_END) {
             trackingData = TrackingDataUtils
                 .updateNextState(trackingData, TrackingDataUtils.getState(trackingData));
+
+            // payment keyboard 메시지 만들어서 전송하기
         } else{
             curState = OrderFormState.next(curState);
             trackingData = OrderTrackingDataUtil.updateValue(trackingData,request.getMessage().getText());
