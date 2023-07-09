@@ -63,12 +63,12 @@ public class ProductApiClientImpl implements ProductApiClient {
     }
 
     @Override
-    public ProductDetailResponse getProductDetail(GetProductDetailRequest request) {
-        log.info("ProductDetailResponse {}", request);
+    public ProductDetailResponse getProductDetail(Long productId) {
+        log.info("ProductDetailResponse {}", productId);
         WebClient.ResponseSpec responseSpec = productApiClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path(productApiProperties.getProductDetailUri())
-                        .queryParam("product", request.getProductId())
+                        .queryParam("product", productId)
                         .build()
                 )
                 .accept(MediaType.APPLICATION_JSON)

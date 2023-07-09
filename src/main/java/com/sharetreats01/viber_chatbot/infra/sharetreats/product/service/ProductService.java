@@ -5,6 +5,8 @@ import com.sharetreats01.viber_chatbot.infra.sharetreats.product.client.ProductA
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.request.GetBrandRequest;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.AvailablePaymentsResponse;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.BrandListResponse;
+import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.ProductDetailResponse;
+import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.ProductListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +24,7 @@ public class ProductService {
         return productApiClient.getBrandList(request);
     }
 
+    public ProductDetailResponse getProductDetail(Long productId) {
+        return productApiClient.getProductDetail(productId);
+    }
 }

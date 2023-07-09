@@ -14,5 +14,5 @@ public interface ProductApiClient {
 
     ProductListResponse getProductsList(GetProductListRequest request);
 
-    ProductDetailResponse getProductDetail(GetProductDetailRequest request);
+    ProductDetailResponse getProductDetail(Long productId);
 }
