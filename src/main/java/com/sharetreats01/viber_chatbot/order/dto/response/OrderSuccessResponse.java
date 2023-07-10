@@ -1,7 +1,6 @@
 package com.sharetreats01.viber_chatbot.order.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.stream.Stream;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -49,6 +48,9 @@ public class OrderSuccessResponse {
 
     @JsonProperty("expire_date")
     private String expireDate;
+
+    @JsonProperty("terms_of_use")
+    private String termsOfUse;
 
     public String toPictureBodyString() {
         String text = String.format("%s\n*%s*\n\n",this.getProductName(), this.getBrandName())
