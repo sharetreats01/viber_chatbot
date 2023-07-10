@@ -11,12 +11,17 @@ public class SendPictureMessageRequest extends SendMessageRequest {
     private final String type = "picture";
     private final String media;
     private final String thumbnail;
+
     private String text;
 
-    public SendPictureMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String trackingData, String media, String thumbnail, String text) {
+
+    public SendPictureMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String trackingData, String media, String thumbnail) {
         super(receiver, new Sender(senderName, senderAvatar), minApiVersion, trackingData);
         this.media = media;
         this.thumbnail = thumbnail;
+    }
+
+    public void setText(String text) {
         this.text = text;
     }
 }

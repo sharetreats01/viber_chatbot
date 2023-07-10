@@ -44,17 +44,18 @@ public class MessageSenderPayment extends AbstractMessageSender implements Messa
         OrderByBotRequest orderRequest =
             OrderTrackingDataUtil.trackingData2OrderRequest(request, paymentMethodId);
 
-        OrderSuccessResponse response = orderService.createOrderByBot(orderRequest);
+        OrderSuccessResponse orderResponse = orderService.createOrderByBot(orderRequest);
 
-        return new SendPictureMessageRequest(
+        SendPictureMessageRequest orderMessage = new SendPictureMessageRequest(
             request.getSender().getId(),
             request.getSender().getName(),
             request.getSender().getAvatar(),
             request.getSender().getApiVersion(),
             "",
-            response.getProductUrl(),
-            response.getProductUrl(),
-            response.toPictureBodyString()
+            orderResponse.getProductUrl(),
+            orderResponse.getProductUrl()
         );
+        orderMessage.setText(orderResponse.toPictureBodyString());
+        return orderMessage;
     }
 }

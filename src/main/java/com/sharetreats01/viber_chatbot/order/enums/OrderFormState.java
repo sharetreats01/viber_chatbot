@@ -22,8 +22,8 @@ public enum OrderFormState {
         "input promo code!"),
     FORM_END(
             4,
-            "Thank you for your job",
-            "Almost there! Cheer up!"
+            "which payment method",
+            "do you prefer to pay?"
     );
 
 
