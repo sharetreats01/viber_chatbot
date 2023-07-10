@@ -36,12 +36,12 @@ public class ProductApiClientImpl implements ProductApiClient {
     }
 
     @Override
-    public ProductListResponse getProductsList(GetProductListRequest request) {
+    public ProductListResponse getProductsList(String request) {
         log.info("GetProductListRequest {}", request);
         WebClient.ResponseSpec responseSpec = productApiClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path(productApiProperties.getProductListUri())
-                        .queryParam("partners", request.getBrand())
+                        .queryParam("partners", request)
                         .build()
                 )
                 .accept(MediaType.APPLICATION_JSON)
@@ -63,12 +63,12 @@ public class ProductApiClientImpl implements ProductApiClient {
     }
 
     @Override
-    public ProductDetailResponse getProductDetail(GetProductDetailRequest request) {
-        log.info("ProductDetailResponse {}", request);
+    public ProductDetailResponse getProductDetail(Long productId) {
+        log.info("ProductDetailResponse {}", productId);
         WebClient.ResponseSpec responseSpec = productApiClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path(productApiProperties.getProductDetailUri())
-                        .queryParam("product", request.getProductId())
+                        .queryParam("product", productId)
                         .build()
                 )
                 .accept(MediaType.APPLICATION_JSON)

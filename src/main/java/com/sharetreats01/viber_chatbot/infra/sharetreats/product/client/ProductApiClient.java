@@ -12,7 +12,7 @@ public interface ProductApiClient {
     AvailablePaymentsResponse getPaymentList(Long productId);
     BrandListResponse getBrandList(GetBrandRequest request);
 
-    ProductListResponse getProductsList(GetProductListRequest request);
+    ProductListResponse getProductsList(String brandName);
 
-    ProductDetailResponse getProductDetail(GetProductDetailRequest request);
+    ProductDetailResponse getProductDetail(Long productId);
 }
