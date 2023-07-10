@@ -17,7 +17,7 @@ public class OrderSuccessResponse {
     @JsonProperty("order_id")
     private Long orderId;
 
-    @JsonProperty("brand_id")
+    @JsonProperty("brand_name")
     private String brandName;
 
     @JsonProperty("product_id")

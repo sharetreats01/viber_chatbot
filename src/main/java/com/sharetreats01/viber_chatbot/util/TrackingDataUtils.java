@@ -58,7 +58,7 @@ public class TrackingDataUtils {
         if (!StringUtils.hasText(trackingData)) {
             return createTrackingData();
         }
-        return trackingData + DELIMITER + state.next().getValue();
+        return trackingData + DELIMITER + state.getValue();
     }
 
 
