@@ -53,7 +53,6 @@ public class MessageSenderOrderForm extends AbstractMessageSender implements Mes
             curState.getTextMessage(),
             trackingData
         );
-
         switch (curState) {
             case INPUT_CODE:
                 keyboard = orderKeyboardService.promoCodeKeyboard();
@@ -66,7 +65,6 @@ public class MessageSenderOrderForm extends AbstractMessageSender implements Mes
             default:
                 break;
         }
-        log.info(curState.toString(), keyboard);
         return messageRequest;
     }
 }
