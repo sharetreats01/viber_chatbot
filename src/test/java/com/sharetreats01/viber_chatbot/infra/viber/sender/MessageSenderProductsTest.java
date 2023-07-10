@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.viber.sender;
+package com.sharetreats01.viber_chatbot.infra.viber.sender;
 
 import com.sharetreats01.viber_chatbot.AbstractMockTest;
 import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;

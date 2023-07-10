@@ -5,7 +5,7 @@ import com.sharetreats01.viber_chatbot.dto.callback.request.property.User;
 import com.sharetreats01.viber_chatbot.user.entity.UserEntity;
 import com.sharetreats01.viber_chatbot.user.repository.UserRepository;
 import com.sharetreats01.viber_chatbot.infra.viber.client.ViberWebClient;
-import com.sharetreats01.viber_chatbot.viber.dto.GetUserDetailsResponseFactory;
+import com.sharetreats01.viber_chatbot.infra.viber.dto.GetUserDetailsResponseFactory;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.GetUserDetailsRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.response.GetUserDetailsResponse;
 import org.junit.jupiter.api.BeforeEach;

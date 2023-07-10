@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.viber.service;
+package com.sharetreats01.viber_chatbot.infra.viber.service;
 
 import com.sharetreats01.viber_chatbot.infra.viber.client.ViberWebClient;
 import com.sharetreats01.viber_chatbot.infra.viber.entity.ViberWebhookSettingEntity;
