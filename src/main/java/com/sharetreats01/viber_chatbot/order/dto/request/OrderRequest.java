@@ -3,6 +3,7 @@ package com.sharetreats01.viber_chatbot.order.dto.request;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.criterion.Order;
 
 @Getter
 @Builder
@@ -24,6 +25,10 @@ public class OrderRequest {
     private String message;
 
     private String email;
+
+    public void setDiscountCode(String discountCode) {
+        this.discountCode = discountCode;
+    }
 
     public static OrderRequest botOrderRequestToOrderRequest (OrderByBotRequest botOrderRequest) {
         return OrderRequest.builder()

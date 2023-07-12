@@ -17,9 +17,6 @@ public class OrderService {
     private final OrderBotRepository orderBotRepository;
 
     public OrderSuccessResponse createOrderByBot(OrderByBotRequest request) {
-        // request Mapper 시작, 
-
-        // 주문 생성
         OrderSuccessResponse response = orderApiClient.createOrder(
             OrderRequest.botOrderRequestToOrderRequest(request)
         );

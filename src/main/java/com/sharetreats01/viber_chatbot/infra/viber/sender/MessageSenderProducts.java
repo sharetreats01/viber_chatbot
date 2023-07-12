@@ -13,9 +13,11 @@ import com.sharetreats01.viber_chatbot.infra.viber.service.ProductRichMediaServi
 import com.sharetreats01.viber_chatbot.properties.ChatbotProperties;
 import com.sharetreats01.viber_chatbot.util.TrackingDataUtils;
 import com.sharetreats01.viber_chatbot.infra.viber.service.RichMediaService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class MessageSenderProducts extends AbstractMessageSender implements MessageSender {
     private final RichMediaService richMediaService;
     private final ProductService productService;
@@ -43,6 +45,7 @@ public class MessageSenderProducts extends AbstractMessageSender implements Mess
 
     @Override
     protected SendMessageRequest createSendMessageRequest(MessageRequest messageRequest) {
+        //
         String brandName = messageRequest.getMessage().getText();
         ProductListResponse products = productService.getProducts(brandName);
         Keyboard richMedia = productRichMediaService.getProductsRichMedia(products);

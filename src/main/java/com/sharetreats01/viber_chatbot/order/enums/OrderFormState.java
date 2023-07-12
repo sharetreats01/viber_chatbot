@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum OrderFormState {
+    START(-1,"", ""),
     INPUT_RECEIVER(
             0,
             "please text receiver info",

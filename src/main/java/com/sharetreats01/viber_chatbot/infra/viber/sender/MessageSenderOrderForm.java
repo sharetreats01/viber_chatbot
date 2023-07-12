@@ -34,16 +34,31 @@ public class MessageSenderOrderForm extends AbstractMessageSender implements Mes
 
     @Override
     protected SendMessageRequest createSendMessageRequest(MessageRequest request) {
+        String applyText = request.getMessage().getText();
         String trackingData = request.getMessage().getTrackingData();
         OrderFormState curState = OrderTrackingDataUtil.getOrderState(trackingData);
         String keyboard = "";
 
-        if (curState == OrderFormState.FORM_END) {
-            trackingData = TrackingDataUtils.updateNextState(trackingData, State.PAYMENT);
-        } else{
-            curState = OrderFormState.next(curState);
-            trackingData = OrderTrackingDataUtil.updateValue(trackingData,request.getMessage().getText());
+
+        if (applyText.startsWith("order")) {
+            curState = OrderFormState.START;
         }
+
+        switch(curState) {
+            case START:
+                trackingData = TrackingDataUtils.updateState(trackingData,State.PRODUCT_DETAIL,applyText.split("-")[1]);
+                trackingData = TrackingDataUtils.updateState(trackingData, State.ORDER, applyText.split("-")[1]);
+                curState = OrderFormState.next(curState);
+                break;
+            case FORM_END:
+                trackingData = TrackingDataUtils.updateNextState(trackingData, State.PAYMENT);
+                break;
+            default:
+                curState = OrderFormState.next(curState);
+                trackingData = OrderTrackingDataUtil.updateValue(trackingData,request.getMessage().getText());
+                break;
+        }
+        log.info("{}",trackingData);
 
         SendTextMessageRequest messageRequest = new SendTextMessageRequest(
             request.getSender().getId(),
@@ -53,6 +68,7 @@ public class MessageSenderOrderForm extends AbstractMessageSender implements Mes
             curState.getTextMessage(),
             trackingData
         );
+
         switch (curState) {
             case INPUT_CODE:
                 keyboard = orderKeyboardService.promoCodeKeyboard();

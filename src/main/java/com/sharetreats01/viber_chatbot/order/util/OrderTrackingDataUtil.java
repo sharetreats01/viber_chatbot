@@ -74,7 +74,7 @@ public class OrderTrackingDataUtil {
         String[] receiverData = datum[0].split("/");
         String[] giverData = datum[1].split("/");
         String message = datum[2];
-        String promoCode = datum[3];
+        String promoCode = "N".equals(datum[3]) ? "" : datum[3] ;
 
         orderMap.put("receiverName",receiverData[0]);
         orderMap.put("receiverPhone",receiverData[1]);
