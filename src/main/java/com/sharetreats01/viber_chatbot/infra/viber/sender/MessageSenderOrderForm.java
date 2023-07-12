@@ -10,11 +10,9 @@ import com.sharetreats01.viber_chatbot.order.enums.OrderFormState;
 import com.sharetreats01.viber_chatbot.order.util.OrderTrackingDataUtil;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendMessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendTextMessageRequest;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
-@Slf4j
 public class MessageSenderOrderForm extends AbstractMessageSender implements MessageSender{
     private final OrderKeyboardService orderKeyboardService;
 
@@ -51,8 +49,7 @@ public class MessageSenderOrderForm extends AbstractMessageSender implements Mes
                 if (state == State.PRODUCTS){
                     trackingData = TrackingDataUtils.updateState(trackingData,State.PRODUCT_DETAIL,applyText.split("-")[1]);
                     trackingData = TrackingDataUtils.updateState(trackingData, State.ORDER, applyText.split("-")[1]);
-                }
-                if (state == State.PRODUCT_DETAIL) {
+                }else if (state == State.PRODUCT_DETAIL) {
                     trackingData = TrackingDataUtils.updateNextState(trackingData,State.ORDER);
                 }
                 curState = OrderFormState.next(curState);

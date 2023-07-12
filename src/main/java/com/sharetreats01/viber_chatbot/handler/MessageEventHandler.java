@@ -39,7 +39,6 @@ public class MessageEventHandler implements CallbackEventHandler<MessageRequest,
         String trackingData = request.getMessage().getTrackingData();
         String userReply = request.getMessage().getText();
 
-        log.info("{}", request.getMessage().getTrackingData());
         return senders.get(TrackingDataUtils.getStateWithReplyText(trackingData,userReply));
     }
 }
