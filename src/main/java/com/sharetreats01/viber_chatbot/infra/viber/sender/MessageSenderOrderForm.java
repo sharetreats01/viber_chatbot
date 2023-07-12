@@ -36,18 +36,25 @@ public class MessageSenderOrderForm extends AbstractMessageSender implements Mes
     protected SendMessageRequest createSendMessageRequest(MessageRequest request) {
         String applyText = request.getMessage().getText();
         String trackingData = request.getMessage().getTrackingData();
+
+        State state = TrackingDataUtils.getState(trackingData);
         OrderFormState curState = OrderTrackingDataUtil.getOrderState(trackingData);
+
         String keyboard = "";
 
 
         if (applyText.startsWith("order")) {
             curState = OrderFormState.START;
         }
-
         switch(curState) {
             case START:
-                trackingData = TrackingDataUtils.updateState(trackingData,State.PRODUCT_DETAIL,applyText.split("-")[1]);
-                trackingData = TrackingDataUtils.updateState(trackingData, State.ORDER, applyText.split("-")[1]);
+                if (state == State.PRODUCTS){
+                    trackingData = TrackingDataUtils.updateState(trackingData,State.PRODUCT_DETAIL,applyText.split("-")[1]);
+                    trackingData = TrackingDataUtils.updateState(trackingData, State.ORDER, applyText.split("-")[1]);
+                }
+                if (state == State.PRODUCT_DETAIL) {
+                    trackingData = TrackingDataUtils.updateNextState(trackingData,State.ORDER);
+                }
                 curState = OrderFormState.next(curState);
                 break;
             case FORM_END:
@@ -58,7 +65,6 @@ public class MessageSenderOrderForm extends AbstractMessageSender implements Mes
                 trackingData = OrderTrackingDataUtil.updateValue(trackingData,request.getMessage().getText());
                 break;
         }
-        log.info("{}",trackingData);
 
         SendTextMessageRequest messageRequest = new SendTextMessageRequest(
             request.getSender().getId(),
