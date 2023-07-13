@@ -68,4 +68,15 @@ class TrackingDataUtilsTest extends AbstractMockTest {
 
         assertEquals(State.TREAT, result);
     }
+
+    @Test
+    @DisplayName("사용자가 입력한 BRAND 이름 추출")
+    void extractBrandNameTest() {
+        MessageRequest request = JsonToValue(MessageRequest.class, "/json/SelectProductMessageRequest.json");
+        String tackingData = request.getMessage().getTrackingData();
+
+        String result = trackingDataUtils.extractBrand(tackingData);
+
+        assertEquals("1", result);
+    }
 }

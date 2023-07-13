@@ -12,7 +12,8 @@ public class RichMediaService {
         return repository.findProductsRichMediaByBrand(brand).orElseThrow();
     }
 
-    public String findProductDetailByProductId(String id) {
-        return repository.findProductsRichMediaByBrand(id).orElseThrow();
+    public String findProductDetailByProductId(String brand, String productName) {
+        return repository.findProductDetailRichMediaByBrandAndProductName(brand, productName).orElseThrow();
     }
+
 }

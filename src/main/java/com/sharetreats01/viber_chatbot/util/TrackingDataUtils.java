@@ -26,6 +26,14 @@ public class TrackingDataUtils {
         return createSession() + DELIMITER + State.BRANDS.name();
     }
 
+    public String extractBrand(String trackingData) {
+        String[] parts = trackingData.split(DELIMITER);
+        if (parts.length < 2) return null;
+        String[] brandParts = parts[1].split(DATA_DELIMITER);
+        if (brandParts.length < 2) return null;
+        return brandParts[1];
+    }
+
     public State getNextState(String trackingData, String input) {
         if (!StringUtils.hasText(trackingData)) return State.BRANDS;
 

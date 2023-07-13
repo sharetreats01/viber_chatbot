@@ -42,4 +42,16 @@ public class ViberRepositoryImpl implements ViberRepository {
                 ).setParameter("brand", brand)
                 .getResultList().stream().findFirst();
     }
+
+    @Override
+    public Optional<String> findProductDetailRichMediaByBrandAndProductName(String brand, String productName) {
+        return em.createQuery(
+                        "select pd.data " +
+                                "from ViberProductDetailRichMediaEntity pd " +
+                                "where pd.brand =: brand and pd.productName =: productName",
+                        String.class)
+                .setParameter("brand", brand)
+                .setParameter("productName", productName)
+                .getResultList().stream().findFirst();
+    }
 }

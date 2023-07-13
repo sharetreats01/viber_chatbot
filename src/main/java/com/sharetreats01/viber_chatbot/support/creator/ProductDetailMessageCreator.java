@@ -25,6 +25,6 @@ public class ProductDetailMessageCreator extends AbstractMessageCreator {
         String receiver = getReceiverId(request);
         String trackingData = request.getMessage().getTrackingData();
         String input = request.getMessage().getText();
-        return new SendRichMediaMessageRequest(receiver, 7, richMediaService.findProductDetailByProductId(input), createTrackingData(trackingData, input));
+        return new SendRichMediaMessageRequest(receiver, 7, richMediaService.findProductDetailByProductId(trackingDataUtils.extractBrand(trackingData), input), createTrackingData(trackingData, input));
     }
 }
