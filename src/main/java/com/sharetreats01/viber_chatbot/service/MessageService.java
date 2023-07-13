@@ -46,4 +46,8 @@ public class MessageService {
                 );
         return strategy.create(templateDto, valueDto);
     }
+
+    public String findBrandsMessage() {
+        return "Select Brand";
+    }
 }

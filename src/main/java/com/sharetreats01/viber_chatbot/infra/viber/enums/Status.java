@@ -56,5 +56,9 @@ public enum Status {
     public Integer getValue() {
         return value;
     }
+
+    public String getMessage() {
+        return name();
+    }
 }
 

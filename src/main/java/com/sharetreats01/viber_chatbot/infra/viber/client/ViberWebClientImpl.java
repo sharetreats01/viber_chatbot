@@ -20,7 +20,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class ViberWebClientImpl implements ViberWebClient {
     private final WebClient viberWebClient;
     private final ViberProperties viberProperties;
-    private final ViberWebClientResponseResolver responseResolver;
+    private final WebClientResponseResolver responseResolver;
 
 
     @Override
@@ -38,7 +38,9 @@ public class ViberWebClientImpl implements ViberWebClient {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve();
-        return responseResolver.messageResolve(responseSpec, SendMessageResponse.class);
+        SendMessageResponse response = responseResolver.messageResolve(responseSpec, SendMessageResponse.class);
+        ViberWebClientResponseResolver.handleSendMessageResponse(response);
+        return response;
     }
 
     @Override

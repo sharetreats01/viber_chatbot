@@ -13,6 +13,6 @@ public class RichMediaService {
     }
 
     public String findProductDetailByProductId(String id) {
-        return null;
+        return repository.findProductsRichMediaByBrand(id).orElseThrow();
     }
 }

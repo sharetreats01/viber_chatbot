@@ -2,29 +2,26 @@ package com.sharetreats01.viber_chatbot.support.creator;
 
 import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendMessageRequest;
-import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendTextMessageRequest;
-import com.sharetreats01.viber_chatbot.infra.viber.service.KeyBoardService;
-import com.sharetreats01.viber_chatbot.properties.ChatbotProperties;
+import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendRichMediaMessageRequest;
+import com.sharetreats01.viber_chatbot.infra.viber.service.RichMediaService;
 import com.sharetreats01.viber_chatbot.util.TrackingDataUtils;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProductsMessageCreator extends AbstractMessageCreator {
-    private final KeyBoardService keyBoardService;
+    private final RichMediaService richMediaService;
 
-    public ProductsMessageCreator(TrackingDataUtils trackingDataUtils, ChatbotProperties chatbotProperties, KeyBoardService keyBoardService) {
-        super(trackingDataUtils, chatbotProperties);
-        this.keyBoardService = keyBoardService;
+    public ProductsMessageCreator(TrackingDataUtils trackingDataUtils, RichMediaService richMediaService) {
+        super(trackingDataUtils);
+        this.richMediaService = richMediaService;
     }
 
     public SendMessageRequest createMessageRequest(MessageRequest request) {
-        String receiver = request.getSender().getId();
-        String trackingData = createTrackingData(request.getMessage().getTrackingData(), request.getMessage().getText());
-        String keyboard = keyBoardService.findBrands();
-        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(receiver, chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), trackingData);
-        textMessageRequest.setKeyboard(keyboard);
+        String receiver = getReceiverId(request);
+        String input = request.getMessage().getText();
+        String trackingData = createTrackingData(request.getMessage().getTrackingData(), input);
 
-        return textMessageRequest;
+        return new SendRichMediaMessageRequest(receiver, request.getSender().getApiVersion(), richMediaService.findProductsByBrand(input), trackingData);
     }
 
     @Override
