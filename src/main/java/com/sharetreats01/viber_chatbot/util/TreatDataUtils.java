@@ -3,6 +3,7 @@ package com.sharetreats01.viber_chatbot.util;
 import com.sharetreats01.viber_chatbot.enums.TreatConstant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +14,8 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class TreatDataUtils {
     private final Map<TreatConstant, List<TreatConstant>> treatPaths;
-    private static final String DELIMITER = " ";
+    private final String DELIMITER = " ";
+    private final Integer TREAT_PART_INDEX = 3;
 
     public String updateTreatData(String trackingData, String input) {
         return trackingData + DELIMITER + input.trim();
@@ -21,34 +23,40 @@ public class TreatDataUtils {
 
     public List<String> combineTreatData(String trackingData, String input) {
         String[] parts = trackingData.split(":");
-        String lastPart = parts[parts.length - 1];
+        String treatPart = parts[parts.length - 1];
 
-        if (!lastPart.startsWith("TREAT")) return new ArrayList<>(List.of("TREAT"));
-        else return new ArrayList<>(Arrays.asList((lastPart + DELIMITER + input.trim()).split(DELIMITER)));
+        List<String> result = new ArrayList<>(Arrays.asList(parts));
+//        if (!StringUtils.hasText(treatPart) || !StringUtils.startsWithIgnoreCase(treatPart, "TREAT")) {
+        if (input.equals("TREAT")) {
+            result.add("TREAT");
+        } else {
+            result.addAll(new ArrayList<>(Arrays.asList(treatPart.split(DELIMITER))));
+        }
+        return result;
     }
 
-    public List<String> deleteLastInput(List<String> treatParts) {
-        treatParts.remove(treatParts.size() - 1);
-        return treatParts;
+    public List<String> deleteLastInput(List<String> parts) {
+        parts.remove(parts.size() - 1);
+        return parts;
     }
 
-    public String getTreatLinkerIdentifier(List<String> treatParts) {
-        if (treatParts.size() == 0) return null;
-        else if (treatParts.size() == 1) return treatParts.get(0);
-        else return treatParts.get(1);
+    public String getTreatLinkerIdentifier(List<String> parts) {
+        List<String> treatParts = getTreatParts(parts);
+
+        if (treatParts.size() < 2) return treatParts.get(0);
+        return treatParts.get(1);
     }
 
-    public String treatPartsToString(List<String> treatParts) {
-        return String.join(DELIMITER, treatParts);
+    public String treatPartsToString(List<String> parts) {
+        return String.join(DELIMITER, parts);
     }
 
-    public TreatConstant getTreatConstant(List<String> treatParts) {
+    public TreatConstant getTreatConstant(List<String> parts) {
+        List<String> treatParts = getTreatParts(parts);
+
         if (treatParts.size() < 2) return TreatConstant.TARGET;
-
         TreatConstant constants = TreatConstant.fromValue(treatParts.get(1));
-
         List<TreatConstant> path = treatPaths.get(constants);
-
         int index = treatParts.size() - 3;
 
         if (index < path.size()) {
@@ -56,5 +64,10 @@ public class TreatDataUtils {
         } else {
             return null;
         }
+    }
+
+    private List<String> getTreatParts(List<String> parts) {
+        String treatPart = parts.get(3);
+        return Arrays.asList(treatPart.split(DELIMITER));
     }
 }

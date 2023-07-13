@@ -29,21 +29,21 @@ public class MessageTreatHandler implements MessageHandler {
 
     @Override
     public void handle(MessageRequest request) {
-        List<String> treatParts = treatDataUtils.combineTreatData(request.getMessage().getTrackingData(), request.getMessage().getText());
-        String identifier = treatDataUtils.getTreatLinkerIdentifier(treatParts);
+        List<String> combinedParts = treatDataUtils.combineTreatData(request.getMessage().getTrackingData(), request.getMessage().getText());
+        String identifier = treatDataUtils.getTreatLinkerIdentifier(combinedParts);
 
         SendMessageRequest sendMessageRequest;
 
         if (identifier.equals("TREAT")) {
-            sendMessageRequest = treatMessageCreator.successMessage(request, treatParts);
+            sendMessageRequest = treatMessageCreator.successMessage(request, combinedParts);
         } else {
             TreatConstantsHandler handler = treatMessageLinkers.stream()
                     .filter(linker -> linker.canLink(identifier))
                     .findFirst()
-                    .orElseThrow(() -> new ViberException("Not Found Treat Handler Linker: " + treatParts))
-                    .getHandler(request, treatParts);
+                    .orElseThrow(() -> new ViberException("Not Found Treat Handler Linker: " + combinedParts))
+                    .getHandler(request, combinedParts);
 
-            sendMessageRequest = handler.handle(request, treatParts);
+            sendMessageRequest = handler.handle(request, combinedParts);
         }
         viberWebClient.sendMessage(sendMessageRequest);
     }
