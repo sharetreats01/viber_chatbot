@@ -11,9 +11,10 @@ public enum State {
     BRANDS("brands"),
     PRODUCTS("products"),
     DETAIL("detail"),
+    PRODUCT_DETAIL("product_detail"),
     TREAT("treat"),
-    ORDER("order")
-    ;
+    ORDER("order"),
+    PAYMENT("payment");
     private final String value;
     private static final Map<String, State> map = new HashMap<>();
 
