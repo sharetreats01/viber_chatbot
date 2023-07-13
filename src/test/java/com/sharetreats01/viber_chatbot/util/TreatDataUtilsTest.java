@@ -69,7 +69,7 @@ class TreatDataUtilsTest extends AbstractMockTest {
 
         List<String> treatParts = treatDataUtils.combineTreatData(trackingData, input);
 
-        String result = treatDataUtils.treatPartsToString(treatParts);
+        String result = treatDataUtils.combinePartsToTrackingData(treatParts);
 
         assertEquals("TREAT ME", result);
     }
@@ -96,7 +96,7 @@ class TreatDataUtilsTest extends AbstractMockTest {
 
         List<String> treatParts = treatDataUtils.combineTreatData(trackingData, input);
 
-        String result = treatDataUtils.treatPartsToString(treatParts);
+        String result = treatDataUtils.combinePartsToTrackingData(treatParts);
 
         assertEquals("TREAT FRIEND", result);
     }
@@ -124,7 +124,7 @@ class TreatDataUtilsTest extends AbstractMockTest {
 
         List<String> treatParts = treatDataUtils.combineTreatData(trackingData, input);
 
-        String result = treatDataUtils.treatPartsToString(treatParts);
+        String result = treatDataUtils.combinePartsToTrackingData(treatParts);
 
         assertEquals("TREAT FRIEND 이름/010-0000-0000/이메일@주소", result);
     }
@@ -166,7 +166,7 @@ class TreatDataUtilsTest extends AbstractMockTest {
 
         List<String> treatParts = treatDataUtils.combineTreatData(trackingData, input);
 
-        String result = treatDataUtils.treatPartsToString(treatParts);
+        String result = treatDataUtils.combinePartsToTrackingData(treatParts);
 
         assertEquals("TREAT ME 이름/010-0000-0000/이메일@주소", result);
     }
@@ -207,7 +207,7 @@ class TreatDataUtilsTest extends AbstractMockTest {
         String input = request.getMessage().getText();
 
         List<String> treatParts = treatDataUtils.combineTreatData(trackingData, input);
-        String result = treatDataUtils.treatPartsToString(treatParts);
+        String result = treatDataUtils.combinePartsToTrackingData(treatParts);
 
         assertEquals("TREAT FRIEND 이름/010-0000-0000/이메일@주소 이름/010-0000-0000/이메일@주소", result);
     }

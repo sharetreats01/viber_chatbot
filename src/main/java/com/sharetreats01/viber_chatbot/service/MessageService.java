@@ -7,6 +7,7 @@ import com.sharetreats01.viber_chatbot.entity.MessageTemplatePlaceHolderEntity;
 import com.sharetreats01.viber_chatbot.enums.TreatConstant;
 import com.sharetreats01.viber_chatbot.exception.MessageTemplateException;
 import com.sharetreats01.viber_chatbot.repository.MessageTemplateRepository;
+import com.sharetreats01.viber_chatbot.repository.TreatMessageRepository;
 import com.sharetreats01.viber_chatbot.support.factory.MessageTemplateStrategyFactory;
 import com.sharetreats01.viber_chatbot.support.strategy.MessageTemplateStrategy;
 import lombok.RequiredArgsConstructor;
@@ -22,14 +23,15 @@ import java.util.stream.Collectors;
 public class MessageService {
     private final MessageTemplateStrategyFactory templateStrategyFactory;
     private final MessageTemplateRepository messageTemplateRepository;
+    private final TreatMessageRepository treatMessageRepository;
 
 
     public String findTreatSuccessMessage(TreatConstant constant) {
-        return "";
+        return treatMessageRepository.findSuccessFirstByConstantAndVersion(constant).orElseThrow();
     }
 
     public String findTreatFailureMessage(TreatConstant constant) {
-        return "";
+        return treatMessageRepository.findFailureFirstByConstantAndVersion(constant).orElseThrow();
     }
 
     public String createMessage(MessageTemplateValueDto valueDto) {

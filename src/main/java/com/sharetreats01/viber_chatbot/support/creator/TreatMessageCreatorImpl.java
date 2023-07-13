@@ -22,14 +22,14 @@ public class TreatMessageCreatorImpl implements TreatMessageCreator {
     @Override
     public SendMessageRequest successMessage(MessageRequest request, List<String> treatParts) {
         TreatConstant constant = treatDataUtils.getTreatConstant(treatParts);
-        String trackingData = treatDataUtils.treatPartsToString(treatParts);
+        String trackingData = treatDataUtils.combinePartsToTrackingData(treatParts);
         return new SendTextMessageRequest(request.getSender().getId(), chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), request.getSender().getApiVersion(), messageService.findTreatSuccessMessage(constant), trackingData);
     }
 
     @Override
     public SendMessageRequest failureMessage(MessageRequest request, List<String> treatParts) {
         TreatConstant constant = treatDataUtils.getTreatConstant(treatParts);
-        String trackingData = treatDataUtils.treatPartsToString(treatDataUtils.deleteLastInput(treatParts));
+        String trackingData = treatDataUtils.combinePartsToTrackingData(treatDataUtils.deleteLastInput(treatParts));
         return new SendTextMessageRequest(request.getSender().getId(), chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), request.getSender().getApiVersion(), messageService.findTreatFailureMessage(constant), trackingData);
     }
 }
