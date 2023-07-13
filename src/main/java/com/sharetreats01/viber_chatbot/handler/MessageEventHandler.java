@@ -9,7 +9,6 @@ import com.sharetreats01.viber_chatbot.support.handler.message.MessageHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.Map;
 
@@ -27,20 +26,15 @@ public class MessageEventHandler implements CallbackEventHandler<MessageRequest,
 
     @Override
     public MessageResponse handleEvent(MessageRequest request) {
-        log.info("{}", request);
         MessageHandler messageHandler = getHandler(request);
         messageHandler.handle(request);
         return null;
     }
 
     private MessageHandler getHandler(MessageRequest request) {
-        if (!StringUtils.hasText(request.getMessage().getTrackingData())) {
-            return handlers.get(State.BRANDS);
-        }
-
-        if (request.getMessage().getText().equals(State.TREAT.name())) {
-            return handlers.get(State.TREAT);
-        }
-        return handlers.get(trackingDataUtils.getState(request.getMessage().getTrackingData()));
+        String trackingData = request.getMessage().getTrackingData();
+        String input = request.getMessage().getText();
+        log.info("{}", trackingData);
+        return handlers.get(trackingDataUtils.getNextState(trackingData, input));
     }
 }

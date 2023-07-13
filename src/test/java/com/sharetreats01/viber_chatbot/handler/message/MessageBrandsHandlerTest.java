@@ -14,7 +14,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class MessageBrandsHandlerTest extends AbstractMockTest {
@@ -38,14 +37,14 @@ class MessageBrandsHandlerTest extends AbstractMockTest {
     @Test
     @DisplayName("MessageBrandsHandler.handle() 테스트")
     public void handleTest() {
-        MessageRequest request = JsonToValue(MessageRequest.class, "/json/NewMessageRequest.json");
+        MessageRequest request = JsonToValue(MessageRequest.class, "/json/FirstMessageRequest.json");
         SendMessageRequest sendMessageRequest = mock(SendMessageRequest.class);
-        when(messageCreator.createMessage(request)).thenReturn(sendMessageRequest);
+        when(messageCreator.createMessageRequest(request)).thenReturn(sendMessageRequest);
 
         messageSenderBrands.handle(request);
 
         verify(userService, times(1)).subscribe(request.getSender().getId());
-        verify(messageCreator, times(1)).createMessage(request);
+        verify(messageCreator, times(1)).createMessageRequest(request);
         verify(viberWebClient, times(1)).sendMessage(sendMessageRequest);
     }
 }

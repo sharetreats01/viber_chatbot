@@ -1,8 +1,7 @@
 package com.sharetreats01.viber_chatbot.support.creator;
 
-import com.sharetreats01.viber_chatbot.dto.callback.request.property.State;
+import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendMessageRequest;
-import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendProductRichMediaMessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendTextMessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.service.KeyBoardService;
 import com.sharetreats01.viber_chatbot.properties.ChatbotProperties;
@@ -11,24 +10,24 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProductDetailMessageCreator extends AbstractMessageCreator {
+
     private final KeyBoardService keyBoardService;
-    private final ChatbotProperties chatbotProperties;
 
-    public ProductDetailMessageCreator(TrackingDataUtils trackingDataUtils, KeyBoardService keyBoardService, ChatbotProperties chatbotProperties) {
-        super(trackingDataUtils);
+    public ProductDetailMessageCreator(TrackingDataUtils trackingDataUtils, ChatbotProperties chatbotProperties, KeyBoardService keyBoardService) {
+        super(trackingDataUtils, chatbotProperties);
         this.keyBoardService = keyBoardService;
-        this.chatbotProperties = chatbotProperties;
     }
 
     @Override
-    protected String updateTrackingData(String trackingData) {
-        return trackingDataUtils.updateState(trackingData, State.DETAIL);
+    protected String createTrackingData(String trackingData, String input) {
+        return trackingDataUtils.updateData(trackingData, input);
     }
 
-    @Override
-    protected SendMessageRequest createMessageRequest(String receiver, String trackingData) {
+    public SendMessageRequest createMessageRequest(MessageRequest request) {
+        String receiver = request.getSender().getId();
+        String trackingData = createTrackingData(request.getMessage().getTrackingData(), request.getMessage().getText());
         String keyboard = keyBoardService.findBrands();
-        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(receiver, chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), "choose a brand", trackingData);
+        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(receiver, chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), trackingData);
         textMessageRequest.setKeyboard(keyboard);
 
         return textMessageRequest;

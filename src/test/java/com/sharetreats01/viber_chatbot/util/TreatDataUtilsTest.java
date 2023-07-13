@@ -1,7 +1,7 @@
 package com.sharetreats01.viber_chatbot.util;
 
 import com.sharetreats01.viber_chatbot.AbstractMockTest;
-import com.sharetreats01.viber_chatbot.config.TreatDataUtilsConfiguration;
+import com.sharetreats01.viber_chatbot.config.MessageHandlerConfiguration;
 import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
 import com.sharetreats01.viber_chatbot.enums.TreatConstant;
 import org.junit.jupiter.api.DisplayName;
@@ -16,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = {TreatDataUtils.class, TreatDataUtilsConfiguration.class})
+@SpringBootTest(classes = {TreatDataUtils.class, MessageHandlerConfiguration.class})
 class TreatDataUtilsTest extends AbstractMockTest {
     @Autowired
     private TreatDataUtils treatDataUtils;

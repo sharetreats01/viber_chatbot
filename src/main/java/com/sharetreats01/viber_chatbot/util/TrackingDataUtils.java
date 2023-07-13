@@ -5,10 +5,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.Map;
+
 
 @Component
 @RequiredArgsConstructor
 public class TrackingDataUtils {
+    private final Map<State, State> handlerPath;
     private final UUIDGenerator uuidGenerator;
     private final String DELIMITER = ":";
     private final String DATA_DELIMITER = "_";
@@ -20,7 +23,21 @@ public class TrackingDataUtils {
     }
 
     public String createTrackingData() {
-        return createSession() + State.BRANDS.name();
+        return createSession() + DELIMITER + State.BRANDS.name();
+    }
+
+    public State getNextState(String trackingData, String input) {
+        if (!StringUtils.hasText(trackingData)) return State.BRANDS;
+
+        String lastPart = getLastPart(trackingData);
+        if (State.TREAT.name().equals(input)) return State.TREAT;
+        return handlerPath.get(State.fromValue(lastPart));
+    }
+
+    private String getLastPart(String trackingData) {
+        String[] parts = trackingData.split(DELIMITER);
+        String lastPart = parts[parts.length - 1];
+        return lastPart.split(DELIMITER)[0];
     }
 
     public State getState(String trackingData) {
@@ -36,33 +53,11 @@ public class TrackingDataUtils {
         return State.fromValue(lastState[0]);
     }
 
-    public State getState(String trackingData, String input) {
-        if (StringUtils.hasText(input) && StringUtils.pathEquals(input, State.TREAT.name())) {
-            return State.TREAT;
-        } else if (StringUtils.hasText(input)) {
-            String[] parts = trackingData.split(DELIMITER);
-            State state = State.fromValue(parts[parts.length - 1]);
-            return state.next();
-        } else {
-            return null;
-        }
-    }
-
     public String updateNextState(String trackingData, State state) {
         if (!StringUtils.hasText(trackingData)) {
             return createTrackingData();
         }
         return trackingData + DELIMITER + state.next();
-    }
-
-    public String getData(String trackingData) {
-        String[] parts = trackingData.split(DELIMITER);
-        String[] lastParts = parts[parts.length - 1].split(DATA_DELIMITER);
-        return lastParts[lastParts.length - 1];
-    }
-
-    public String updateState(String trackingData, State state) {
-        return trackingData + DELIMITER + state;
     }
 
     public String updateData(String trackingData, String data) {

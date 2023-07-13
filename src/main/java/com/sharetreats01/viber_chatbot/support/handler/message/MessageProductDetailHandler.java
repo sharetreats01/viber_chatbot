@@ -22,7 +22,7 @@ public class MessageProductDetailHandler implements MessageHandler {
 
     @Override
     public void handle(MessageRequest request) {
-        SendMessageRequest messageRequest = messageCreator.createMessage(request);
+        SendMessageRequest messageRequest = messageCreator.createMessageRequest(request);
         viberWebClient.sendMessage(messageRequest);
     }
 }
