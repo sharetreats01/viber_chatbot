@@ -42,7 +42,7 @@ class ProductDetailMessageCreatorTest extends AbstractMockTest {
         String productName = "1";
 
 
-        when(trackingDataUtils.updateTrackingData(trackingData, input)).thenReturn(trackingData + "_" + 1 + ":" + State.DETAIL);
+        when(trackingDataUtils.updateState(trackingData, input)).thenReturn(trackingData + "_" + 1 + ":" + State.DETAIL);
         when(trackingDataUtils.extractBrand(trackingData)).thenReturn("1");
         when(richMediaService.findProductDetailByProductId(brand, productName)).thenReturn(any(String.class));
 
@@ -50,7 +50,7 @@ class ProductDetailMessageCreatorTest extends AbstractMockTest {
 
         verify(richMediaService, times(1)).findProductDetailByProductId(brand, productName);
         verify(trackingDataUtils, times(1)).extractBrand(trackingData);
-        verify(trackingDataUtils, times(1)).updateTrackingData(trackingData, input);
+        verify(trackingDataUtils, times(1)).updateState(trackingData, input);
 
         assertEquals(trackingData + "_" + 1 + ":" + State.DETAIL, result.getTrackingData());
     }
