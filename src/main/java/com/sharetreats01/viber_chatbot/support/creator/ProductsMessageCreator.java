@@ -26,6 +26,6 @@ public class ProductsMessageCreator extends AbstractMessageCreator {
 
     @Override
     protected String createTrackingData(String trackingData, String input) {
-        return trackingDataUtils.updateData(trackingData, input);
+        return trackingDataUtils.updateTrackingData(trackingData, input);
     }
 }
