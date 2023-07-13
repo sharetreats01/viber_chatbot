@@ -27,6 +27,7 @@ public class MessageEventHandler implements CallbackEventHandler<MessageRequest,
 
     @Override
     public MessageResponse handleEvent(MessageRequest request) {
+        log.info("{}", request);
         MessageHandler messageHandler = getHandler(request);
         messageHandler.handle(request);
         return null;
