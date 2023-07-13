@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.infra.viber.sender;
+package com.sharetreats01.viber_chatbot.support.handler.message;
 
 import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.client.ViberWebClient;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public abstract class AbstractMessageSender {
+public abstract class AbstractMessageHandler {
     private final ViberWebClient webClient;
     protected final ChatbotProperties chatbotProperties;
     protected final String senderName = "Viber Treats";

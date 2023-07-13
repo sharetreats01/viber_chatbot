@@ -12,6 +12,7 @@
   },
   "message": {
     "type": "text",
-    "text": "a message to the service"
+    "text": "FRIEND",
+    "tracking_data" : "11ee1982-1bef-3bc7-8664-cf1e0bd45cbf:BRANDS_1:PRODUCTS_1:TREAT"
   }
 }
