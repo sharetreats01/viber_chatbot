@@ -1,0 +1,36 @@
+{
+  "Type": "rich_media",
+  "ButtonsGroupColumns": 6,
+  "ButtonsGroupRows": 7,
+  "BgColor": "#FFFFFF",
+  "Buttons": [
+    {
+      "Columns": 6,
+      "Rows": 3,
+      "ActionType":"none",
+      "ActionBody":"https://www.google.com",
+      "Image": "https://www.mcdonalds.co.kr/upload/product/pcList/1583727841393.png"
+    },
+    {
+      "Columns": 6,
+      "Rows": 2,
+      "Text": "<font color=#ffffff>빅맥</font>",
+      "ActionType":"none",
+      "ActionBody":"https://www.google.com",
+      "TextSize": "medium",
+      "TextVAlign": "middle",
+      "TextHAlign": "left"
+    },
+    {
+      "Columns": 6,
+      "Rows": 1,
+      "ActionType": "reply",
+      "ActionBody": "TREAT",
+      "Text": "<font color=#ffffff>TREAT</font>",
+      "TextSize": "large",
+      "TextVAlign": "middle",
+      "TextHAlign": "middle",
+      "Image": "https://s14.postimg.org/4mmt4rw1t/Button.png"
+    }
+  ]
+}
