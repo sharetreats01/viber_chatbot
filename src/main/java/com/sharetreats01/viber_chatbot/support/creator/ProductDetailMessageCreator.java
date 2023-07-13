@@ -1,24 +1,23 @@
 package com.sharetreats01.viber_chatbot.support.creator;
 
 import com.sharetreats01.viber_chatbot.dto.callback.request.property.State;
-import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.ProductDetailResponse;
-import com.sharetreats01.viber_chatbot.infra.sharetreats.product.service.ProductService;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendMessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendProductRichMediaMessageRequest;
-import com.sharetreats01.viber_chatbot.infra.viber.dto.request.property.Keyboard;
-import com.sharetreats01.viber_chatbot.infra.viber.service.ProductRichMediaService;
+import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendTextMessageRequest;
+import com.sharetreats01.viber_chatbot.infra.viber.service.KeyBoardService;
+import com.sharetreats01.viber_chatbot.properties.ChatbotProperties;
 import com.sharetreats01.viber_chatbot.util.TrackingDataUtils;
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProductDetailMessageCreator extends AbstractMessageCreator {
-    private final ProductService productService;
-    private final ProductRichMediaService productRichMediaService;
+    private final KeyBoardService keyBoardService;
+    private final ChatbotProperties chatbotProperties;
 
-    public ProductDetailMessageCreator(TrackingDataUtils trackingDataUtils, ProductService productService, ProductRichMediaService productRichMediaService) {
+    public ProductDetailMessageCreator(TrackingDataUtils trackingDataUtils, KeyBoardService keyBoardService, ChatbotProperties chatbotProperties) {
         super(trackingDataUtils);
-        this.productService = productService;
-        this.productRichMediaService = productRichMediaService;
+        this.keyBoardService = keyBoardService;
+        this.chatbotProperties = chatbotProperties;
     }
 
     @Override
@@ -28,10 +27,10 @@ public class ProductDetailMessageCreator extends AbstractMessageCreator {
 
     @Override
     protected SendMessageRequest createMessageRequest(String receiver, String trackingData) {
-        Long productId = Long.parseLong(trackingDataUtils.getData(trackingData));
-        ProductDetailResponse productDetail = productService.getProductDetail(productId);
-        Keyboard richMedia = productRichMediaService.getProductDetailRichMedia(productDetail);
+        String keyboard = keyBoardService.findBrands();
+        SendTextMessageRequest textMessageRequest = new SendTextMessageRequest(receiver, chatbotProperties.getBotName(), chatbotProperties.getBotAvatar(), "choose a brand", trackingData);
+        textMessageRequest.setKeyboard(keyboard);
 
-        return new SendProductRichMediaMessageRequest(receiver, 7, richMedia, trackingData);
+        return textMessageRequest;
     }
 }

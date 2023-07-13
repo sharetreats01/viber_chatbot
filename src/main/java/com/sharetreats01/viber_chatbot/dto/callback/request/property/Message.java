@@ -5,9 +5,11 @@ import com.sharetreats01.viber_chatbot.enums.Type;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
+@ToString
 public class Message {
     private Type type;
     private String text;
