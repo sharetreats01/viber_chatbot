@@ -3,15 +3,12 @@ package com.sharetreats01.viber_chatbot.infra.viber.sender;
 import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
 import com.sharetreats01.viber_chatbot.dto.callback.request.property.State;
 import com.sharetreats01.viber_chatbot.infra.viber.client.ViberWebClient;
-import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendMessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendPictureMessageRequest;
-import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendTextMessageRequest;
 import com.sharetreats01.viber_chatbot.order.dto.request.OrderByBotRequest;
 import com.sharetreats01.viber_chatbot.order.dto.response.OrderSuccessResponse;
 import com.sharetreats01.viber_chatbot.order.service.OrderService;
 import com.sharetreats01.viber_chatbot.order.util.OrderTrackingDataUtil;
 import com.sharetreats01.viber_chatbot.properties.ChatbotProperties;
-import com.sharetreats01.viber_chatbot.util.TrackingDataUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +34,7 @@ public class MessageSenderPayment extends AbstractMessageSender implements Messa
     }
 
     @Override
-    protected SendMessageRequest createSendMessageRequest(
+    protected void createSendMessageRequest(
         MessageRequest request) {
         String paymentMethodId = request.getMessage().getText();
 
@@ -56,6 +53,5 @@ public class MessageSenderPayment extends AbstractMessageSender implements Messa
             orderResponse.getProductUrl()
         );
         orderMessage.setText(orderResponse.toPictureBodyString());
-        return orderMessage;
     }
 }
