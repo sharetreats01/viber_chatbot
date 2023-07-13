@@ -34,6 +34,7 @@ public class ViberWebClientImpl implements ViberWebClient {
 
     @Override
     public SendMessageResponse sendMessage(SendMessageRequest request) {
+        log.info("{}", request);
         WebClient.ResponseSpec responseSpec = viberWebClient.post().uri(viberProperties.getSendMessageUri())
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)

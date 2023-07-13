@@ -3,7 +3,6 @@ package com.sharetreats01.viber_chatbot.util;
 import com.sharetreats01.viber_chatbot.enums.TreatConstant;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +14,7 @@ import java.util.Map;
 public class TreatDataUtils {
     private final Map<TreatConstant, List<TreatConstant>> treatPaths;
     private final String DELIMITER = " ";
+    private final String TRACKING_DELIMITER = ":";
     private final Integer TREAT_PART_INDEX = 3;
 
     public String updateTreatData(String trackingData, String input) {
@@ -22,7 +22,7 @@ public class TreatDataUtils {
     }
 
     public List<String> combineTreatData(String trackingData, String input) {
-        String[] parts = trackingData.split(":");
+        String[] parts = trackingData.split(TRACKING_DELIMITER);
         String treatPart = parts[parts.length - 1];
 
         List<String> result = new ArrayList<>(Arrays.asList(parts));
@@ -47,8 +47,8 @@ public class TreatDataUtils {
         return treatParts.get(1);
     }
 
-    public String treatPartsToString(List<String> parts) {
-        return String.join(DELIMITER, parts);
+    public String combinePartsToTrackingData(List<String> parts) {
+        return String.join(TRACKING_DELIMITER, parts);
     }
 
     public TreatConstant getTreatConstant(List<String> parts) {
