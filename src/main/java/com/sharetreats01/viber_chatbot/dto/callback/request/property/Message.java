@@ -24,6 +24,10 @@ public class Message {
     @JsonProperty("sticker_id")
     private Integer stickerId;
 
+    public void setTrackingData(String trackingData) {
+        this.trackingData = trackingData;
+    }
+
     @Getter
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class Location {

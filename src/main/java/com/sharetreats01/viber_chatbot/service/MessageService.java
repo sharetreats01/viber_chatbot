@@ -4,6 +4,7 @@ import com.sharetreats01.viber_chatbot.dto.message.template.TemplateDto;
 import com.sharetreats01.viber_chatbot.dto.message.template.MessageTemplateValueDto;
 import com.sharetreats01.viber_chatbot.entity.MessageTemplateEntity;
 import com.sharetreats01.viber_chatbot.entity.MessageTemplatePlaceHolderEntity;
+import com.sharetreats01.viber_chatbot.enums.TreatConstant;
 import com.sharetreats01.viber_chatbot.exception.MessageTemplateException;
 import com.sharetreats01.viber_chatbot.repository.MessageTemplateRepository;
 import com.sharetreats01.viber_chatbot.support.factory.MessageTemplateStrategyFactory;
@@ -21,6 +22,14 @@ import java.util.stream.Collectors;
 public class MessageService {
     private final MessageTemplateStrategyFactory templateStrategyFactory;
     private final MessageTemplateRepository messageTemplateRepository;
+
+    public String findTreatSuccessMessage(TreatConstant constant) {
+        return "";
+    }
+
+    public String findTreatFailureMessage(TreatConstant constant) {
+        return "";
+    }
 
     public String createMessage(MessageTemplateValueDto valueDto) {
         MessageTemplateStrategy<MessageTemplateValueDto> strategy = templateStrategyFactory.getInstance(valueDto);

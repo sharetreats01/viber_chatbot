@@ -16,8 +16,8 @@ public class SendTextMessageRequest extends SendMessageRequest {
         this.text = text;
     }
 
-    public  SendTextMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String text) {
-        super(receiver, new Sender(senderName, senderAvatar), minApiVersion, null);
+    public SendTextMessageRequest(String receiver, String senderName, String senderAvatar, String text, String trackingData) {
+        super(receiver, new Sender(senderName, senderAvatar), null, trackingData);
         this.text = text;
     }
 }

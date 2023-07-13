@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.viber.dto;
+package com.sharetreats01.viber_chatbot.infra.viber.dto;
 
 import com.sharetreats01.viber_chatbot.user.dto.User;
 import com.sharetreats01.viber_chatbot.user.dto.UserFactory;
