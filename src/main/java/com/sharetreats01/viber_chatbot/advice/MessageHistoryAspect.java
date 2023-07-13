@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.aop;
+package com.sharetreats01.viber_chatbot.advice;
 
 import com.sharetreats01.viber_chatbot.dto.callback.request.CallbackRequest;
 import com.sharetreats01.viber_chatbot.repository.MessageHistoryRepository;

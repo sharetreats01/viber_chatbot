@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.aop;
+package com.sharetreats01.viber_chatbot.advice;
 
 import com.sharetreats01.viber_chatbot.tracking.service.UserTrackingService;
 import lombok.RequiredArgsConstructor;
