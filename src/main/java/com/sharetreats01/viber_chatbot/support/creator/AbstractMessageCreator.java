@@ -1,7 +1,6 @@
 package com.sharetreats01.viber_chatbot.support.creator;
 
 import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
-import com.sharetreats01.viber_chatbot.dto.callback.request.SubscribedRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendMessageRequest;
 import com.sharetreats01.viber_chatbot.util.TrackingDataUtils;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +13,8 @@ public abstract class AbstractMessageCreator {
 
     public abstract SendMessageRequest createMessageRequest(MessageRequest request);
 
+
     protected String getReceiverId(MessageRequest request) {
-        if (request instanceof SubscribedRequest) {
-            return ((SubscribedRequest) request).getUser().getId();
-        }
         return request.getSender().getId();
     }
 }

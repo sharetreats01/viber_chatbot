@@ -60,8 +60,8 @@ public class TrackingDataUtils {
         return trackingData + DELIMITER + state.next();
     }
 
-    public String updateData(String trackingData, String data) {
-        return trackingData + DATA_DELIMITER + data.trim();
+    public String updateTrackingData(String trackingData, String data) {
+        return trackingData + DATA_DELIMITER + data.trim() + DELIMITER + getNextState(trackingData, data);
     }
 
     private String createSession() {
