@@ -3,8 +3,10 @@ package com.sharetreats01.viber_chatbot.dto.callback.request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 
 @Getter
@@ -19,6 +21,7 @@ import lombok.Getter;
         @JsonSubTypes.Type(value = UnsubscribedRequest.class, name = "unsubscribed")
 })
 @EqualsAndHashCode
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CallbackRequest {
     @JsonProperty("timestamp")
     private Long timestamp;

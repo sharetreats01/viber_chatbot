@@ -29,38 +29,29 @@ public class ViberWebClientImpl implements ViberWebClient {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve();
-        SetWebhookResponse response = responseResolver.messageResolve(responseSpec, SetWebhookResponse.class);
-        log.info("SetWebhookResponse: " + request);
-        return response;
+        return responseResolver.messageResolve(responseSpec, SetWebhookResponse.class);
     }
 
     @Override
     public SendMessageResponse sendMessage(SendMessageRequest request) {
-        log.info("send_message: " + request);
         WebClient.ResponseSpec responseSpec = viberWebClient.post().uri(viberProperties.getSendMessageUri())
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve();
-        SendMessageResponse response = responseResolver.messageResolve(responseSpec, SendMessageResponse.class);
-        log.info("SendMessageResponse: " + response);
-        return response;
+        return responseResolver.messageResolve(responseSpec, SendMessageResponse.class);
     }
 
     @Override
     public GetUserDetailsResponse getUserDetails(GetUserDetailsRequest request) {
-        log.info("get_user_details: " + request);
         WebClient.ResponseSpec responseSpec = viberWebClient.post().uri(viberProperties.getGetUserDetailsUri())
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)
                 .retrieve();
-        GetUserDetailsResponse response = responseResolver.messageResolve(responseSpec, GetUserDetailsResponse.class);
-        log.info("GetUserDetailsResponse: " + response);
-        return response;
+        return responseResolver.messageResolve(responseSpec, GetUserDetailsResponse.class);
     }
 
     @Override
     public Void sendKeyboard(SendKeyboardRequest request) {
-        log.info("send_keyboard: " + request);
         WebClient.ResponseSpec responseSpec = viberWebClient.post().uri(viberProperties.getSendMessageUri())
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(request)

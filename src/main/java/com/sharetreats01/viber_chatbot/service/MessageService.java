@@ -23,6 +23,7 @@ public class MessageService {
     private final MessageTemplateStrategyFactory templateStrategyFactory;
     private final MessageTemplateRepository messageTemplateRepository;
 
+
     public String findTreatSuccessMessage(TreatConstant constant) {
         return "";
     }

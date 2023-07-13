@@ -1,66 +1,71 @@
 package com.sharetreats01.viber_chatbot.util;
 
 import com.sharetreats01.viber_chatbot.AbstractMockTest;
+import com.sharetreats01.viber_chatbot.config.MessageHandlerConfiguration;
 import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
 import com.sharetreats01.viber_chatbot.dto.callback.request.property.State;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.util.UUID;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(classes = {TrackingDataUtils.class, UUIDGenerator.class, MessageHandlerConfiguration.class})
 class TrackingDataUtilsTest extends AbstractMockTest {
-    @Mock
-    private UUIDGenerator uuidGenerator;
-    @InjectMocks
+    @Autowired
     private TrackingDataUtils trackingDataUtils;
 
-    private String session = "11ee1982-1bef-3bc7-8664-cf1e0bd45cbf";
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.openMocks(this);
-        when(uuidGenerator.createTimeBasedUUID()).thenReturn(UUID.fromString(session));
+    private final String session = "11ee1982-1bef-3bc7-8664-cf1e0bd45cbf";
+
+    @Test
+    @DisplayName("사용자에게 첫 메시지를 받으면 BRANDS 반환")
+    void getNextStateByFirstMessage() {
+        MessageRequest request = JsonToValue(MessageRequest.class, "/json/FirstMessageRequest.json");
+        String tackingData = request.getMessage().getTrackingData();
+        String input = request.getMessage().getText();
+
+        State result = trackingDataUtils.getNextState(tackingData, input);
+
+        assertEquals(State.BRANDS, result);
     }
 
     @Test
-    @DisplayName("브랜드 선택을 한 경우 getState의 반환 값은 PRODUCTS")
-    public void selectBrand() {
+    @DisplayName("사용자가 브랜드를 선택 한 경우")
+    void getNextStateByBrandMessage() {
         MessageRequest request = JsonToValue(MessageRequest.class, "/json/SelectBrandMessageRequest.json");
+        String tackingData = request.getMessage().getTrackingData();
+        String input = request.getMessage().getText();
 
-        State result = trackingDataUtils.getState(request.getMessage().getTrackingData(), request.getMessage().getText());
+        State result = trackingDataUtils.getNextState(tackingData, input);
 
         assertEquals(State.PRODUCTS, result);
     }
 
     @Test
-    @DisplayName("상품 선택을 한 경우 getState의 반환 값 DETAIL")
-    public void selectProduct() {
+    @DisplayName("사용자가 상품을 선택 한 경우")
+    void getNextStateByProductMessage() {
         MessageRequest request = JsonToValue(MessageRequest.class, "/json/SelectProductMessageRequest.json");
+        String tackingData = request.getMessage().getTrackingData();
+        String input = request.getMessage().getText();
 
-        State result = trackingDataUtils.getState(request.getMessage().getTrackingData(), request.getMessage().getText());
+        State result = trackingDataUtils.getNextState(tackingData, input);
 
         assertEquals(State.DETAIL, result);
     }
 
     @Test
-    @DisplayName("상품선택 후 Treat버튼을 누를 경우 반환 값 Treat")
-    public void selectTreat() {
-        MessageRequest request = JsonToValue(MessageRequest.class, "/json/TreatProductMessageRequest.json");
+    @DisplayName("사용자가 Treat 선택 한 경우")
+    void getNextStateByDetailMessage() {
+        MessageRequest request = JsonToValue(MessageRequest.class, "/json/SelectTreatMessageRequest.json");
+        String tackingData = request.getMessage().getTrackingData();
+        String input = request.getMessage().getText();
 
-        State result = trackingDataUtils.getState(request.getMessage().getTrackingData(), request.getMessage().getText());
+        State result = trackingDataUtils.getNextState(tackingData, input);
 
         assertEquals(State.TREAT, result);
-    }
-
-    @Test
-    @DisplayName("")
-    public void extractTreatFor() {
-
     }
 }

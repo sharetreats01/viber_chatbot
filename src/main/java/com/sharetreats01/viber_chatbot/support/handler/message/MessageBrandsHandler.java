@@ -26,7 +26,7 @@ public class MessageBrandsHandler implements MessageHandler {
     @Override
     public void handle(MessageRequest request) {
         userService.subscribe(request.getSender().getId());
-        SendMessageRequest sendMessageRequest = messageCreator.createMessage(request);
+        SendMessageRequest sendMessageRequest = messageCreator.createMessageRequest(request);
         webClient.sendMessage(sendMessageRequest);
     }
 }

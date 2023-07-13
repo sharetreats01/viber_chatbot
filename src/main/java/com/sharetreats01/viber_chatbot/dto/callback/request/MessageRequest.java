@@ -6,7 +6,7 @@ import com.sharetreats01.viber_chatbot.dto.callback.request.property.Sender;
 import lombok.*;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = false)
 @ToString(callSuper = true)
 public class MessageRequest extends CallbackRequest {

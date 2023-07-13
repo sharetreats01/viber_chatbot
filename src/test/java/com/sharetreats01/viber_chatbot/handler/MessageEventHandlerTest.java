@@ -29,7 +29,7 @@ class MessageEventHandlerTest extends AbstractMockTest {
     @Test
     @DisplayName("messageBrandHandler.handle() 실행")
     public void newMessage_getHandler() {
-        MessageRequest request = JsonToValue(MessageRequest.class, "/json/NewMessageRequest.json");
+        MessageRequest request = JsonToValue(MessageRequest.class, "/json/FirstMessageRequest.json");
         when(trackingDataUtils.getState(request.getMessage().getTrackingData())).thenReturn(State.BRANDS);
 
         messageEventHandler.handleEvent(request);

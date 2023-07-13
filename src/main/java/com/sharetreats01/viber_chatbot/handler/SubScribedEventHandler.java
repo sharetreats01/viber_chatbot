@@ -6,7 +6,6 @@ import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendMessageReques
 import com.sharetreats01.viber_chatbot.support.creator.BrandsMessageCreator;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
 import com.sharetreats01.viber_chatbot.infra.viber.client.ViberWebClient;
-import com.sharetreats01.viber_chatbot.util.TrackingDataUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,6 @@ public class SubScribedEventHandler implements CallbackEventHandler<SubscribedRe
     private final UserService userService;
     private final ViberWebClient viberWebClient;
     private final BrandsMessageCreator brandsMessageCreator;
-    private final TrackingDataUtils trackingDataUtils;
 
     @Override
     public Class<SubscribedRequest> getCallbackType() {
@@ -26,7 +24,7 @@ public class SubScribedEventHandler implements CallbackEventHandler<SubscribedRe
     @Override
     public SubscribeResponse handleEvent(SubscribedRequest request) {
         userService.subscribe(request.getUser().getId());
-        SendMessageRequest messageRequest = brandsMessageCreator.createMessage(request.getUser().getId(), trackingDataUtils.createTrackingData());
+        SendMessageRequest messageRequest = brandsMessageCreator.createMessageRequest(request);
         viberWebClient.sendMessage(messageRequest);
         return null;
     }
