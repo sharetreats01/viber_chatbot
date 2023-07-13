@@ -37,11 +37,11 @@ class MessageProductsHandlerTest extends AbstractMockTest {
     public void handleTest() {
         MessageRequest messageRequest = JsonToValue(MessageRequest.class, "/json/SelectBrandMessageRequest.json");
         SendMessageRequest sendMessageRequest = mock(SendMessageRequest.class);
-        when(messageCreator.createMessage(messageRequest)).thenReturn(sendMessageRequest);
+        when(messageCreator.createMessageRequest(messageRequest)).thenReturn(sendMessageRequest);
 
         messageProductsHandler.handle(messageRequest);
 
-        verify(messageCreator, times(1)).createMessage(messageRequest);
+        verify(messageCreator, times(1)).createMessageRequest(messageRequest);
         verify(viberWebClient, times(1)).sendMessage(sendMessageRequest);
     }
 }

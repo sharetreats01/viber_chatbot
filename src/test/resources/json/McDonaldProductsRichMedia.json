@@ -1,0 +1,96 @@
+{
+  "Type": "rich_media",
+  "ButtonsGroupColumns": 6,
+  "ButtonsGroupRows": 7,
+  "BgColor": "#FFFFFF",
+  "Buttons": [
+    {
+      "Columns": 6,
+      "Rows": 3,
+      "ActionType": "reply",
+      "ActionBody": "BigMc",
+      "Text": "<font color=#ffffff>빅맥</font>",
+      "TextSize": "medium",
+      "TextVAlign": "middle",
+      "TextHAlign": "middle",
+      "Image": "https://www.mcdonalds.co.kr/upload/product/pcList/1583727841393.png"
+    },
+    {
+      "Columns": 6,
+      "Rows": 2,
+      "ActionType": "reply",
+      "ActionBody": "Double Quarter Pound Cheese",
+      "Text": "<font color=#ffffff>더블 쿼터파운드 치즈</font>",
+      "TextSize": "medium",
+      "TextVAlign": "middle",
+      "TextHAlign": "middle",
+      "Image": "https://www.mcdonalds.co.kr/upload/product/pcList/1583727487454.png"
+    },
+    {
+      "Columns": 6,
+      "Rows": 1,
+      "ActionType": "reply",
+      "ActionBody": "Quarter Pound Cheese",
+      "Text": "<font color=#ffffff>쿼터 파운드 치즈</font>",
+      "TextSize": "medium",
+      "TextVAlign": "middle",
+      "TextHAlign": "middle",
+      "Image": "https://www.mcdonalds.co.kr/upload/product/pcList/1583728183515.png"
+    },
+    {
+      "Columns": 6,
+      "Rows": 3,
+      "ActionType": "reply",
+      "ActionBody": "McCrispy Deluxe Burger",
+      "Text": "<font color=#ffffff>맥크리스피 디럭스 버거</font>",
+      "TextSize": "medium",
+      "TextVAlign": "middle",
+      "TextHAlign": "middle",
+      "Image": "https://www.mcdonalds.co.kr/upload/product/pcList/1653436835912.png"
+    },
+    {
+      "Columns": 6,
+      "Rows": 2,
+      "ActionType": "reply",
+      "ActionBody": "McCrispy Classic Burger",
+      "Text": "<font color=#ffffff>맥 크리스피 클래식 버서</font>",
+      "TextSize": "medium",
+      "TextVAlign": "middle",
+      "TextHAlign": "middle",
+      "Image": "https://www.mcdonalds.co.kr/upload/product/pcList/1653436573153.png"
+    },
+    {
+      "Columns": 6,
+      "Rows": 1,
+      "ActionType": "reply",
+      "ActionBody": "McSpicy Shanghai Burger",
+      "Text": "<font color=#ffffff>맥 스파이시 상하이 버거</font>",
+      "TextSize": "medium",
+      "TextVAlign": "middle",
+      "TextHAlign": "middle",
+      "Image": "https://www.mcdonalds.co.kr/upload/product/pcList/1583728339451.png"
+    },
+    {
+      "Columns": 6,
+      "Rows": 3,
+      "ActionType": "reply",
+      "ActionBody": "1955 Burger",
+      "Text": "<font color=#ffffff>1955 버거</font>",
+      "TextSize": "medium",
+      "TextVAlign": "middle",
+      "TextHAlign": "middle",
+      "Image": "https://www.mcdonalds.co.kr/upload/product/pcList/1599119588089.png"
+    },
+    {
+      "Columns": 6,
+      "Rows": 2,
+      "ActionType": "reply",
+      "ActionBody": "McChicken Mozzarella",
+      "Text": "<font color=#ffffff>맥치킨 모짜렐라</font>",
+      "TextSize": "medium",
+      "TextVAlign": "middle",
+      "TextHAlign": "middle",
+      "Image": "https://www.mcdonalds.co.kr/upload/product/pcList/1583727633823.png"
+    }
+  ]
+}
