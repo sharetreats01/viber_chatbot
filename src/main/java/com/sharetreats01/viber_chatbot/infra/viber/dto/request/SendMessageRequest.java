@@ -41,4 +41,12 @@ public class SendMessageRequest {
         private String name;
         private String avatar;
     }
+
+    public static SendTextMessageRequest createSendTextMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion, String text, String trackingData) {
+        return new SendTextMessageRequest(receiver, senderName, senderAvatar, minApiVersion, text, trackingData);
+    }
+
+    public static SendTextMessageRequest createSendTextMessageRequest(String receiver, String senderName, String senderAvatar, Integer minApiVersion) {
+        return new SendTextMessageRequest(receiver, senderName, senderAvatar, minApiVersion, null, null);
+    }
 }

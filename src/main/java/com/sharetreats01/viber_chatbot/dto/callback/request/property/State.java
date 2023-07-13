@@ -10,10 +10,10 @@ public enum State {
     NEW("new"),
     BRANDS("brands"),
     PRODUCTS("products"),
-    PRODUCT_DETAIL("product_detail"),
-    ORDER("order"),
-    PAYMENT("payment");
-
+    DETAIL("detail"),
+    TREAT("treat"),
+    ORDER("order")
+    ;
     private final String value;
     private static final Map<String, State> map = new HashMap<>();
 
@@ -23,7 +23,7 @@ public enum State {
 
     static {
         for (State state : values()) {
-            map.put(state.value, state);
+            map.put(state.name(), state);
         }
     }
 
@@ -38,18 +38,18 @@ public enum State {
     }
 
     public State prev() {
-        int current = this.ordinal() - 1;
+        int current = this.ordinal();
 
-        if (1 < current)
-            return values()[current - 1];
-        return values()[1];
+        if (0 == current)
+            return values()[0];
+        return values()[current - 1];
     }
 
     public State next() {
         int current = this.ordinal();
 
-        if (current < values().length - 1)
-            return values()[current + 1];
-        return values()[values().length - 1];
+        if (current == values().length - 1)
+            return values()[current];
+        return values()[current + 1];
     }
 }

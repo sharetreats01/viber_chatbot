@@ -8,7 +8,7 @@ import java.util.UUID;
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class TrackingJSONData {
-    @EqualsAndHashCode.Exclude
+//    @EqualsAndHashCode.Exclude
     private final UUID session;
     private State state;
 

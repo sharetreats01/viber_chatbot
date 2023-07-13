@@ -1,4 +1,4 @@
-package com.sharetreats01.viber_chatbot.infra.viber.sender;
+package com.sharetreats01.viber_chatbot.support.handler.message;
 
 import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
 import com.sharetreats01.viber_chatbot.dto.callback.request.property.State;
@@ -14,17 +14,19 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
-public class MessageSenderOrderForm extends AbstractMessageSender implements MessageSender{
-    public MessageSenderOrderForm(ViberWebClient webClient, ChatbotProperties chatbotProperties) {
+public class MessageOrderFormHandler extends AbstractMessageHandler implements MessageHandler {
+    private final TrackingDataUtils trackingDataUtils;
+    public MessageOrderFormHandler(ViberWebClient webClient, ChatbotProperties chatbotProperties, TrackingDataUtils trackingDataUtils) {
         super(webClient, chatbotProperties);
+        this.trackingDataUtils = trackingDataUtils;
     }
 
     @Override
-    public State getSenderKey() {
+    public State getMessageHandleType() {
         return State.ORDER;
     }
     @Override
-    public void send(MessageRequest request) {
+    public void handle(MessageRequest request) {
         super.sendResponse(request);
     }
 
@@ -34,8 +36,8 @@ public class MessageSenderOrderForm extends AbstractMessageSender implements Mes
         OrderFormState curState = OrderTrackingDataUtil.getOrderState(trackingData);
 
         if (curState == OrderFormState.FORM_END) {
-            trackingData = TrackingDataUtils
-                .updateNextState(trackingData, TrackingDataUtils.getState(trackingData));
+            trackingData = trackingDataUtils
+                .updateNextState(trackingData, trackingDataUtils.getState(trackingData));
         } else{
             curState = OrderFormState.next(curState);
             trackingData = OrderTrackingDataUtil.updateValue(trackingData,request.getMessage().getText());

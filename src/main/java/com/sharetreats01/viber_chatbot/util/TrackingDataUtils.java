@@ -1,68 +1,66 @@
 package com.sharetreats01.viber_chatbot.util;
 
-import com.fasterxml.uuid.Generators;
 import com.sharetreats01.viber_chatbot.dto.callback.request.property.State;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
+@Component
+@RequiredArgsConstructor
 public class TrackingDataUtils {
-    private static final String DELIMITER = ":";
-    private static final String DATA_DELIMITER = "-";
-    private static final State DEFAULT_STATE = State.BRANDS;
+    private final UUIDGenerator uuidGenerator;
+    private final String DELIMITER = ":";
+    private final String DATA_DELIMITER = "_";
 
-    public static String getSession(String trackingData) {
+    public String getSession(String trackingData) {
         if (!StringUtils.hasText(trackingData))
             return null;
         return trackingData.split(DELIMITER)[0];
     }
 
-    public static String createTrackingData() {
-        return createSession() + ":" + DEFAULT_STATE.getValue();
+    public String createTrackingData() {
+        return createSession() + State.BRANDS.name();
     }
 
-    public static State getState(String trackingData) {
+    public State getState(String trackingData) {
         if (!StringUtils.hasText(trackingData))
-            return State.NEW;
+            return State.BRANDS;
 
-        String[] parts = trackingData.split(":");
-        if (parts.length < 2)
-            return DEFAULT_STATE;
+        String[] parts = trackingData.split(DELIMITER);
+        if (parts.length < 3)
+            return State.PRODUCTS;
         String lastPart = parts[parts.length - 1];
-        String[] lastState = lastPart.split("-");
+        String[] lastState = lastPart.split(DATA_DELIMITER);
 
-        return lastState.length > 0 ? State.fromValue(lastState[0]) : null;
+        return State.fromValue(lastState[0]);
     }
 
-    public static List<State> getStates(String trackingData) {
-        if (!StringUtils.hasText(trackingData))
-            return Collections.emptyList();
-
-        String[] parts = trackingData.split(":");
-        return Arrays.stream(parts).map(State::fromValue).collect(Collectors.toList());
+    public State getState(String trackingData, String input) {
+        if (StringUtils.hasText(input) && StringUtils.pathEquals(input, State.TREAT.name())) {
+            return State.TREAT;
+        } else if (StringUtils.hasText(input)) {
+            String[] parts = trackingData.split(DELIMITER);
+            State state = State.fromValue(parts[parts.length - 1]);
+            return state.next();
+        } else {
+            return null;
+        }
     }
 
-    public static String updateState(String trackingData, State state, String value) {
+    public String updateTrackingData(String trackingData, String data, State state) {
+        return trackingData + DATA_DELIMITER + data + DELIMITER + state;
+    }
+
+    public String updateNextState(String trackingData, State state) {
         if (!StringUtils.hasText(trackingData)) {
             return createTrackingData();
         }
-
-        return trackingData + DATA_DELIMITER + value + DELIMITER + state.getValue();
-    }
-
-    public static String updateNextState(String trackingData, State state) {
-        if (!StringUtils.hasText(trackingData)) {
-            return createTrackingData();
-        }
-        return trackingData + DELIMITER + state.next().getValue();
+        return trackingData + DELIMITER + state.next();
     }
 
 
-    public static String removeLastState(String trackingData) {
+    public String removeLastState(String trackingData) {
         if (!StringUtils.hasText(trackingData))
             return null;
 
@@ -72,17 +70,21 @@ public class TrackingDataUtils {
         return trackingData;
     }
 
-    private static UUID createSession() {
-        UUID uuid = Generators.timeBasedGenerator().generate();
-        String[] uuidArr = uuid.toString().split("-");
-        String uuidStr = uuidArr[2] + uuidArr[1] + uuidArr[0] + uuidArr[3] + uuidArr[4];
-        StringBuilder sb = new StringBuilder(uuidStr);
-        sb.insert(8, "-");
-        sb.insert(13, "-");
-        sb.insert(18, "-");
-        sb.insert(23, "-");
-        uuid = UUID.fromString(sb.toString());
+    public String getData(String trackingData) {
+        String[] parts = trackingData.split(DELIMITER);
+        String[] lastParts = parts[parts.length - 1].split(DATA_DELIMITER);
+        return lastParts[lastParts.length - 1];
+    }
 
-        return uuid;
+    public String updateState(String trackingData, State state) {
+        return trackingData + DELIMITER + state;
+    }
+
+    public String updateData(String trackingData, String data) {
+        return trackingData + DATA_DELIMITER + data.trim();
+    }
+
+    private String createSession() {
+        return uuidGenerator.createTimeBasedUUID().toString();
     }
 }

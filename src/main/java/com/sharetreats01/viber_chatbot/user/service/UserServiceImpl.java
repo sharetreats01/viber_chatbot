@@ -23,7 +23,6 @@ public class UserServiceImpl implements UserService {
     public void subscribe(String id) {
         UserEntity entity = repository.findById(id).orElseGet(() -> insertUser(id));
         entity.subscribe();
-        log.info("subscribe: {}", entity);
     }
 
     @Override
@@ -31,7 +30,6 @@ public class UserServiceImpl implements UserService {
     public void unsubscribe(String id) {
         UserEntity entity = repository.findById(id).orElseThrow(() -> new UserNotFoundException("해당 유저가 존재하지 않습니다."));
         entity.unsubscribe();
-        log.info("unsubscribe: {}", entity);
     }
 
     private UserEntity insertUser(String id) {
