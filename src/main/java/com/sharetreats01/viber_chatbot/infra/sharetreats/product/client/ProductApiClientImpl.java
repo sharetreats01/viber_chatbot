@@ -1,11 +1,9 @@
 package com.sharetreats01.viber_chatbot.infra.sharetreats.product.client;
 
-import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.request.GetProductDetailRequest;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.AvailablePaymentsResponse;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.BrandListResponse;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.ProductDetailResponse;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.request.GetBrandRequest;
-import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.request.GetProductListRequest;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.ProductListResponse;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.properties.ProductApiProperties;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +25,6 @@ public class ProductApiClientImpl implements ProductApiClient {
 
         String paymentCaseUri = String.format(productApiProperties.getProductPaymentListUri(), productId.toString());
 
-        log.info("request payment case" + paymentCaseUri);
         WebClient.ResponseSpec responseSpec = productApiClient.get()
                 .uri(paymentCaseUri)
                 .accept(MediaType.APPLICATION_JSON)

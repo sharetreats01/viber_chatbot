@@ -25,7 +25,7 @@ public class MessageSenderPayment extends AbstractMessageSender implements Messa
 
     @Override
     public State getSenderKey() {
-        return State.PAYMENT;
+        return null;
     }
 
     @Override

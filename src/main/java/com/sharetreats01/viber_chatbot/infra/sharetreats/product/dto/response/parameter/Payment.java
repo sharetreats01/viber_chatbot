@@ -10,14 +10,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Payment {
     private Long id;
-
     private String name;
 
+    @JsonProperty("icon_url")
     private String iconUrl;
 
+    @JsonProperty("origin_price")
     private String originPrice;
 
+    @JsonProperty("discount_price")
     private String discountPrice;
 
+    @JsonProperty("discounted")
     private boolean discounted;
 }

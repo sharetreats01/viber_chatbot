@@ -10,12 +10,14 @@ import com.sharetreats01.viber_chatbot.support.handler.treat.TreatConstantsHandl
 import com.sharetreats01.viber_chatbot.support.handler.treat.TreatMessageLinker;
 import com.sharetreats01.viber_chatbot.util.TreatDataUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class MessageTreatHandler implements MessageHandler {
     private final ViberWebClient viberWebClient;
     private final TreatDataUtils treatDataUtils;
@@ -36,13 +38,15 @@ public class MessageTreatHandler implements MessageHandler {
 
         if (identifier.equals("TREAT")) {
             sendMessageRequest = treatMessageCreator.successMessage(request, combinedParts);
-        } else {
+        }else if (identifier.startsWith("TREAT")) {
+            sendMessageRequest = treatMessageCreator.successMessage(request, combinedParts);
+        }
+        else {
             TreatConstantsHandler handler = treatMessageLinkers.stream()
                     .filter(linker -> linker.canLink(identifier))
                     .findFirst()
                     .orElseThrow(() -> new ViberException("Not Found Treat Handler Linker: " + combinedParts))
                     .getHandler(request, combinedParts);
-
             sendMessageRequest = handler.handle(request, combinedParts);
         }
         viberWebClient.sendMessage(sendMessageRequest);

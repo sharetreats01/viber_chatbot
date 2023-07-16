@@ -36,8 +36,10 @@ public class TrackingDataUtils {
 
     public State getNextState(String trackingData, String input) {
         if (!StringUtils.hasText(trackingData)) return State.BRANDS;
+        if (!StringUtils.hasText(input)&& input.equals("QUIT")) return State.BRANDS;
 
         String lastPart = getLastPart(trackingData);
+        if (lastPart.startsWith(State.TREAT.name())) return State.TREAT;
         if (State.TREAT.name().equals(input)) return State.TREAT;
         return handlerPath.get(State.fromValue(lastPart));
     }
