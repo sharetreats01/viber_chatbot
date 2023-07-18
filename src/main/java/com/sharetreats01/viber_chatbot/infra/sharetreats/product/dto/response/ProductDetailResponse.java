@@ -27,6 +27,9 @@ public class ProductDetailResponse {
     @JsonProperty("origin_price")
     private String originPrice;
 
+    @JsonProperty("discount_price")
+    private String discountPrice;
+
     @JsonProperty("description")
     private String description;
 
