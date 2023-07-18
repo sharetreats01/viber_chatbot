@@ -54,8 +54,8 @@ public class ProductApiClientTest {
     @Test
     @DisplayName("Mock Server에서 제품 리스트 받기")
     public void getProductList() {
-        String brandName1 = "McDonald's";
-        String brandName2 = "KFC";
+        Long brandId1 = 1L;
+        Long brandId2 = 2L;
 
         List<Product> productList1 = new ArrayList<>();
         productList1.add(new Product(1L, "Cheeseburger Solo", 1L,
@@ -79,21 +79,21 @@ public class ProductApiClientTest {
                 .build();
 
 
-        when(productApiClient.getProductsList(brandName1)).thenReturn(expectedProductList1);
-        when(productApiClient.getProductsList(brandName2)).thenReturn(expectedProductList2);
+        when(productApiClient.getProductsList(brandId1)).thenReturn(expectedProductList1);
+        when(productApiClient.getProductsList(brandId2)).thenReturn(expectedProductList2);
 
-        ProductListResponse actualProductList1 = productApiClient.getProductsList(brandName1);
-        ProductListResponse actualProductList2 = productApiClient.getProductsList(brandName2);
+        ProductListResponse actualProductList1 = productApiClient.getProductsList(brandId1);
+        ProductListResponse actualProductList2 = productApiClient.getProductsList(brandId2);
 
 
         assertEquals(expectedProductList1.getProducts().get(0).getBrandName(),
                 actualProductList1.getProducts().get(0).getBrandName());
-        assertEquals(expectedProductList1.getProducts().get(0).getId(),
-                actualProductList1.getProducts().get(0).getId());
+        assertEquals(expectedProductList1.getProducts().get(1).getId(),
+                actualProductList1.getProducts().get(1).getId());
 
         assertEquals(expectedProductList2.getProducts().get(0).getBrandName(),
                 actualProductList2.getProducts().get(0).getBrandName());
-        assertEquals(expectedProductList2.getProducts().get(0).getId(),
-                actualProductList2.getProducts().get(0).getId());
+        assertEquals(expectedProductList2.getProducts().get(1).getId(),
+                actualProductList2.getProducts().get(1).getId());
     }
 }
