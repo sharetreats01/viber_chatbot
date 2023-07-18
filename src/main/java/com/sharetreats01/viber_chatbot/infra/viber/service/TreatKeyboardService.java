@@ -8,7 +8,6 @@ import com.sharetreats01.viber_chatbot.enums.TextSize;
 import com.sharetreats01.viber_chatbot.enums.TextVAlign;
 import com.sharetreats01.viber_chatbot.enums.TreatConstant;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.AvailablePaymentsResponse;
-import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.parameter.Payment;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.service.ProductService;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.property.Keyboard;
 import com.sharetreats01.viber_chatbot.order.dto.response.OrderSuccessResponse;
@@ -153,7 +152,6 @@ public class TreatKeyboardService {
 
     /**
      *
-     * @deprecated 임시용
      * Obejct to String(JSON)
      */
     private String keyboard2JsonString (Object keyboard){

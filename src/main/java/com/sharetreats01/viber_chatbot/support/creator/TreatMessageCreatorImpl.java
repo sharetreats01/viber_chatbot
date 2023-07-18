@@ -1,6 +1,7 @@
 package com.sharetreats01.viber_chatbot.support.creator;
 
 import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
+import com.sharetreats01.viber_chatbot.dto.callback.request.property.State;
 import com.sharetreats01.viber_chatbot.enums.TreatConstant;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendMessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendTextMessageRequest;
@@ -8,6 +9,7 @@ import com.sharetreats01.viber_chatbot.infra.viber.service.TreatKeyboardService;
 import com.sharetreats01.viber_chatbot.properties.ChatbotProperties;
 import com.sharetreats01.viber_chatbot.service.MessageService;
 import com.sharetreats01.viber_chatbot.support.enums.TreatInputValidType;
+import com.sharetreats01.viber_chatbot.util.TrackingDataUtils;
 import com.sharetreats01.viber_chatbot.util.TreatDataUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,19 +22,21 @@ import java.util.List;
 @Slf4j
 public class TreatMessageCreatorImpl implements TreatMessageCreator {
     private final MessageService messageService;
+    private final TrackingDataUtils trackingDataUtils;
     private final TreatDataUtils treatDataUtils;
     private final ChatbotProperties chatbotProperties;
     private final TreatKeyboardService keyboardService;
 
     @Override
     public SendMessageRequest successMessage(MessageRequest request, List<String> treatParts) {
+        String message = "";
+        String keyboard;
         String input = request.getMessage().getText();
         String trackingData = request.getMessage().getTrackingData();
-        String keyboard;
-        String message = "";
+        State curState = trackingDataUtils.getState(trackingData);
         TreatConstant curConstant = treatDataUtils.getTreatConstant(treatParts);
 
-        if (request.getMessage().getText().contains("TREAT")) {
+        if (input.contains("TREAT")) {
             message = curConstant.getTextMesage();
             keyboard = keyboardService.targetKeyboard();
         } else {
@@ -46,8 +50,7 @@ public class TreatMessageCreatorImpl implements TreatMessageCreator {
                     keyboard = keyboardService.getKeyboardByConstant(curConstant);
             }
         }
-
-        trackingData = treatDataUtils.updateTreatData(trackingData, input);
+        trackingData = updateTrackingData(curState, trackingData, input);
         SendTextMessageRequest sendMessage =  new SendTextMessageRequest(
             request.getSender().getId(),
             chatbotProperties.getBotName(),
@@ -56,10 +59,29 @@ public class TreatMessageCreatorImpl implements TreatMessageCreator {
             message,
             trackingData
         );
+
         if (!keyboard.isBlank()) {
             sendMessage.setKeyboard(keyboard);
         }
+        log.info("{} {}","new TrackingData : "   , sendMessage.getTrackingData());
         return sendMessage;
+    }
+
+    private String updateTrackingData(State curState, String trackingData, String input) {
+        switch (curState) {
+            case PRODUCTS:
+                String pureInput = input.trim().split(" ")[1];
+                trackingData = trackingDataUtils.updateThisState(trackingData, State.DETAIL);
+                trackingData = trackingDataUtils.updateState(trackingData,pureInput);
+                break;
+            case DETAIL:
+                trackingData = trackingDataUtils.updateThisState(trackingData,State.TREAT);
+                break;
+            default:
+                trackingData = treatDataUtils.updateTreatData(trackingData,input);
+                break;
+        }
+        return trackingData;
     }
 
     @Override

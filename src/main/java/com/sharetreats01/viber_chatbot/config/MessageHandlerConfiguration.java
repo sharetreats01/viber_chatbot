@@ -26,7 +26,7 @@ public class MessageHandlerConfiguration {
         Map<State, State> handlerPath = new HashMap<>();
         handlerPath.put(State.BRANDS, State.PRODUCTS);
         handlerPath.put(State.PRODUCTS, State.DETAIL);
-        handlerPath.put(State.DETAIL, State.TREAT);
+        handlerPath.put(State.DETAIL, State.DETAIL);
         handlerPath.put(State.TREAT, State.TREAT);
         return handlerPath;
     }

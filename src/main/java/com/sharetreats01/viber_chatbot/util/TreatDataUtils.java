@@ -7,7 +7,6 @@ import com.sharetreats01.viber_chatbot.enums.TreatConstant;
 import com.sharetreats01.viber_chatbot.order.dto.OrderDataDto;
 import com.sharetreats01.viber_chatbot.order.dto.request.OrderByBotRequest;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -32,7 +31,8 @@ public class TreatDataUtils {
         if (input.equals("TREAT")) {
             result.add("TREAT");
         } else {
-            result.addAll(new ArrayList<>(Arrays.asList(treatPart.split(DELIMITER))));
+            List<String> treatData = new ArrayList<>(Arrays.asList(treatPart.split(DELIMITER)));
+            result.addAll(treatData);
             result.add(input);
         }
         return result;
