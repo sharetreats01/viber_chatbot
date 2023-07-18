@@ -40,8 +40,14 @@ public class ProductDetailMessageCreator extends AbstractMessageCreator {
         ProductDetailResponse productDetail = productService.getProductDetail(productId);
 
         String text = productDetailMessageService.getProductDetailText(productDetail);
+        String keyboard = productDetailMessageService.getProductDetailKeyboard(productDetail);
 
-        return new SendTextMessageRequest(receiver, chatbotProperties.getBotName(),
-                chatbotProperties.getBotAvatar(), 7, text, trackingData);
+        SendTextMessageRequest messageRequest =
+                new SendTextMessageRequest(receiver, chatbotProperties.getBotName(),
+                        chatbotProperties.getBotAvatar(), 7, text, trackingData);
+
+        messageRequest.setKeyboard(keyboard);
+
+        return messageRequest;
     }
 }
