@@ -37,8 +37,8 @@ public class ProductsMessageCreator extends AbstractMessageCreator {
         String input = request.getMessage().getText();
         String trackingData = createTrackingData(request.getMessage().getTrackingData(), input);
 
-        String brandName = request.getMessage().getText();
-        ProductListResponse products = productService.getProducts(brandName);
+        Long brandId = Long.valueOf(request.getMessage().getText());
+        ProductListResponse products = productService.getProducts(brandId);
         Keyboard richMedia = productRichMediaService.getProductsRichMedia(products);
 
         SendProductRichMediaMessageRequest messageRequest =

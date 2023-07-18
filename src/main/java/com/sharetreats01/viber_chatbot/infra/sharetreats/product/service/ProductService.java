@@ -24,8 +24,8 @@ public class ProductService {
         return productApiClient.getBrandList(request);
     }
 
-    public ProductListResponse getProducts(String brandName) {
-        return productApiClient.getProductsList(brandName);
+    public ProductListResponse getProducts(Long brandId) {
+        return productApiClient.getProductsList(brandId);
     }
 
     public ProductDetailResponse getProductDetail(Long productId) {
