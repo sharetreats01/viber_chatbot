@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TreatMessageCreator {
     SendMessageRequest successMessage(MessageRequest request, List<String> treatParts);
-    SendMessageRequest failureMessage(MessageRequest request, List<String> treatParts);
+    SendMessageRequest failureMessage(MessageRequest request, List<String> treatParts, String ErrorCase);
 }

@@ -35,7 +35,7 @@ public class MessageSenderOrderForm extends AbstractMessageSender implements Mes
 
     @Override
     public State getSenderKey() {
-        return State.ORDER;
+        return null;
     }
 
     @Override

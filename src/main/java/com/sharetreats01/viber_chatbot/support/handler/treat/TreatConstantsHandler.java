@@ -9,5 +9,7 @@ import java.util.List;
 public interface TreatConstantsHandler {
     TreatConstant getConstantsType();
 
+    String checkInput(String input);
+
     SendMessageRequest handle(MessageRequest request, List<String> combinedTreatParts);
 }

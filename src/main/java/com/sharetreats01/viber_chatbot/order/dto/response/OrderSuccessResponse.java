@@ -50,6 +50,8 @@ public class OrderSuccessResponse {
     @JsonProperty("expire_date")
     private String expireDate;
 
+    private String termsOfUse;
+
     public String toPictureBodyString() {
         String text = String.format("%s\n*%s*\n\n",this.getProductName(), this.getBrandName())
             + String.format("From: %s \n\n", this.getReceiverName())

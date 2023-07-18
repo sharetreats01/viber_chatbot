@@ -27,6 +27,7 @@ public class MessageHandlerConfiguration {
         handlerPath.put(State.BRANDS, State.PRODUCTS);
         handlerPath.put(State.PRODUCTS, State.DETAIL);
         handlerPath.put(State.DETAIL, State.TREAT);
+        handlerPath.put(State.TREAT, State.TREAT);
         return handlerPath;
     }
 
@@ -38,8 +39,8 @@ public class MessageHandlerConfiguration {
     @Bean
     public Map<TreatConstant, List<TreatConstant>> treatPath() {
         Map<TreatConstant, List<TreatConstant>> treatPath = new HashMap<>();
-        treatPath.put(TreatConstant.ME, Arrays.asList(TreatConstant.YOUR_INFO, TreatConstant.PROMO_CODE, TreatConstant.PAYMENT));
-        treatPath.put(TreatConstant.FRIEND, Arrays.asList(TreatConstant.RECIPIENT, TreatConstant.YOUR_INFO, TreatConstant.MESSAGE, TreatConstant.PROMO_CODE, TreatConstant.PAYMENT));
+        treatPath.put(TreatConstant.ME, Arrays.asList(TreatConstant.YOUR_INFO, TreatConstant.PROMO_CODE, TreatConstant.PAYMENT, TreatConstant.END));
+        treatPath.put(TreatConstant.FRIEND, Arrays.asList(TreatConstant.RECIPIENT, TreatConstant.YOUR_INFO, TreatConstant.MESSAGE, TreatConstant.PROMO_CODE, TreatConstant.PAYMENT, TreatConstant.END));
         return treatPath;
     }
 }
