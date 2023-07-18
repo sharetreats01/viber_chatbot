@@ -16,9 +16,9 @@ public class SendProductRichMediaMessageRequest extends SendMessageRequest{
     private final String type = "rich_media";
 
     @JsonProperty("rich_media")
-    private final String richMedia;
+    private final Keyboard richMedia;
 
-    public SendProductRichMediaMessageRequest(String receiver, Integer minApiVersion, String richMedia, String trackingData) {
+    public SendProductRichMediaMessageRequest(String receiver, Integer minApiVersion, Keyboard richMedia, String trackingData) {
         super(receiver, null, minApiVersion, trackingData);
         this.richMedia = richMedia;
     }

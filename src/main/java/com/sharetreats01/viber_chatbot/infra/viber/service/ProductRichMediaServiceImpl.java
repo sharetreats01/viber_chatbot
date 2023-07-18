@@ -3,6 +3,7 @@ package com.sharetreats01.viber_chatbot.infra.viber.service;
 import com.sharetreats01.viber_chatbot.enums.*;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.ProductDetailResponse;
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.ProductListResponse;
+import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.parameter.Product;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.property.Keyboard;
 import com.sharetreats01.viber_chatbot.util.KeyboardConstants;
 import org.springframework.stereotype.Service;
@@ -64,8 +65,8 @@ public class ProductRichMediaServiceImpl implements ProductRichMediaService {
                     .columns(KeyboardConstants.PRODUCT_BUTTONS_COLUMNS)
                     .rows(KeyboardConstants.PRODUCT_SECOND_BUTTONS_ROWS)
                     .actionType(ActionType.NONE)
-                    .text(productsList.getProducts().get(i).getName())
-                    .textSize(TextSize.SMALL)
+                    .text(getText(productsList.getProducts().get(i)))
+                    .textSize(TextSize.REGULAR)
                     .textVAlign(TextVAlign.MIDDLE)
                     .textHAlign(TextHAlign.LEFT)
                     .build();
@@ -101,5 +102,14 @@ public class ProductRichMediaServiceImpl implements ProductRichMediaService {
                 .bgColor(KeyboardConstants.BG_COLOR)
                 .buttons(buttons)
                 .build();
+    }
+
+    private String getText(Product product) {
+        return product.getName()
+                + "<br><br>"
+                + product.getBrandName()
+                + "<b><br>"
+                + product.getPriceFormatted()
+                + "</b>";
     }
 }

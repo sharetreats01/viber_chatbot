@@ -1,19 +1,28 @@
 package com.sharetreats01.viber_chatbot.support.creator;
 
 import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
+import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.ProductDetailResponse;
+import com.sharetreats01.viber_chatbot.infra.sharetreats.product.service.ProductService;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendMessageRequest;
-import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendRichMediaMessageRequest;
-import com.sharetreats01.viber_chatbot.infra.viber.service.RichMediaService;
+import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendProductRichMediaMessageRequest;
+import com.sharetreats01.viber_chatbot.infra.viber.dto.request.property.Keyboard;
+import com.sharetreats01.viber_chatbot.infra.viber.service.ProductRichMediaService;
 import com.sharetreats01.viber_chatbot.util.TrackingDataUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class ProductDetailMessageCreator extends AbstractMessageCreator {
-    private final RichMediaService richMediaService;
+//    private final RichMediaService richMediaService;
+    private final ProductService productService;
+    private final ProductRichMediaService productRichMediaService;
 
-    public ProductDetailMessageCreator(TrackingDataUtils trackingDataUtils, RichMediaService richMediaService) {
+    public ProductDetailMessageCreator(TrackingDataUtils trackingDataUtils, ProductRichMediaService productRichMediaService,
+                                       ProductService productService) {
         super(trackingDataUtils);
-        this.richMediaService = richMediaService;
+        this.productRichMediaService = productRichMediaService;
+        this.productService = productService;
     }
 
     @Override
@@ -23,8 +32,14 @@ public class ProductDetailMessageCreator extends AbstractMessageCreator {
 
     public SendMessageRequest createMessageRequest(MessageRequest request) {
         String receiver = getReceiverId(request);
-        String trackingData = request.getMessage().getTrackingData();
         String input = request.getMessage().getText();
-        return new SendRichMediaMessageRequest(receiver, 7, richMediaService.findProductDetailByProductId(trackingDataUtils.extractBrand(trackingData), input), createTrackingData(trackingData, input));
+        String trackingData = createTrackingData(request.getMessage().getTrackingData(), input);
+
+        Long productId = Long.parseLong(request.getMessage().getText());
+        ProductDetailResponse productDetail = productService.getProductDetail(productId);
+        Keyboard richMedia = productRichMediaService.getProductDetailRichMedia(productDetail);
+
+       return new SendProductRichMediaMessageRequest(receiver, 7, richMedia, trackingData);
+
     }
 }
