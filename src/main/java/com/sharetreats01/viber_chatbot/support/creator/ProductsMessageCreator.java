@@ -6,6 +6,7 @@ import com.sharetreats01.viber_chatbot.infra.sharetreats.product.service.Product
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendMessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.SendProductRichMediaMessageRequest;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.property.Keyboard;
+import com.sharetreats01.viber_chatbot.infra.viber.service.KeyBoardService;
 import com.sharetreats01.viber_chatbot.infra.viber.service.ProductRichMediaService;
 import com.sharetreats01.viber_chatbot.util.TrackingDataUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -14,15 +15,21 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class ProductsMessageCreator extends AbstractMessageCreator {
-    //    private final RichMediaService richMediaService;
-    private final ProductService productService;
     private final ProductRichMediaService productRichMediaService;
+    private final KeyBoardService keyBoardService;
+    private final ProductService productService;
 
     public ProductsMessageCreator(TrackingDataUtils trackingDataUtils, ProductRichMediaService productRichMediaService,
-                                  ProductService productService) {
+                                  KeyBoardService keyBoardService, ProductService productService) {
         super(trackingDataUtils);
         this.productRichMediaService = productRichMediaService;
+        this.keyBoardService = keyBoardService;
         this.productService = productService;
+    }
+
+    @Override
+    protected String createTrackingData(String trackingData, String input) {
+        return trackingDataUtils.updateState(trackingData, input);
     }
 
     public SendMessageRequest createMessageRequest(MessageRequest request) {
@@ -34,11 +41,11 @@ public class ProductsMessageCreator extends AbstractMessageCreator {
         ProductListResponse products = productService.getProducts(brandName);
         Keyboard richMedia = productRichMediaService.getProductsRichMedia(products);
 
-        return new SendProductRichMediaMessageRequest(receiver, 7, richMedia, trackingData);
-    }
+        SendProductRichMediaMessageRequest messageRequest =
+                new SendProductRichMediaMessageRequest(receiver, 7, richMedia, trackingData);
 
-    @Override
-    protected String createTrackingData(String trackingData, String input) {
-        return trackingDataUtils.updateState(trackingData, input);
+        messageRequest.setKeyboard(keyBoardService.findBrands());
+
+        return messageRequest;
     }
 }
