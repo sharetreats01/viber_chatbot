@@ -11,8 +11,6 @@ import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.request.Get
 public interface ProductApiClient {
     AvailablePaymentsResponse getPaymentList(Long productId);
     BrandListResponse getBrandList(GetBrandRequest request);
-
-    ProductListResponse getProductsList(String brandName);
-
+    ProductListResponse getProductsList(Long brandId);
     ProductDetailResponse getProductDetail(Long productId);
 }
