@@ -15,5 +15,6 @@ public class KeyboardConstants {
     public static final int PRODUCT_DETAIL_BUTTONS_COLUMNS = 6;
     public static final int PRODUCT_DETAIL_FIRST_BUTTONS_ROWS = 6;
     public static final int PRODUCT_DETAIL_SECOND_BUTTONS_ROWS = 1;
+    public static final String ACTIONBODY_SEND_TREAT = "TREAT";
     public static final int FRAME_CORNER_RADIUS = 10;
 }

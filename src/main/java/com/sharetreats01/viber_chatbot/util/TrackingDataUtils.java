@@ -38,9 +38,9 @@ public class TrackingDataUtils {
         if (!StringUtils.hasText(trackingData)) return State.BRANDS;
         if (!StringUtils.hasText(input)&& input.equals("QUIT")) return State.BRANDS;
 
+        if (State.TREAT.name().equals(input)) return State.TREAT;
         String lastPart = getLastPart(trackingData);
         if (lastPart.startsWith(State.TREAT.name())) return State.TREAT;
-        if (State.TREAT.name().equals(input)) return State.TREAT;
         return handlerPath.get(State.fromValue(lastPart));
     }
 
@@ -72,6 +72,10 @@ public class TrackingDataUtils {
 
     public String updateState(String trackingData, String input) {
         return trackingData + DATA_DELIMITER + input.trim() + DELIMITER + getNextState(trackingData, input);
+    }
+
+    public String updateThisState(String trackingData, State state) {
+        return trackingData + DELIMITER + state.name();
     }
 
     public String updateData(String trackingData, String input) {

@@ -30,7 +30,7 @@ public class ProductRichMediaServiceImpl implements ProductRichMediaService {
                 .rows(KeyboardConstants.PRODUCT_DETAIL_SECOND_BUTTONS_ROWS)
                 .bgColor(KeyboardConstants.BUTTON_BG_COLOR)
                 .actionType(ActionType.REPLY)
-                .actionBody(productDetail.getProductId().toString())
+                .actionBody(KeyboardConstants.ACTIONBODY_SEND_TREAT)
                 .text(KeyboardConstants.SEND_TREAT)
                 .textSize(TextSize.REGULAR)
                 .textVAlign(TextVAlign.MIDDLE)
@@ -76,7 +76,10 @@ public class ProductRichMediaServiceImpl implements ProductRichMediaService {
                     .rows(KeyboardConstants.PRODUCT_THIRD_BUTTONS_ROWS)
                     .bgColor(KeyboardConstants.BUTTON_BG_COLOR)
                     .actionType(ActionType.REPLY)
-                    .actionBody(productsList.getProducts().get(i).getId().toString())
+                    .actionBody(
+                            KeyboardConstants.ACTIONBODY_SEND_TREAT +" "+
+                            productsList.getProducts().get(i).getId()
+                    )
                     .text(KeyboardConstants.SEND_TREAT)
                     .textSize(TextSize.LARGE)
                     .textVAlign(TextVAlign.MIDDLE)
