@@ -37,7 +37,7 @@ public class ProductDetailMessageService {
                 .rows(KeyboardConstants.PRODUCT_DETAIL_SECOND_BUTTONS_ROWS)
                 .bgColor(KeyboardConstants.BUTTON_BG_COLOR)
                 .actionType(ActionType.REPLY)
-                .actionBody(KeyboardConstants.SEND_TREAT_ACTIONBODY + productDetail.getProductId())
+                .actionBody(productDetail.getProductId().toString())
                 .text(KeyboardConstants.SEND_TREAT)
                 .textSize(TextSize.LARGE)
                 .textVAlign(TextVAlign.MIDDLE)
