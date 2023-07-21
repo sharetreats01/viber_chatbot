@@ -1,19 +1,17 @@
 package com.sharetreats01.viber_chatbot.support.creator;
 
 import com.sharetreats01.viber_chatbot.AbstractMockTest;
-import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
-import com.sharetreats01.viber_chatbot.properties.ChatbotProperties;
-import com.sharetreats01.viber_chatbot.service.MessageService;
-import com.sharetreats01.viber_chatbot.util.TreatDataUtils;
+import com.sharetreats01.viber_chatbot.callback.dto.request.event.MessageRequest;
+import com.sharetreats01.viber_chatbot.callback.properties.ChatbotProperties;
+import com.sharetreats01.viber_chatbot.botMessage.service.message.MessageService;
+import com.sharetreats01.viber_chatbot.botMessage.creator.TreatMessageCreatorImpl;
+import com.sharetreats01.viber_chatbot.botMessage.util.TreatDataUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TreatMessageCreatorImplTest extends AbstractMockTest {
     @Mock

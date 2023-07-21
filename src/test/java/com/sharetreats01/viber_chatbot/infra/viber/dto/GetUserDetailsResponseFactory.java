@@ -2,8 +2,8 @@ package com.sharetreats01.viber_chatbot.infra.viber.dto;
 
 import com.sharetreats01.viber_chatbot.user.dto.User;
 import com.sharetreats01.viber_chatbot.user.dto.UserFactory;
-import com.sharetreats01.viber_chatbot.infra.viber.dto.response.GetUserDetailsResponse;
-import com.sharetreats01.viber_chatbot.infra.viber.enums.Status;
+import com.sharetreats01.viber_chatbot.client.viber.dto.response.GetUserDetailsResponse;
+import com.sharetreats01.viber_chatbot.client.viber.enums.Status;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Constructor;

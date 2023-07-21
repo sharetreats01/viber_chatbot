@@ -1,20 +1,16 @@
 package com.sharetreats01.viber_chatbot.order.service;
 
-import com.sharetreats01.viber_chatbot.order.client.OrderApiClient;
-import com.sharetreats01.viber_chatbot.order.dto.request.OrderByBotRequest;
+import com.sharetreats01.viber_chatbot.client.order.client.OrderApiClient;
 
-import com.sharetreats01.viber_chatbot.order.dto.request.OrderRequest;
-import com.sharetreats01.viber_chatbot.order.dto.response.OrderSuccessResponse;
+import com.sharetreats01.viber_chatbot.client.order.service.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 public class OrderServiceTest {

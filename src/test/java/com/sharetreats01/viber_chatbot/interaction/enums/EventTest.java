@@ -1,7 +1,7 @@
 package com.sharetreats01.viber_chatbot.interaction.enums;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sharetreats01.viber_chatbot.enums.Event;
+import com.sharetreats01.viber_chatbot.botMessage.enums.Event;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

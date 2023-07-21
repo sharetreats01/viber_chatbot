@@ -1,7 +1,7 @@
 package com.sharetreats01.viber_chatbot.config;
 
-import com.sharetreats01.viber_chatbot.dto.callback.request.property.State;
-import com.sharetreats01.viber_chatbot.support.handler.message.*;
+import com.sharetreats01.viber_chatbot.callback.dto.request.event.property.State;
+import com.sharetreats01.viber_chatbot.callback.handler.message.*;
 
 import java.util.Arrays;
 import java.util.List;

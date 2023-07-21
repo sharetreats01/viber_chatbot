@@ -1,9 +1,11 @@
 package com.sharetreats01.viber_chatbot.util;
 
 import com.sharetreats01.viber_chatbot.AbstractMockTest;
-import com.sharetreats01.viber_chatbot.config.MessageHandlerConfiguration;
-import com.sharetreats01.viber_chatbot.dto.callback.request.MessageRequest;
-import com.sharetreats01.viber_chatbot.dto.callback.request.property.State;
+import com.sharetreats01.viber_chatbot.callback.config.MessageHandlerConfiguration;
+import com.sharetreats01.viber_chatbot.callback.dto.request.event.MessageRequest;
+import com.sharetreats01.viber_chatbot.callback.dto.request.event.property.State;
+import com.sharetreats01.viber_chatbot.botMessage.util.TrackingDataUtils;
+import com.sharetreats01.viber_chatbot.botMessage.util.UUIDGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

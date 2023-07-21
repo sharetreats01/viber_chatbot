@@ -1,8 +1,9 @@
 package com.sharetreats01.viber_chatbot.infra.sharetreats.product.client;
 
-import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.ProductDetailResponse;
-import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.ProductListResponse;
-import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.parameter.Product;
+import com.sharetreats01.viber_chatbot.client.product.client.ProductApiClient;
+import com.sharetreats01.viber_chatbot.client.product.dto.response.ProductDetailResponse;
+import com.sharetreats01.viber_chatbot.client.product.dto.response.ProductListResponse;
+import com.sharetreats01.viber_chatbot.client.product.dto.response.parameter.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,9 @@
 package com.sharetreats01.viber_chatbot.interaction.handler;
 
-import com.sharetreats01.viber_chatbot.handler.SubScribedEventHandler;
+import com.sharetreats01.viber_chatbot.callback.handler.event.SubScribedEventHandler;
 import com.sharetreats01.viber_chatbot.user.service.UserService;
-import com.sharetreats01.viber_chatbot.infra.viber.client.ViberWebClient;
-import com.sharetreats01.viber_chatbot.infra.viber.service.KeyBoardService;
+import com.sharetreats01.viber_chatbot.client.viber.client.ViberWebClient;
+import com.sharetreats01.viber_chatbot.botMessage.service.keyboard.KeyBoardService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

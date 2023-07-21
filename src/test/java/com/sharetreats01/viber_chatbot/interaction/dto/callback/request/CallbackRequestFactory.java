@@ -1,8 +1,8 @@
 package com.sharetreats01.viber_chatbot.interaction.dto.callback.request;
 
-import com.sharetreats01.viber_chatbot.dto.callback.request.ConversationStartedRequest;
-import com.sharetreats01.viber_chatbot.dto.callback.request.SubscribedRequest;
-import com.sharetreats01.viber_chatbot.dto.callback.request.property.User;
+import com.sharetreats01.viber_chatbot.callback.dto.request.event.ConversationStartedRequest;
+import com.sharetreats01.viber_chatbot.callback.dto.request.event.SubscribedRequest;
+import com.sharetreats01.viber_chatbot.callback.dto.request.event.property.User;
 
 import java.lang.reflect.InvocationTargetException;
 
