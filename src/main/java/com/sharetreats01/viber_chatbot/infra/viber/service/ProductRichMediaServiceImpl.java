@@ -6,6 +6,7 @@ import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.Pr
 import com.sharetreats01.viber_chatbot.infra.sharetreats.product.dto.response.parameter.Product;
 import com.sharetreats01.viber_chatbot.infra.viber.dto.request.property.Keyboard;
 import com.sharetreats01.viber_chatbot.util.KeyboardConstants;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +31,7 @@ public class ProductRichMediaServiceImpl implements ProductRichMediaService {
                 .rows(KeyboardConstants.PRODUCT_DETAIL_SECOND_BUTTONS_ROWS)
                 .bgColor(KeyboardConstants.BUTTON_BG_COLOR)
                 .actionType(ActionType.REPLY)
-                .actionBody(KeyboardConstants.ACTIONBODY_SEND_TREAT)
+                .actionBody(productDetail.getProductId().toString())
                 .text(KeyboardConstants.SEND_TREAT)
                 .textSize(TextSize.REGULAR)
                 .textVAlign(TextVAlign.MIDDLE)
@@ -76,10 +77,7 @@ public class ProductRichMediaServiceImpl implements ProductRichMediaService {
                     .rows(KeyboardConstants.PRODUCT_THIRD_BUTTONS_ROWS)
                     .bgColor(KeyboardConstants.BUTTON_BG_COLOR)
                     .actionType(ActionType.REPLY)
-                    .actionBody(
-                            KeyboardConstants.ACTIONBODY_SEND_TREAT +" "+
-                            productsList.getProducts().get(i).getId()
-                    )
+                    .actionBody(getActionBody(productsList, i))
                     .text(KeyboardConstants.SEND_TREAT)
                     .textSize(TextSize.LARGE)
                     .textVAlign(TextVAlign.MIDDLE)
@@ -114,5 +112,10 @@ public class ProductRichMediaServiceImpl implements ProductRichMediaService {
                 + "<b><br>"
                 + product.getPriceFormatted()
                 + "</b>";
+    }
+
+    @NotNull
+    private String getActionBody(ProductListResponse productsList, int i) {
+        return KeyboardConstants.SEND_TREAT_ACTIONBODY + productsList.getProducts().get(i).getId();
     }
 }
