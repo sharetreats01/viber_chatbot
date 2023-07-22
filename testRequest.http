@@ -1,0 +1,46 @@
+### choose Treat Type
+POST http://localhost:8080/sharetreats01_chatbot
+Content-Type: application/json
+
+{
+  "event":"message",
+  "timestamp":1457764197627,
+  "message_token":4912661846655238145,
+  "sender":{
+    "id":{{viberId_user}},
+    "name":"Hyelin",
+    "avatar":"http://viberTest.com",
+    "country":"UK",
+    "language":"en",
+    "api_version":6
+  },
+  "message":{
+    "type":"text",
+    "text":"TREAT",
+    "media":"http://example.com",
+    "location":{
+      "lat":50.76891,
+      "lon":6.11499
+    },
+    "tracking_data":"[]:BRANDS_1:PRODUCTS_1:DETAIL"
+  }
+}
+
+### POST Viber REST API
+POST https://chatapi.viber.com/pa/send_message
+X-Viber-Auth-Token : {{bot_token}}
+Content-Type: application/json
+
+{
+  "receiver": {{viberId_user}},
+  "min_api_version":1,
+  "sender":{
+    "name":"John McClane",
+    "avatar":"http://avatar.example.com"
+  },
+  "tracking_data":"new",
+  "type":"picture",
+  "media":"https://i.namu.wiki/i/gT9uQX8akNSIxWFac--Qt8AraA3oMh507YiKdqkKpnPWq8CJVZS2Y6k957OGlgkIBxCqGVXdf94IxQPMyyCsbAAB6z4fziGPXeESMgUHhkZjFDWnbBDyglJkpjLQ6J7eBLHx8rPyLZlVbSUo69FXOg.webp",
+  "thumbnail":"https://i.namu.wiki/i/gT9uQX8akNSIxWFac--Qt8AraA3oMh507YiKdqkKpnPWq8CJVZS2Y6k957OGlgkIBxCqGVXdf94IxQPMyyCsbAAB6z4fziGPXeESMgUHhkZjFDWnbBDyglJkpjLQ6J7eBLHx8rPyLZlVbSUo69FXOg.webp",
+  "text":"Cheesebuger Solo\n*McDonald's*\n\nFrom: John Doe \n\nmessage: \"Drink some tea and bring me dessert okay?\" \n\nCode:012 345 678\nExpire date: 14/03/2024\n"
+}
